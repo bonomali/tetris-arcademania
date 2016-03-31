@@ -24,7 +24,7 @@ We will use the Qt Creator IDE for this project and C++ and QML for the language
 #Bugs and TODO List
 
 #Contributor List
-Isaac Harries<n/>
+Isaac Harries,
 Stephanie Vetter
 
 #Credits, Inspirations, Alternative
