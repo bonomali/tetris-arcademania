@@ -2,17 +2,15 @@
 ![Alt text](icon.jpg)
 
 #Description
-This project will demonstrate our ability to work as a team on a game using QT creator. The game we have chosen is called Bubble Shooter.
-The user can position the pivoting bubble shooter to launch a bubble upwards. The bubble will hit a mass of bubbles above. If the projectile 
-hits a group of (3 or more) bubbles of the same color, they will pop. If the basic features of the game are completed before the end of the
-term, we will add a scoreboard feature and the ability for the celing to drop closer to the bubble shooter, and an infinity mode in which
-endless bubbles are populated from above.
+This project will demonstrate our ability to work as a team on a game using QT creator. The game we have chosen is called Tetris.
+
+The user will use the arrow keys to move falling shapes. The goal of the game is to align the shapes so they create complete horizontal lines along the game play area. When a complete horizontal line is created, it will disappear. Other features will include a game score, a preview of the next shape to fall, a counter for the number of complete lines created, the level of game play, and a speed up feature that will increase the rate at which the shapes fall as the user moves up a game play level.
 
 #Technologies
 We will use the Qt Creator IDE for this project and C++ and QML for the languages.
 
 #Screenshots/Mockup
-![Alt text](screenshot.jpg)
+![Alt text](tetris_pic.jpg)
 
 #Installation Instructions
 1. Install Qt 5.6 
@@ -28,7 +26,7 @@ Isaac Harries,
 Stephanie Vetter
 
 #Credits, Inspirations, Alternative
-I like bubbles.
+Tetris is cool!
 
 #License
 MIT
