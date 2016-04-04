@@ -1,4 +1,4 @@
-# arcademania
+# Tetris
 ![Alt text](icon2.jpg)
 
 #Description
