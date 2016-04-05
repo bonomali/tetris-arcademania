@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Buttons.qml</file>
+        <file>TextRect.qml</file>
+        <file>Dialog.qml</file>
+        <file>icon.jpg</file>
+        <file>background.jpg</file>
+    </qresource>
+</RCC>
