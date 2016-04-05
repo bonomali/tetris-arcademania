@@ -1,5 +1,5 @@
-# arcademania
-![Alt text](icon.jpg)
+# Tetris
+![Alt text](icon2.jpg)
 
 #Description
 This project will demonstrate our ability to work as a team on a game using QT creator. The game we have chosen is called Tetris.
