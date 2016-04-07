@@ -1,23 +1,24 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
 
-Button {
-    id:iButton
+Rectangle {
     property alias mouseArea:mouseArea
-    property alias textArea:textArea
+    property alias buttonText:buttonText.text
+    property alias buttonFont:buttonText.font
 
+    id:myButton
     height: parent.height * .15; width: parent.width * .35
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-
-        //onClicked: iButton.visible = false //??? Doesn't disappear
-        //hoverEnabled: iButton.color = "blue"
-        //???(hoverDisabled).iButton.color = "red"
+        hoverEnabled: true
+        onEntered: {myButton.color = "LightGrey"}
+        onExited: {myButton.color = "White"}
+        onClicked: {myButton.color = "Grey"}
     }
     Text{
-       id:textArea
+       id:buttonText
        font.pointSize: 15
        font.bold: true
        anchors.centerIn:parent
