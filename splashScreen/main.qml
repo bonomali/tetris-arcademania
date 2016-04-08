@@ -81,7 +81,7 @@ Dialog{
     height: parent.height * .2
     width: parent.width * .57
     rectangleFont.pointSize: ourNames.height * .12
-    anchors.centerIn: parent
+    //anchors.centerIn: parent
     baseRectangleText.anchors.centerIn: ourNames
     diagButtonFont.pointSize: ourNames.height * .09
     rectangleText: "Hello from Isaac and Stephanie!"
@@ -94,7 +94,7 @@ Dialog{
     id:startMessage
     width: appWindow.width * .8
     height: appWindow.height * .85
-    anchors.centerIn: parent
+    //anchors.centerIn: parent
     baseRectangleText.width: startMessage.width * .90
     baseRectangleText.height: startMessage.height * .85
     baseRectangleText.anchors.centerIn: startMessage
