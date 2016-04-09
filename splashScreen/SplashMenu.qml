@@ -1,17 +1,17 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
-import QtMultimedia 5.6
+//import QtMultimedia 5.6
 
 Rectangle{
     id: splashScreen
     anchors.fill: parent
 
-    MediaPlayer{
-        id: song
-        source: "qrc://Mizuumi_no_Tera.mp3"
-        autoPlay: true
-        playbackRate: 1.0
-    }
+//    MediaPlayer{
+//        id: song
+//        source: "qrc://Mizuumi_no_Tera.mp3"
+//        autoPlay: true
+//        playbackRate: 1.0
+//    }
 
     Image{
         source: "background.jpg"
@@ -73,7 +73,7 @@ Rectangle{
         anchors.topMargin: parent.height * .10
         anchors.horizontalCenter: parent.horizontalCenter
         height: parent.height * .35
-        width: parent.width * .75
+        width: parent.width * .90
     }
 
     Dialog{
@@ -82,9 +82,9 @@ Rectangle{
         width: parent.width * .57
         x: parent.width * .20
         y: parent.height * .40
-        rectangleFont.pointSize: ourNames.height * .12
+        rectangleFont.pointSize: ourNames.height * .07
         baseRectangleText.anchors.centerIn: ourNames
-        diagButtonFont.pointSize: ourNames.height * .09
+        diagButtonFont.pointSize: ourNames.height * .07
         rectangleText: "Hello from Isaac and Stephanie!"
         diagButtonText: "Goodbye"
     }
@@ -97,7 +97,7 @@ Rectangle{
         baseRectangleText.height: startMessage.height * .85
         baseRectangleText.anchors.centerIn: startMessage
 
-        rectangleFont.pointSize: startMessage.height * .028
+        rectangleFont.pointSize: startMessage.height * .020
         rectangleText: "Our project is the game Tetris. The user will use the arrow keys to move falling shapes. The goal of the game is to align the shapes so they create complete horizontal lines along the game play area. When a complete horizontal line is created, it will disappear. Other features will include a game score, a preview of the next shape to fall, a counter for the number of complete lines created, the level of game play, and a speed up feature that will increase the rate at which the shapes fall as the user moves up a game play level."
         diagButtonText: "Okay"
         x: parent.width / 11

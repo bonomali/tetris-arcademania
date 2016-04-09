@@ -3,7 +3,7 @@
 //Project Name: Tetris
 import QtQuick 2.4
 import QtQuick.Controls 1.3
-import QtMultimedia 5.6
+//import QtMultimedia 5.6
 
 ApplicationWindow {
     id:appWindow
@@ -17,13 +17,15 @@ ApplicationWindow {
 
     }
 
-    Square {
-        id: baseSquare
-        anchors.centerIn: parent
-        color: "blue"
-    }
+//    Square{
+//    anchors.centerIn: parent
+//    color: "blue"
+//    }
 
     SplashMenu{}
 
+    CubeItem {
+        anchors.centerIn: parent
+    }
 
 }

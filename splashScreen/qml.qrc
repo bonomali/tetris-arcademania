@@ -10,5 +10,6 @@
         <file>SplashMenu.qml</file>
         <file>Board.qml</file>
         <file>Hud.qml</file>
+        <file>CubeItem.qml</file>
     </qresource>
 </RCC>

@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
-#include <QMediaPlayer>
+//#include <QMediaPlayer>
 
 int main(int argc, char *argv[])
 {
