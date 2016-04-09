@@ -4,12 +4,14 @@ TextRect{
     property alias dialog:dialog
     property alias diagButtonText:diagButton.buttonText
     property alias diagButtonFont:diagButton.buttonFont
+    property alias diagButton: diagButton
     property alias diagMouseArea:diagMouseArea
     property alias drag:diagMouseArea.drag
     property real maximumDragX: 0
     property real maximumDragY: 0
 
     id:dialog
+    signal clicked
 
     MouseArea{
         id:diagMouseArea

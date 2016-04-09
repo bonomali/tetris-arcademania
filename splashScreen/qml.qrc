@@ -6,5 +6,9 @@
         <file>Dialog.qml</file>
         <file>icon.jpg</file>
         <file>background.jpg</file>
+        <file>Square.qml</file>
+        <file>SplashMenu.qml</file>
+        <file>Board.qml</file>
+        <file>Hud.qml</file>
     </qresource>
 </RCC>
