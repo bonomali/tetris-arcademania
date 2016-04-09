@@ -18,8 +18,24 @@ We will use the Qt Creator IDE for this project and C++ and QML for the language
 3. Clean all, run qmake, build all, run. 
 
 #Contribution Guidelines
+Send Documents for review before submitting
 
 #Bugs and TODO List
+
+Bugs
+Placeholder
+
+TODO list
+1. splash screen
+2. readme
+3. menu
+4. hud
+5. tetris graphics
+6. generate tetris objects
+7. rotate tetris objects
+8. drop mechanic
+9. stack mechanic
+10. destroy full line
 
 #Contributor List
 Isaac Harries,
@@ -30,3 +46,5 @@ Tetris is cool!
 
 #License
 MIT
+
+The MIT License is a free software license originating at the Massachusetts Institute of Technology (MIT). It is a permissive free software license, meaning that it puts only very limited restriction on reuse and has therefore an excellent license compatibility. The MIT license permits reuse within proprietary software provided all copies of the licensed software include a copy of the MIT License terms and the copyright notice. The MIT license is also compatible with many copyleft licenses, such as the GPL; MIT licensed software can be integrated into GPL software, but not the other way around.
