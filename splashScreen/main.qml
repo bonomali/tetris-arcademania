@@ -13,19 +13,6 @@ ApplicationWindow {
     width: 640
     height: 640
 
-    Board{
-    }
-
-    Hud {
-
-    }
-
-
-
+    Hud {}
     SplashMenu{}
-
-    CubeItem {
-        anchors.centerIn: parent
-    }
-
 }

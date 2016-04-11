@@ -3,25 +3,24 @@ import QtQuick 2.0
 Item {
     width: topLeft.width * 2
     height: topLeft.height * 2
-    //color: "transparent"
-
+    property color shapeColor: "blue"
     Square {
     id: topLeft
-    color: "blue"
+    color: shapeColor
     }
     Square {
     id: bottomLeft
     anchors.top: topLeft.bottom
-    color: "blue"
+    color: shapeColor
     }
     Square {
     id: topRight
     anchors.left: topLeft.right
-    color: "blue"
+    color: shapeColor
     }
     Square {
     id: bottomRight
-    color: "blue"
+    color: shapeColor
     anchors.top: topRight.bottom
     anchors.left: bottomLeft.right
     }

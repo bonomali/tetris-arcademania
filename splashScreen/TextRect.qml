@@ -8,11 +8,12 @@ Rectangle {
 
     id: textRect
     border.color: "grey"
-    color: "lightblue"
+    color: "#0060a9"
 
     Text {
         id: rectangleText
         font.bold: true
         wrapMode: "WordWrap"
+        color: "#b9d6e1"
     }
 }
