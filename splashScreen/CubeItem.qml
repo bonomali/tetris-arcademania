@@ -1,12 +1,12 @@
 import QtQuick 2.0
 
-Rectangle {
-    width: baseSquare.width * 2
-    height: baseSquare.height * 2
+Item {
+    width: topLeft.width * 2
+    height: topLeft.height * 2
+    //color: "transparent"
 
     Square {
     id: topLeft
-    anchors.right: topRight.left
     color: "blue"
     }
     Square {
@@ -16,12 +16,13 @@ Rectangle {
     }
     Square {
     id: topRight
-    anchors.bottom: bottomRight.top
+    anchors.left: topLeft.right
     color: "blue"
     }
     Square {
     id: bottomRight
     color: "blue"
+    anchors.top: topRight.bottom
     anchors.left: bottomLeft.right
     }
 }

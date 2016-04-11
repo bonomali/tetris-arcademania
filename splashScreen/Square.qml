@@ -1,9 +1,9 @@
-import QtQuick 2.0
+import QtQuick 2.4
 
 Rectangle {
-    property alias baseSquare: baseSquare2
-    id: baseSquare2
-    width: parent.height * .03
-    height: parent.height * .03
-    radius: parent.height * .005
+    property alias baseSquare: baseSquare
+    id: baseSquare
+    width: appWindow.height * .03
+    height: appWindow.height * .03
+    radius: appWindow.height * .005
 }

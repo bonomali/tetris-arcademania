@@ -13,14 +13,14 @@ ApplicationWindow {
     width: 640
     height: 640
 
+    Board{
+    }
+
     Hud {
 
     }
 
-//    Square{
-//    anchors.centerIn: parent
-//    color: "blue"
-//    }
+
 
     SplashMenu{}
 
