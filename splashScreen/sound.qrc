@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>Zen.mp3</file>
+    </qresource>
+</RCC>

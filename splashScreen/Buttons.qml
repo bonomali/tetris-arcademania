@@ -16,8 +16,9 @@ Rectangle {
         hoverEnabled: true
         onEntered: {myButton.color = "#015394"}
         onExited: {myButton.color = "#014880"}
-        onClicked: {myButton.color = "#00aaff"}
+        onPressed: {myButton.color = "#00aaff"}
     }
+
     Text{
        id:buttonText
        font.pointSize: 15

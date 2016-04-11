@@ -1,17 +1,9 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
-//import QtMultimedia 5.6
 
 Rectangle{
     id: splashScreen
     anchors.fill: parent
-
-//    MediaPlayer{
-//        id: song
-//        source: "qrc://Mizuumi_no_Tera.mp3"
-//        autoPlay: true
-//        playbackRate: 1.0
-//    }
 
     Image{
         source: "background.jpg"

@@ -37,9 +37,6 @@ Rectangle{
             border.color: "grey"
         }
 
-        CubeItem {
-        }
-
         Canvas {
             id: root
             // canvas size
