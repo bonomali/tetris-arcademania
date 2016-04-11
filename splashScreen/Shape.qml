@@ -59,4 +59,18 @@ Item {
     anchors.top: secondRight.bottom
     anchors.left: thirdLeft.right
     }
+
+    anchors.fill: parent
+    focus: true
+    Keys.onPressed: {
+        if(event.key === Qt.Key_Left)
+            console.log("move left")
+        else if(event.key === Qt.Key_Right)
+            console.log("move_right")
+        else if(event.key === Qt.Key_Up)
+            console.log("move_up")
+        else if(event.key === Qt.Key_Down)
+            console.log("move_down")
+        event.accept = true
+    }
 }

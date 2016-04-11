@@ -37,7 +37,7 @@ Rectangle{
             border.color: "grey"
         }
 
-        MLItem {
+        CubeItem {
         }
 
         Canvas {
