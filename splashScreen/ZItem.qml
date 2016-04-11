@@ -1,9 +1,9 @@
 import QtQuick 2.4
 
 Shape {
-    bottomLeft.visible: false
+    topRight.visible: false
     bottomRight.visible: false
     thirdLeft.visible: false
-    thirdRight.visible: false
+    bottomLeft.visible: false
+    shapeColor: "lightgreen"
 }
-
