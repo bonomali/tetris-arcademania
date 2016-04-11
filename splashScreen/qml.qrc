@@ -12,5 +12,12 @@
         <file>Hud.qml</file>
         <file>CubeItem.qml</file>
         <file>Background.qml</file>
+        <file>TItem.qml</file>
+        <file>Shape.qml</file>
+        <file>LItem.qml</file>
+        <file>MLItem.qml</file>
+        <file>ZItem.qml</file>
+        <file>MZItem.qml</file>
+        <file>LineItem.qml</file>
     </qresource>
 </RCC>
