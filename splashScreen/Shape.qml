@@ -15,6 +15,31 @@ Item {
     width: topLeft.width * 2
     height: topLeft.height * 4
     property color shapeColor: "yellow"
+    x: x_position
+    y: y_position
+//anchors.centerIn: parent
+    //anchors.fill: parent
+    focus: true
+    Keys.onPressed: {
+        if(event.key === Qt.Key_Left && x_position > 0)
+        {
+            x_position = x_position - topLeft.width
+            x: x_position
+            y: y_position
+        }
+        else if(event.key === Qt.Key_Right && x_position < (playArea.width - width))
+        {
+            x_position = x_position + topLeft.width
+            x: x_position
+            y: y_position
+        }
+        else if(event.key === Qt.Key_Up)
+            console.log("move_up")
+        else if(event.key === Qt.Key_Down)
+            console.log("move_down")
+        event.accept = true
+    }
+
     Square {
     id: topLeft
     color: shapeColor
@@ -58,19 +83,5 @@ Item {
     color: shapeColor
     anchors.top: secondRight.bottom
     anchors.left: thirdLeft.right
-    }
-
-    anchors.fill: parent
-    focus: true
-    Keys.onPressed: {
-        if(event.key === Qt.Key_Left)
-            console.log("move left")
-        else if(event.key === Qt.Key_Right)
-            console.log("move_right")
-        else if(event.key === Qt.Key_Up)
-            console.log("move_up")
-        else if(event.key === Qt.Key_Down)
-            console.log("move_down")
-        event.accept = true
     }
 }

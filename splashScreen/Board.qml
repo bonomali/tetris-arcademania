@@ -37,6 +37,10 @@ Rectangle{
             border.color: "grey"
         }
 
+        LineItem {
+
+        }
+
         Canvas {
             id: root
             // canvas size

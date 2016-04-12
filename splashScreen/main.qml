@@ -9,6 +9,8 @@ ApplicationWindow {
     id:appWindow
     title: playMusic.errorString
     property int level: 1
+    property int x_position: 0
+    property int y_position: 0
     visible: true
     width: 640
     height: 640
