@@ -4,6 +4,7 @@ import QtQuick.Controls 1.3
 Rectangle{
     id: splashScreen
     anchors.fill: parent
+    property int level: 1
 
     Image{
         source: "background.jpg"

@@ -38,7 +38,6 @@ Rectangle{
         }
 
         LineItem {
-
         }
 
         Canvas {

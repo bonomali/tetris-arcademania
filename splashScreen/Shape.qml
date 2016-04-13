@@ -1,6 +1,7 @@
 import QtQuick 2.4
 
 Item {
+    id: basicShape
     property alias topRight:topRight
     property alias topLeft:topLeft
     property alias secondRight:secondRight
@@ -9,7 +10,8 @@ Item {
     property alias thirdLeft:thirdLeft
     property alias bottomRight:bottomRight
     property alias bottomLeft:bottomLeft
-
+    property int x_position: 0
+    property int y_position: 0
     //property alias shapeColor:shapeColor
 
     width: topLeft.width * 2
@@ -17,8 +19,9 @@ Item {
     property color shapeColor: "yellow"
     x: x_position
     y: y_position
-//anchors.centerIn: parent
-    //anchors.fill: parent
+
+
+
     focus: true
     Keys.onPressed: {
         if(event.key === Qt.Key_Left && x_position > 0)
@@ -27,31 +30,40 @@ Item {
             x: x_position
             y: y_position
         }
-        else if(event.key === Qt.Key_Right && x_position < (playArea.width - width))
+        else if(event.key === Qt.Key_Right && x_position < (playArea.width - basicShape.width))
         {
             x_position = x_position + topLeft.width
             x: x_position
-            y: y_position
+            console.log("X position: " + x_position)
+            console.log("Top left width: " + topLeft.width)
         }
         else if(event.key === Qt.Key_Up)
             console.log("move_up")
-        else if(event.key === Qt.Key_Down)
-            console.log("move_down")
+
+
+        else if(event.key === Qt.Key_Down && y_position < playArea.height - basicShape.height)
+        {
+            y_position = y_position + topLeft.height
+            y: y_position
+        }
         event.accept = true
     }
 
     Square {
     id: topLeft
     color: shapeColor
+    anchors.right: topRight.left
     }
     Square {
     id: bottomLeft
     anchors.top: thirdLeft.bottom
+    anchors.right: bottomRight.left
     color: shapeColor
     }
     Square {
     id: topRight
     anchors.left: topLeft.right
+    anchors.bottom: secondRight.top
     color: shapeColor
     }
     Square {
