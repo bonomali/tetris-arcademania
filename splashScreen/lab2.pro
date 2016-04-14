@@ -4,7 +4,16 @@ QT += qml quick widgets
 QT += multimedia
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    maingrid.cpp \
+    ishapes.cpp \
+    cubeitem.cpp \
+    litem.cpp \
+    mlitem.cpp \
+    mzitem.cpp \
+    titem.cpp \
+    zitem.cpp \
+    lineitem.cpp
 
 RESOURCES += qml.qrc \
     sound.qrc
@@ -16,3 +25,14 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 DISTFILES +=
+
+HEADERS += \
+    maingrid.h \
+    ishapes.h \
+    cubeitem.h \
+    litem.h \
+    mlitem.h \
+    mzitem.h \
+    titem.h \
+    zitem.h \
+    lineitem.h
