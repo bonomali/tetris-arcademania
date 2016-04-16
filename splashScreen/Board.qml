@@ -1,8 +1,8 @@
 import QtQuick 2.4
 import QTGraphicalEffects 1.0
+//import "/Users/Isaac/cst_238/arcademania/splashScreen/ComponentGenerator.js" as MyScript
 
-
-Rectangle {
+    Rectangle {
     id: playArea
     //anchors.bottom: parent.bottom
     anchors.horizontalCenter: parent.horizontalCenter
@@ -15,15 +15,15 @@ Rectangle {
     border.width: 3
     property int index: 0
 
-//    onWidthChanged:
-//    {
-//        exampleShape.x = exampleShape.col * (width / tilesWide)
-//    }
+    onWidthChanged:
+    {
+        exampleShape.x = exampleShape.col * (width / tilesWide)
+    }
 
-//    onHeightChanged:
-//    {
-//        exampleShape.y = exampleShape.row * (height / tilesHigh)
-//    }
+    onHeightChanged:
+    {
+        exampleShape.y = exampleShape.row * (height / tilesHigh)
+    }
 
     RadialGradient{
         anchors.fill: playArea
@@ -33,6 +33,8 @@ Rectangle {
         }
     }
 
+
+
     Square{
         id:referenceSquare
         color:"transparent"
@@ -41,7 +43,7 @@ Rectangle {
 
     LineItem {
         id: exampleShape
-    }
+ }
 
     Canvas {
         id: root

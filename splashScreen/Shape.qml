@@ -12,7 +12,8 @@ Item {
     property alias bottomLeft:bottomLeft
     property int shapeWidth: topLeft.width * 2
     property int shapeHeight: topLeft.height * 4
-    property int temp: playArea.height
+    property int row: 0
+    property int col: 0
 
     width: topLeft.width * 2
     height: topLeft.height * 4
@@ -41,15 +42,11 @@ Item {
 
     SequentialAnimation on y {
         loops: 32
-
         PauseAnimation {
             duration: 200
         }
-
-        NumberAnimation {to: temp - shapeHeight; duration: 2000;
+        NumberAnimation {to: playArea.height - shapeHeight; duration: 10000;
         }
-
-
     }
 
     Square {
