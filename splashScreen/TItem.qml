@@ -6,4 +6,5 @@ Shape {
     thirdRight.visible: false
     topRight.visible: false
     shapeColor: "#42a5f5"
+    shapeHeight: topLeft.width * 3
 }

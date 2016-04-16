@@ -7,6 +7,9 @@ import QtMultimedia 5.6
 
 ApplicationWindow {
     id:appWindow
+    property int tilesWide: 16
+    property int tilesHigh: 32
+
     //title: playMusic.errorString
     visible: true
     width: 640
@@ -20,7 +23,4 @@ ApplicationWindow {
 
     Hud {}
     SplashMenu{}
-    Square{
-    id:square12
-    }
 }

@@ -5,5 +5,6 @@ Shape {
     bottomRight.visible: false
     thirdLeft.visible: false
     thirdRight.visible: false
+    shapeHeight: topLeft.width * 2
 }
 

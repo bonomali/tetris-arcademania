@@ -10,60 +10,64 @@ Item {
     property alias thirdLeft:thirdLeft
     property alias bottomRight:bottomRight
     property alias bottomLeft:bottomLeft
-    property int x_position: 0
-    property int y_position: 0
-    //property alias shapeColor:shapeColor
+    property int shapeWidth: topLeft.width * 2
+    property int shapeHeight: topLeft.height * 4
+    property int temp: playArea.height
 
     width: topLeft.width * 2
     height: topLeft.height * 4
     property color shapeColor: "yellow"
-    x: x_position
-    y: y_position
-
-
 
     focus: true
     Keys.onPressed: {
-        if(event.key === Qt.Key_Left && x_position > 0)
+        if(event.key === Qt.Key_Left && x > 0)
         {
-            x_position = x_position - topLeft.width
-            x: x_position
-            y: y_position
+            x -= topLeft.width
         }
-        else if(event.key === Qt.Key_Right && x_position < (playArea.width - basicShape.width))
+        else if(event.key === Qt.Key_Right && x < (playArea.width - shapeWidth))
         {
-            x_position = x_position + topLeft.width
-            x: x_position
-            console.log("X position: " + x_position)
-            console.log("Top left width: " + topLeft.width)
+            x += topLeft.width
         }
         else if(event.key === Qt.Key_Up)
-            console.log("move_up")
-
-
-        else if(event.key === Qt.Key_Down && y_position < playArea.height - basicShape.height)
         {
-            y_position = y_position + topLeft.height
-            y: y_position
+            console.log("move_up")
+        }
+        else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
+        {
+            y += topLeft.width
         }
         event.accept = true
+    }
+
+    SequentialAnimation on y {
+        loops: 32
+
+        PauseAnimation {
+            duration: 200
+        }
+
+        NumberAnimation {to: temp - shapeHeight; duration: 2000;
+        }
+
+
     }
 
     Square {
     id: topLeft
     color: shapeColor
-    anchors.right: topRight.left
+    anchors.left: parent.left
+    anchors.top: parent.top
     }
     Square {
     id: bottomLeft
     anchors.top: thirdLeft.bottom
-    anchors.right: bottomRight.left
+    anchors.left: parent.left
     color: shapeColor
     }
     Square {
     id: topRight
-    anchors.left: topLeft.right
-    anchors.bottom: secondRight.top
+    anchors.top: parent.top
+    anchors.right: parent.right
     color: shapeColor
     }
     Square {
@@ -76,13 +80,13 @@ Item {
     id: secondLeft
     color: shapeColor
     anchors.top: topLeft.bottom
-    anchors.right: secondRight.left
+    anchors.left: parent.left
     }
     Square {
     id: secondRight
     color: shapeColor
     anchors.top: topRight.bottom
-    anchors.left: secondLeft.right
+    anchors.right: parent.right
     }
     Square {
     id: thirdLeft
@@ -94,6 +98,6 @@ Item {
     id: thirdRight
     color: shapeColor
     anchors.top: secondRight.bottom
-    anchors.left: thirdLeft.right
+    anchors.right: parent.right
     }
 }
