@@ -33,8 +33,6 @@ import QTGraphicalEffects 1.0
         }
     }
 
-
-
     Square{
         id:referenceSquare
         color:"transparent"

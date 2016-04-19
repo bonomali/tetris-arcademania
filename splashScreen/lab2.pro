@@ -6,14 +6,7 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     maingrid.cpp \
-    ishapes.cpp \
     cubeitem.cpp \
-    litem.cpp \
-    mlitem.cpp \
-    mzitem.cpp \
-    titem.cpp \
-    zitem.cpp \
-    lineitem.cpp
 
 RESOURCES += qml.qrc \
     sound.qrc
@@ -24,16 +17,8 @@ QML_IMPORT_PATH =
 # Default rules for deployment.
 include(deployment.pri)
 
-DISTFILES += \
-    ComponentGenerator.js
+DISTFILES +=
 
 HEADERS += \
     maingrid.h \
-    ishapes.h \
     cubeitem.h \
-    litem.h \
-    mlitem.h \
-    mzitem.h \
-    titem.h \
-    zitem.h \
-    lineitem.h

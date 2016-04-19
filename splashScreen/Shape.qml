@@ -14,6 +14,7 @@ Item {
     property int shapeHeight: topLeft.height * 4
     property int row: 0
     property int col: 0
+    property int y_wait: 0
 
     width: topLeft.width * 2
     height: topLeft.height * 4
@@ -35,19 +36,29 @@ Item {
         }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
         {
-            y += topLeft.width
+            sleep
         }
-        event.accept = true
+          event.accept = true
     }
 
-    SequentialAnimation on y {
-        loops: 32
-        PauseAnimation {
-            duration: 200
-        }
-        NumberAnimation {to: playArea.height - shapeHeight; duration: 10000;
-        }
+    Keys.onReturnPressed: {
+        console.log("we're here")
+        cube.rotate()
     }
+        Timer
+        {
+            id:sleep
+            interval: 1000
+            running: true
+            repeat: true
+            onTriggered:
+            {
+                if(y < playArea.height - shapeHeight)
+                    y += topLeft.width
+                else
+                    sleep.stop()
+            }
+        }
 
     Square {
     id: topLeft

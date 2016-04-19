@@ -2,17 +2,25 @@
 #define CUBEITEM_H
 
 #include <QObject>
-#include "ishapes.h"
+#include <QQmlContext>
 
-class CubeItem : public IShapes
+const int WIDTH = 4;
+const int LENGTH = 4;
+
+class cubeItem : public QObject
 {
+    Q_OBJECT
 public:
-    CubeItem();
+    cubeItem();
 
-//signals:
+signals:
+
 
 public slots:
-     void Rotate();  //rotate shape
+     void rotate();  //rotate shape
+
+private:
+     bool m_shapeArray[WIDTH][LENGTH]; 
 };
 
 #endif // CUBEITEM_H
