@@ -7,6 +7,8 @@ CONFIG += c++11
 SOURCES += main.cpp \
     maingrid.cpp \
     cubeitem.cpp \
+    ishapes.cpp \
+    lineitem.cpp
 
 RESOURCES += qml.qrc \
     sound.qrc
@@ -22,3 +24,5 @@ DISTFILES +=
 HEADERS += \
     maingrid.h \
     cubeitem.h \
+    ishapes.h \
+    lineitem.h

@@ -2,18 +2,21 @@
 #include <QQmlApplicationEngine>
 //#include <QMediaPlayer>
 #include "cubeitem.h"
+#include "lineitem.h"
 #include <QQmlContext>
 #include <Qstring>
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    cubeItem cube;
+    ishapes* cube = new cubeItem();
+    ishapes* line = new lineItem();
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("cube", cube);
+    engine.rootContext()->setContextProperty("line", line);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    engine.rootContext()->setContextProperty("cube", &cube);
-//    engine.rootContext()->setContextProperty("lineItem", &line);
+
 //    engine.rootContext()->setContextProperty("lItem", &LItem);
 //    engine.rootContext()->setContextProperty("mlItem", &MLItem);
 //    engine.rootContext()->setContextProperty("mzItem", &MZItem);

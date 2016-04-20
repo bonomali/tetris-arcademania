@@ -7,4 +7,13 @@ Shape {
     bottomRight.visible: false
     shapeColor: "red"
     shapeWidth: topLeft.width
+
+    focus: true
+    Keys.onPressed: {
+        if(event.key === Qt.Key_Up)
+        {
+            line.rotate()
+        }
+          event.accept = true
+    }
 }

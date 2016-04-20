@@ -32,7 +32,7 @@ Item {
         }
         else if(event.key === Qt.Key_Up)
         {
-            console.log("move_up")
+
         }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
         {
@@ -41,9 +41,10 @@ Item {
           event.accept = true
     }
 
+
     Keys.onReturnPressed: {
         console.log("we're here")
-        cube.rotate()
+        line.rotate()
     }
         Timer
         {

@@ -19,6 +19,15 @@ ApplicationWindow {
 
     }
 
+//    Connections
+//    {
+//        target: line
+
+//        onTest: {
+//            console.log("testing line signal")
+//        }
+//    }
+
     //title: playMusic.errorString
     visible: true
     width: 640
