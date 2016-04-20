@@ -8,7 +8,12 @@ SOURCES += main.cpp \
     maingrid.cpp \
     cubeitem.cpp \
     ishapes.cpp \
-    lineitem.cpp
+    lineitem.cpp \
+    titem.cpp \
+    zitem.cpp \
+    mzitem.cpp \
+    litem.cpp \
+    mlitem.cpp
 
 RESOURCES += qml.qrc \
     sound.qrc
@@ -25,4 +30,9 @@ HEADERS += \
     maingrid.h \
     cubeitem.h \
     ishapes.h \
-    lineitem.h
+    lineitem.h \
+    titem.h \
+    zitem.h \
+    mzitem.h \
+    litem.h \
+    mlitem.h

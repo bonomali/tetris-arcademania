@@ -7,9 +7,7 @@ class cubeItem : public ishapes
 {
 public:
     cubeItem();
-
-//public slots:
-     void rotate();
+    void rotate();
 };
 
 #endif // CUBEITEM_H

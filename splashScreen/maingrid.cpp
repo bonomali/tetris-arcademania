@@ -13,13 +13,13 @@ int MainGrid::LineCheck(int row)
 {
     return 0;
 }
-//void MainGrid::UpdateGrid(IShapes* shape)
-//{
-//    //placeholder
-//}
-//IShapes* MainGrid::GenerateShapes()
-//{
-//   // IShapes* shape = new CubeItem();
+void MainGrid::UpdateGrid(ishapes* shape)
+{
+    //placeholder
+}
+ishapes* MainGrid::GenerateShapes()
+{
+   // IShapes* shape = new CubeItem();
 
-//    return nullptr;
-//}
+    return nullptr;
+}

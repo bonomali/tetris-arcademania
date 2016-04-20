@@ -2,7 +2,7 @@
 #define MAINGRID_H
 
 #include <QObject>
-//#include "ishapes.h"
+#include "ishapes.h"
 
 const int WID = 16;
 const int LEN = 32;
@@ -17,8 +17,8 @@ signals:
 
 public slots:
     int LineCheck(int row);            //return row# to break, recursive: argument = starting row
-  //  void UpdateGrid(IShapes* shape); //update grid after shape is dropped
-  //  IShapes* GenerateShapes();      //randomly generate falling shapes
+    void UpdateGrid(ishapes* shape); //update grid after shape is dropped
+    ishapes* GenerateShapes();      //randomly generate falling shapes
 
 protected:
     bool m_grid[LEN][WID];
