@@ -15,35 +15,62 @@ Item {
     property int row: 0
     property int col: 0
     property int y_wait: 0
+    property int rot: 0
+    state: "NARROWEST"
 
     width: topLeft.width * 2
     height: topLeft.height * 4
     property color shapeColor: "yellow"
 
+    states: [
+           State { name: "WIDEST" },
+           State { name: "NARROWEST" },
+           State { name: "STOP" }
+       ]
     focus: true
     Keys.onPressed: {
-        if(event.key === Qt.Key_Left && x > 0)
+        if(event.key === Qt.Key_Left)
         {
-            x -= topLeft.width
+            if(state === "NARROWEST" && x > 0 ||
+                state === "WIDEST" && x > topLeft.width)
+                    x -= topLeft.width
+
         }
-        else if(event.key === Qt.Key_Right && x < (playArea.width - shapeWidth))
+        else if(event.key === Qt.Key_Right)
         {
-            x += topLeft.width
+            if(state === "NARROWEST" && x < (playArea.width - shapeWidth) ||
+                    state === "WIDEST" && x < playArea.width - topLeft.width * 3)
+                        x += topLeft.width
         }
         else if(event.key === Qt.Key_Up)
         {
-
+            if(basicShape.x != 0 && basicShape.x < playArea.width - topLeft.width * 2)
+            {
+                console.log(basicShape.x)
+                console.log(playArea.width)
+                if(rot === 0 && state === "NARROWEST" && y <= playArea.height - shapeHeight)
+                {
+                    rot = 90
+                    state = "WIDEST"
+                    console.log(state)
+                }
+                else if(y < playArea.height - shapeHeight)
+                {
+                    rot = 0
+                    state = "NARROWEST"
+                    console.log(state)
+                }
+                basicShape.rotation = rot
+            }
         }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
         {
-            sleep
+            sleep.interval = 10
         }
           event.accept = true
     }
 
-
     Keys.onReturnPressed: {
-        console.log("we're here")
         line.rotate()
     }
         Timer
@@ -54,9 +81,11 @@ Item {
             repeat: true
             onTriggered:
             {
-                if(y < playArea.height - shapeHeight)
+                if(state === "NARROWEST" && y < playArea.height - shapeHeight)
                     y += topLeft.width
-                else
+                else if(state === "WIDEST" && y < playArea.height - topLeft.width * 2)
+                    y += topLeft.width
+                else if(state === "STOP")
                     sleep.stop()
             }
         }
