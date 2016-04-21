@@ -4,17 +4,19 @@ import QTGraphicalEffects 1.0
 
     Rectangle {
     id: playArea
-    //anchors.bottom: parent.bottom
+    property alias squareRepeater:squareRepeater
+    //property alias drawnSquare:drawnSquare
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.bottom: parent.bottom
     anchors.bottomMargin: parent.height * .025
     height: referenceSquare.height * tilesHigh
     width: referenceSquare.width * tilesWide
-    Component.onCompleted: console.log (height)
+    //Component.onCompleted: console.log (height)
     border.color: "#002355"
     border.width: 3
     property int index: 0
-
+    property int i: 0
+    property int j: 0
     onWidthChanged:
     {
         exampleShape.x = exampleShape.col * (width / tilesWide)
@@ -23,6 +25,7 @@ import QTGraphicalEffects 1.0
     onHeightChanged:
     {
         exampleShape.y = exampleShape.row * (height / tilesHigh)
+
     }
 
     RadialGradient{
@@ -41,7 +44,18 @@ import QTGraphicalEffects 1.0
 
     LineItem {
         id: exampleShape
- }
+    }
+
+    Repeater {
+        id: squareRepeater
+        model: 512
+        Square{
+         id: drawnSquare
+         y: Math.floor(index/16) * referenceSquare.height
+         x: (index - (Math.floor(index/16) * 16)) * referenceSquare.width
+         color: "transparent"
+        }
+    }
 
     Canvas {
         id: root

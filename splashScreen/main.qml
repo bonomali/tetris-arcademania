@@ -44,7 +44,7 @@ ApplicationWindow {
         Keys.onReturnPressed: {
             rand = getRandomIntInclusive(1,7)
 
-            console.log(rand)
+            //console.log(rand)
             if(rand == 1)
             {
 

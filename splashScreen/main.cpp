@@ -3,16 +3,20 @@
 //#include <QMediaPlayer>
 #include "cubeitem.h"
 #include "lineitem.h"
+#include "maingrid.h"
 #include <QQmlContext>
 #include <Qstring>
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
     ishapes* cube = new cubeItem();
     ishapes* line = new lineItem();
+    MainGrid grid;
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("grid", &grid);
     engine.rootContext()->setContextProperty("cube", cube);
     engine.rootContext()->setContextProperty("line", line);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

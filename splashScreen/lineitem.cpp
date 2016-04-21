@@ -25,6 +25,8 @@ lineItem::lineItem()
     for(int i = 0; i < 4; i++)
         for(int j = 0; j < 4; j++)
             m_currentState[i][j] = m_shapeStruct.upRight[i][j];
+
+    m_color = "#ff0000";
 }
 void lineItem::rotate()
 {

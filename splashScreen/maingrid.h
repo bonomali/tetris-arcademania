@@ -6,6 +6,11 @@
 
 const int WID = 16;
 const int LEN = 32;
+enum shapeTypes { CUBE, LINE, TITEM, LITEM, MLITEM, ZITEM, MZITEM };
+struct gridData{
+    bool visible;
+    QString color;
+};
 
 class MainGrid : public QObject
 {
@@ -16,12 +21,14 @@ public:
 signals:
 
 public slots:
-    int LineCheck(int row);            //return row# to break, recursive: argument = starting row
-    void UpdateGrid(ishapes* shape); //update grid after shape is dropped
-    ishapes* GenerateShapes();      //randomly generate falling shapes
+    int lineCheck(int row);             //return row# to break, recursive: argument = starting row
+    bool updateGrid(int row, int col);  //update grid after shape is dropped
+    ishapes* generateShapes();          //randomly generate falling shapes
+    bool checkIfComplete(int row, int col, int block_type);
+    QString getColor(int row, int col);
 
 protected:
-    bool m_grid[LEN][WID];
+    gridData m_grid[LEN][WID];
     bool m_gameover;
 };
 

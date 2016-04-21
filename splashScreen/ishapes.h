@@ -30,6 +30,7 @@ protected:
    shapeStruct m_shapeStruct;
    bool m_currentState[WIDTH][LENGTH];
    rotateShape rotateState;
+   QString m_color;
 };
 
 #endif // ISHAPES_H
