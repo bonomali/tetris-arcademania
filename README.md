@@ -28,7 +28,7 @@ Bugs: <br \>
 1. position of shape changes when window resizes <br \>
 2. need to improve rotation for shapes
 
-TODO list
+TODO list: <br \>
 1. splash screen --> done <br \>
 2. readme --> continue to update <br \>
 3. menu -->done <br \>
