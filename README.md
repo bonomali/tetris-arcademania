@@ -10,9 +10,9 @@ The user will use the arrow keys to move falling shapes. The goal of the game is
 We will use the Qt Creator IDE for this project and C++ and QML for the languages.
 
 #Screenshots/Mockup
-![Alt text](screenshot1.png)
-![Alt text](screenshot2.png)
-![Alt text](screenshot3.png)
+![Alt text](screenshot1.PNG)
+![Alt text](screenshot2.PNG)
+![Alt text](screenshot3.PNG)
 
 #Installation Instructions
 1. Install Qt 5.6 
