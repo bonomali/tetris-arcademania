@@ -15,9 +15,9 @@ We will use the Qt Creator IDE for this project and C++ and QML for the language
 ![Alt text](screenshot3.PNG)
 
 #Installation Instructions
-1. Install Qt 5.6 
-2. Open project 
-3. Clean all, run qmake, build all, run. 
+1. Install Qt 5.6 <br \>
+2. Open project <br \>
+3. Clean all, run qmake, build all, run. <br \> 
 
 #Contribution Guidelines
 Send Documents for review before submitting
