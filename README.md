@@ -10,36 +10,39 @@ The user will use the arrow keys to move falling shapes. The goal of the game is
 We will use the Qt Creator IDE for this project and C++ and QML for the languages.
 
 #Screenshots/Mockup
-![Alt text](tetris_pic.jpg)
+![Alt text](screenshot1.PNG)
+![Alt text](screenshot2.PNG)
+![Alt text](screenshot3.PNG)
 
 #Installation Instructions
-1. Install Qt 5.6 
-2. Open project 
-3. Clean all, run qmake, build all, run. 
+1. Install Qt 5.6 <br \>
+2. Open project <br \>
+3. Clean all, run qmake, build all, run. <br \> 
 
 #Contribution Guidelines
 Send Documents for review before submitting
 
-#Bugs and TODO List
+#Bugs and TODO List <br \>
 
-Bugs
-Placeholder
+Bugs: <br \>
+1. position of shape changes when window resizes <br \>
+2. need to improve rotation for shapes
 
-TODO list
-1. splash screen
-2. readme
-3. menu
-4. hud
-5. tetris graphics
-6. generate tetris objects
-7. rotate tetris objects
-8. drop mechanic
-9. stack mechanic
-10. destroy full line
+TODO list: <br \>
+1. splash screen --> done <br \>
+2. readme --> continue to update <br \>
+3. menu -->done <br \>
+4. hud --> implement score, goal, level, and next feature <br \>
+5. tetris graphics --> work on rotate and drop animation <br \>
+6. generate tetris objects <br \>
+7. rotate tetris objects <br \>
+8. drop mechanic <br \>
+9. stack mechanic <br \>
+10. destroy full line 
 
 #Contributor List
-Isaac Harries,
-Stephanie Vetter
+Isaac Harries <br \>
+Stephanie Vetter 
 
 #Credits, Inspirations, Alternative
 Tetris is cool!
