@@ -22,27 +22,27 @@ We will use the Qt Creator IDE for this project and C++ and QML for the language
 #Contribution Guidelines
 Send Documents for review before submitting
 
-#Bugs and TODO List
+#Bugs and TODO List <br \>
 
-Bugs
-position of shape changes when window resizes
-need to improve rotation for shapes
+Bugs: <br \>
+1. position of shape changes when window resizes <br \>
+2. need to improve rotation for shapes
 
 TODO list
-1. splash screen --> done
-2. readme --> continue to update
-3. menu -->done
-4. hud --> implement score, goal, level, and next feature
-5. tetris graphics --> work on rotate and drop animation
-6. generate tetris objects
-7. rotate tetris objects
-8. drop mechanic
-9. stack mechanic
-10. destroy full line
+1. splash screen --> done <br \>
+2. readme --> continue to update <br \>
+3. menu -->done <br \>
+4. hud --> implement score, goal, level, and next feature <br \>
+5. tetris graphics --> work on rotate and drop animation <br \>
+6. generate tetris objects <br \>
+7. rotate tetris objects <br \>
+8. drop mechanic <br \>
+9. stack mechanic <br \>
+10. destroy full line 
 
 #Contributor List
-Isaac Harries,
-Stephanie Vetter
+Isaac Harries <br \>
+Stephanie Vetter 
 
 #Credits, Inspirations, Alternative
 Tetris is cool!
