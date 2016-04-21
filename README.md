@@ -10,7 +10,9 @@ The user will use the arrow keys to move falling shapes. The goal of the game is
 We will use the Qt Creator IDE for this project and C++ and QML for the languages.
 
 #Screenshots/Mockup
-![Alt text](tetris_pic.jpg)
+![Alt text](screenshot1.jpg)
+![Alt text](screenshot2.jpg)
+![Alt text](screenshot3.jpg)
 
 #Installation Instructions
 1. Install Qt 5.6 
