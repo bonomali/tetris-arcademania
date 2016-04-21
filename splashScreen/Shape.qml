@@ -104,15 +104,15 @@ Item {
                         state = "STOP"
                         //sleep.stop()
 
-                        for(i  = 0; i < 16; i++)
+                        for(i  = 0; i < 32; i++)
                         {
-                            for (j = 0; j < 32; j++)
+                            for (j = 0; j < 16; j++)
                             {
                                 if (grid.updateGrid(i, j) === true)
                                 {
                                     basicShape.visible = false
-                                    index = ((j * tilesWide) + i)
-                                    //squareRepeater.itemAt(index).visible = true
+                                    index = ((i * tilesWide) + j)
+                                    squareRepeater.itemAt(index).visible = true
                                     squareRepeater.itemAt(index).color = "#FFFFFF";
                                     console.log(index)
                                     console.log("i: " + i + " j: " + j)

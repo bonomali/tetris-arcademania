@@ -4,19 +4,19 @@
 
 MainGrid::MainGrid() : m_gameover(false)
 {
-   for(int i = 0; i < WID; i++)
-       for(int j = 0; j < LEN; j++)
+   for(int i = 0; i < ROW; i++)
+       for(int j = 0; j < COL; j++)
        {
            m_grid[i][j].visible = false;
-           m_grid[i][i].color = "#000000";
+           m_grid[i][j].color = "#000000";
        }
 
-   m_grid[14][14].visible = true;
+   m_grid[0][15].visible = true;
       //m_grid[5][10].visible = true;
          //m_grid[3][0].visible = true;
-           // m_grid[0][0].visible = true;
-               //m_grid[15][31].visible = true;
-                  //m_grid[0][31].visible = true;
+            m_grid[31][0].visible = true;
+               m_grid[31][15].visible = true;
+                  m_grid[0][0].visible = true;
 }
 int MainGrid::lineCheck(int row)
 {

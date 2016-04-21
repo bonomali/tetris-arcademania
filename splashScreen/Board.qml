@@ -51,7 +51,7 @@ import QTGraphicalEffects 1.0
         model: 512
         Square{
          id: drawnSquare
-         //y: Math.floor(index/16) * referenceSquare.height
+         y: Math.floor(index/16) * referenceSquare.height
          x: (index - (Math.floor(index/16) * 16)) * referenceSquare.width
          color: "transparent"
         }

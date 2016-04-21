@@ -4,8 +4,8 @@
 #include <QObject>
 #include "ishapes.h"
 
-const int WID = 16;
-const int LEN = 32;
+const int ROW = 32;
+const int COL = 16;
 enum shapeTypes { CUBE, LINE, TITEM, LITEM, MLITEM, ZITEM, MZITEM };
 struct gridData{
     bool visible;
@@ -28,7 +28,7 @@ public slots:
     QString getColor(int row, int col);
 
 protected:
-    gridData m_grid[LEN][WID];
+    gridData m_grid[ROW][COL];
     bool m_gameover;
 };
 
