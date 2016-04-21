@@ -25,14 +25,15 @@ Send Documents for review before submitting
 #Bugs and TODO List
 
 Bugs
-Placeholder
+position of shape changes when window resizes
+need to improve rotation for shapes
 
 TODO list
-1. splash screen
-2. readme
-3. menu
-4. hud
-5. tetris graphics
+1. splash screen --> done
+2. readme --> continue to update
+3. menu -->done
+4. hud --> implement score, goal, level, and next feature
+5. tetris graphics --> work on rotate and drop animation
 6. generate tetris objects
 7. rotate tetris objects
 8. drop mechanic
