@@ -108,11 +108,11 @@ Item {
                         {
                             for (j = 0; j < 32; j++)
                             {
-                                if (grid.updateGrid(i, j))
+                                if (grid.updateGrid(i, j) === true)
                                 {
                                     basicShape.visible = false
                                     index = ((j * tilesWide) + i)
-                                    squareRepeater.itemAt(index).visible = true
+                                    //squareRepeater.itemAt(index).visible = true
                                     squareRepeater.itemAt(index).color = "#FFFFFF";
                                     console.log(index)
                                     console.log("i: " + i + " j: " + j)
