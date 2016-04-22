@@ -24,7 +24,7 @@ lineItem::lineItem()
 
     for(int i = 0; i < 4; i++)
         for(int j = 0; j < 4; j++)
-            m_currentState[i][j] = m_shapeStruct.upRight[i][j];
+            m_rotateState[i][j] = m_shapeStruct.upRight[i][j];
 
     m_color = "#ff0000";
 }
@@ -40,22 +40,22 @@ void lineItem::rotate()
         case UPRIGHT:
             for(int i = 0; i < 4; i++)
                 for(int j = 0; j < 4; j++)
-                    m_currentState[i][j] = m_shapeStruct.upRight[i][j];
+                    m_rotateState[i][j] = m_shapeStruct.upRight[i][j];
             break;
         case RIGHT:
             for(int i = 0; i < 4; i++)
                 for(int j = 0; j < 4; j++)
-                    m_currentState[i][j] = m_shapeStruct.right[i][j];
+                    m_rotateState[i][j] = m_shapeStruct.right[i][j];
             break;
         case UPSIDE_DOWN:
             for(int i = 0; i < 4; i++)
                 for(int j = 0; j < 4; j++)
-                    m_currentState[i][j] = m_shapeStruct.upsideDown[i][j];
+                    m_rotateState[i][j] = m_shapeStruct.upsideDown[i][j];
             break;
         case LEFT:
             for(int i = 0; i < 4; i++)
                 for(int j = 0; j < 4; j++)
-                    m_currentState[i][j] = m_shapeStruct.left[i][j];
+                    m_rotateState[i][j] = m_shapeStruct.left[i][j];
             break;
         default:
             throw("Rotate state undefined");

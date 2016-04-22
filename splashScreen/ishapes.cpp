@@ -10,7 +10,12 @@ ishapes::ishapes() : rotateState(UPRIGHT)
             m_shapeStruct.right[i][j] = false;
             m_shapeStruct.upsideDown[i][j] = false;
             m_shapeStruct.left[i][j] = false;
-            m_currentState[i][j] = false;
+            m_rotateState[i][j] = false;
         }
     }
+}
+
+bool * ishapes::getRotateState()
+{
+    return m_rotateState;
 }

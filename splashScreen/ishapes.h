@@ -19,6 +19,7 @@ class ishapes : public QObject
 
 public:
     ishapes();
+    bool * getRotateState();
 
 signals:
     void test();
@@ -28,7 +29,7 @@ public slots:
 
 protected:
    shapeStruct m_shapeStruct;
-   bool m_currentState[WIDTH][LENGTH];
+   bool m_rotateState[WIDTH][LENGTH];
    rotateShape rotateState;
    QString m_color;
 };

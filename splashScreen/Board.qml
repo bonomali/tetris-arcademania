@@ -42,9 +42,6 @@ import QTGraphicalEffects 1.0
         border.color: "transparent"
     }
 
-    LineItem {
-        id: exampleShape
-    }
 
     Repeater {
         id: squareRepeater
@@ -55,6 +52,10 @@ import QTGraphicalEffects 1.0
          x: (index - (Math.floor(index/16) * 16)) * referenceSquare.width
          color: "transparent"
         }
+    }
+
+    LineItem {
+        id: exampleShape
     }
 
     Canvas {

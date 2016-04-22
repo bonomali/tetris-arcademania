@@ -20,6 +20,7 @@ Item {
     property int i: 0
     property int j: 0
     property int index: 0
+    property int shapeValue: 0
     state: "NARROWEST"
 
     width: topLeft.width * 2
@@ -38,7 +39,6 @@ Item {
             if(state === "NARROWEST" && x > 0 ||
                 state === "WIDEST" && x > topLeft.width)
                     x -= topLeft.width
-
         }
         else if(event.key === Qt.Key_Right)
         {
@@ -99,7 +99,7 @@ Item {
                         (state === "WIDEST" && y < playArea.height - topLeft.width * 2))
                 {
                     y += topLeft.width
-                    if(grid.checkIfComplete(x, y, 1))
+                    if(grid.checkIfComplete(Math.floor(x / referenceSquare.width), Math.floor(y / referenceSquare.width), shapeValue))
                     {
                         state = "STOP"
                         //sleep.stop()
@@ -110,10 +110,10 @@ Item {
                             {
                                 if (grid.updateGrid(i, j) === true)
                                 {
-                                    basicShape.visible = false
+                                    //basicShape.visible = false
                                     index = ((i * tilesWide) + j)
                                     squareRepeater.itemAt(index).visible = true
-                                    squareRepeater.itemAt(index).color = "#FFFFFF";
+                                    squareRepeater.itemAt(index).color = grid.getColor(0,0);
                                     console.log(index)
                                     console.log("i: " + i + " j: " + j)
                                 }

@@ -17,6 +17,7 @@ class MainGrid : public QObject
     Q_OBJECT
 public:
     MainGrid();
+    ishapes * getAllShapes(int index);
 
 signals:
 
@@ -29,6 +30,7 @@ public slots:
 
 protected:
     gridData m_grid[ROW][COL];
+    ishapes * m_allShapes [7];
     bool m_gameover;
 };
 
