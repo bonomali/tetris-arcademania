@@ -6,6 +6,7 @@ Rectangle {
     property int _goal : 0
     property int _level : 0
 
+
     anchors.fill: parent
     color: "grey"
 

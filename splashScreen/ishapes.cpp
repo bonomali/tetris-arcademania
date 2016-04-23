@@ -17,5 +17,6 @@ ishapes::ishapes() : rotateState(UPRIGHT)
 
 bool * ishapes::getRotateState()
 {
-    return m_rotateState;
+   // return m_rotateState;
+    return false;
 }

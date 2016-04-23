@@ -5,6 +5,38 @@ import QTGraphicalEffects 1.0
     Rectangle {
     id: playArea
     property alias squareRepeater:squareRepeater
+
+    function getRandomIntInclusive(min, max) {
+
+      rand = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        switch(rand)
+        {
+        case 0:
+            sCube.visible = true;
+            break;
+        case 1:
+            sLineItem.visible = true;
+            break;
+        case 2:
+            sLItem.visible = true;
+            break;
+        case 3:
+            sMLItem.visible = true;
+            break;
+        case 4:
+            sMZItem.visible = true;
+            break;
+        case 5:
+            sTItem.visible = true;
+            break;
+        case 6:
+            sZItem.visible = true;
+            break;
+        default:
+            throw("Invalid RNG value");
+        }
+    }
     //property alias drawnSquare:drawnSquare
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.bottom: parent.bottom
@@ -17,15 +49,20 @@ import QTGraphicalEffects 1.0
     property int index: 0
     property int i: 0
     property int j: 0
-    onWidthChanged:
-    {
-        exampleShape.x = exampleShape.col * (width / tilesWide)
-    }
+//    onWidthChanged:
+//    {
+//        exampleShape.x = exampleShape.col * (width / tilesWide)
+//    }
 
-    onHeightChanged:
-    {
-        exampleShape.y = exampleShape.row * (height / tilesHigh)
+//    onHeightChanged:
+//    {
+//        exampleShape.y = exampleShape.row * (height / tilesHigh)
 
+//    }
+
+    Keys.onReturnPressed: {
+        getRandomIntInclusive(0,6)
+        console.log(rand)
     }
 
     RadialGradient{
@@ -54,8 +91,33 @@ import QTGraphicalEffects 1.0
         }
     }
 
+    CubeItem {
+        id:sCube
+        visible: false
+    }
     LineItem {
-        id: exampleShape
+        id:sLineItem
+        visible: false
+    }
+    LItem{
+        id:sLItem
+        visible: false
+    }
+    MLItem{
+        id:sMLItem
+        visible: false
+    }
+    MZItem{
+        id: sMZItem
+        visible: false
+    }
+    TItem{
+        id: sTItem
+        visible: false
+    }
+    ZItem{
+        id: sZItem
+        visible: false
     }
 
     Canvas {

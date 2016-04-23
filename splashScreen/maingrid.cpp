@@ -50,15 +50,19 @@ ishapes* MainGrid::generateShapes()
 bool MainGrid::checkIfComplete(int row, int col, int block_type)
 {
     bool done = false;
-    bool * localShape = m_allShapes[block_type]->getRotateState();
+    //bool * localShape = m_allShapes[block_type]->getRotateState();
+
+    //if(localShape[2][2])
+      //  std::cout << "true" << std::endl;
 
     for(int i = 0; i < 4; i++)
     {
         for(int j = 0; j < 4; j++)
         {
-            if((localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) || i == 31))
+           if(/*localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) ||*/ row == 29)
                 done = true;
         }
+        std::cout << "row: " << row << " col:" << col << "done: " << done << std::endl;
     }
     return done;
 
