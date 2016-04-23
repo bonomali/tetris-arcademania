@@ -61,5 +61,4 @@ void lineItem::rotate()
             throw("Rotate state undefined");
     }
     std::cout << rotateState << std::endl;
-    //emit test();
 }

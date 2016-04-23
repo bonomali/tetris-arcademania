@@ -17,6 +17,10 @@ import QTGraphicalEffects 1.0
             break;
         case 1:
             sLineItem.visible = true;
+            sLineItem.focus = true;
+            sLineItem.sleep.running = true;
+            sLineItem.x = referenceSquare.width * 6
+            sLineItem.y = 0
             break;
         case 2:
             sLItem.visible = true;
@@ -26,12 +30,24 @@ import QTGraphicalEffects 1.0
             break;
         case 4:
             sMZItem.visible = true;
+            sMZItem.focus = true;
+            sMZItem.sleep.running = true;
+            sMZItem.x = referenceSquare.width * 6
+            sMZItem.y = 0
             break;
         case 5:
             sTItem.visible = true;
+            sTItem.focus = true;
+            sTItem.sleep.running = true;
+            sTItem.x = referenceSquare.width * 6
+            sTItem.y = 0
             break;
         case 6:
             sZItem.visible = true;
+            sZItem.focus = true;
+            sZItem.sleep.running = true;
+            sZItem.x = referenceSquare.width * 6
+            sZItem.y = 0
             break;
         default:
             throw("Invalid RNG value");
@@ -93,11 +109,13 @@ import QTGraphicalEffects 1.0
 
     CubeItem {
         id:sCube
-        visible: false
+        visible: false  
     }
     LineItem {
         id:sLineItem
         visible: false
+        focus: false
+        sleep.running: false
     }
     LItem{
         id:sLItem
@@ -118,6 +136,8 @@ import QTGraphicalEffects 1.0
     ZItem{
         id: sZItem
         visible: false
+        focus: false
+        sleep.running: false
     }
 
     Canvas {

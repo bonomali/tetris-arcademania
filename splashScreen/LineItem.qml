@@ -7,7 +7,7 @@ Shape {
     secondRight.visible: false
     thirdRight.visible: false
     bottomRight.visible: false
-    shapeColor: "red"
+    shapeColor: "#ff0000"
     shapeWidth: topLeft.width
     state: "WIDEST"
     rotation: 90
@@ -17,7 +17,7 @@ Shape {
            State { name: "NARROWEST" },
            State { name: "STOP" }
        ]
-    focus: true
+
     Keys.onPressed: {
         if(event.key === Qt.Key_Left)
         {
@@ -92,10 +92,18 @@ Shape {
                 }
                 else if(state === "STOP")
                 {
-                    console.log(state)
                     running = false
                     visible = false
+                    focus = false
+                    x: referenceSquare.width * 6
+                    y: 0
+                    state = "WIDEST"
                 }
             }
+        }
+        onStateChanged:
+        {
+            if(state === "STOP")
+                getRandomIntInclusive(0,6)
         }
 }
