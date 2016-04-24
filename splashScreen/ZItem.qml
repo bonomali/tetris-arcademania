@@ -35,18 +35,17 @@ Shape {
         {
             if(x >= 0 && x < playArea.width - topLeft.width*2)
             {
-                if(rot === 0 && state === "NARROWEST" && y <= playArea.height - shapeHeight)
+                if(state === "NARROWEST" && y <= playArea.height - shapeHeight)
                 {
-                    rot = 90
                     state = "WIDEST"
-                    zItem.rotation = rot
+                    zItem.rotation = 90
                     zitem.rotate()
                 }
                 else if(y < playArea.height - shapeHeight && state === "WIDEST")
                 {
-                    rot = 0
                     state = "NARROWEST"
-                    zItem.rotation = rot
+                    zItem.rotation = 0
+                    y += referenceSquare.width
                     zitem.rotate()
                 }
             }
@@ -95,16 +94,21 @@ Shape {
                     console.log(state)
                     running = false
                     visible = false
-                    x: referenceSquare.width * 6
-                    y: 0
-                   state = "WIDEST"
+                    x = referenceSquare.width * 6
+                    y = 0
+                    rotation = 90
+                    state = "WIDEST"
+                    getRandomIntInclusive(0,6)
                 }
             }
         }
-        onStateChanged:
-        {
-            if(state === "STOP")
-                getRandomIntInclusive(0,6)
-            console.log("new shape")
-        }
+//        onStateChanged:
+//        {
+//            if(state === "STOP")
+//            {
+//                getRandomIntInclusive(0,6)
+//                console.log("new shape")
+//                state = "WIDEST"
+//            }
+//        }
 }

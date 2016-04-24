@@ -1,6 +1,5 @@
 import QtQuick 2.4
 import QTGraphicalEffects 1.0
-//import "/Users/Isaac/cst_238/arcademania/splashScreen/ComponentGenerator.js" as MyScript
 
     Rectangle {
     id: playArea
@@ -14,6 +13,10 @@ import QTGraphicalEffects 1.0
         {
         case 0:
             sCube.visible = true;
+            sCube.focus = true;
+            sCube.sleep.running = true;
+            sCube.x = referenceSquare.width * 6
+            sCube.y = 0
             break;
         case 1:
             sLineItem.visible = true;
@@ -24,9 +27,17 @@ import QTGraphicalEffects 1.0
             break;
         case 2:
             sLItem.visible = true;
+            sLItem.focus = true;
+            sLItem.sleep.running = true;
+            sLItem.x = referenceSquare.width * 6
+            sLItem.y = 0
             break;
         case 3:
             sMLItem.visible = true;
+            sMLItem.focus = true;
+            sMLItem.sleep.running = true;
+            sMLItem.x = referenceSquare.width * 6
+            sMLItem.y = 0
             break;
         case 4:
             sMZItem.visible = true;
@@ -65,6 +76,7 @@ import QTGraphicalEffects 1.0
     property int index: 0
     property int i: 0
     property int j: 0
+    focus: true
 //    onWidthChanged:
 //    {
 //        exampleShape.x = exampleShape.col * (width / tilesWide)
@@ -109,7 +121,9 @@ import QTGraphicalEffects 1.0
 
     CubeItem {
         id:sCube
-        visible: false  
+        visible: false
+        focus: false
+        sleep.running: false
     }
     LineItem {
         id:sLineItem
@@ -120,18 +134,26 @@ import QTGraphicalEffects 1.0
     LItem{
         id:sLItem
         visible: false
+        focus: false
+        sleep.running: false
     }
     MLItem{
         id:sMLItem
         visible: false
+        focus: false
+        sleep.running: false
     }
     MZItem{
         id: sMZItem
         visible: false
+        focus: false
+        sleep.running: false
     }
     TItem{
         id: sTItem
         visible: false
+        focus: false
+        sleep.running: false
     }
     ZItem{
         id: sZItem

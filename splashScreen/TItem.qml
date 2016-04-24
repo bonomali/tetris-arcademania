@@ -9,29 +9,29 @@ Shape {
     topRight.visible: false
     shapeColor: "#FFBF00"
     shapeHeight: topLeft.width * 3
-    state: "WIDEST"
+    state: "UPRIGHT"
     rotation: 90
 
     states: [
-           State { name: "WIDEST" },
+           State { name: "UPRIGHT" },
            State { name: "UPSIDEDOWN" },
-           State { name: "NODERIGHT" },
-           State { name: "NODELEFT" },
+           State { name: "RIGHT" },
+           State { name: "LEFT" },
            State { name: "STOP" }
        ]
 
     Keys.onPressed: {
         if(event.key === Qt.Key_Left)
         {
-            if((state === "NODERIGHT" || state === "NODELEFT") && x > 0 ||
-                state === "WIDEST"  && x >= topLeft.width ||
+            if((state === "RIGHT" || state === "LEFT") && x > 0 ||
+                state === "UPRIGHT"  && x >= topLeft.width ||
                     state === "UPSIDEDOWN" && x > topLeft.width)
                     x -= topLeft.width
         }
         else if(event.key === Qt.Key_Right)
         {
-            if((state === "NODERIGHT" || state === "NODELEFT") && x < playArea.width - shapeWidth ||
-                    state === "WIDEST" && x < playArea.width - topLeft.width * 3 ||
+            if((state === "RIGHT" || state === "LEFT") && x < playArea.width - shapeWidth ||
+                    state === "UPRIGHT" && x < playArea.width - topLeft.width * 3 ||
                         state === "UPSIDEDOWN" && x <= playArea.width - topLeft.width * 3)
                         x += topLeft.width
         }
@@ -39,34 +39,34 @@ Shape {
         {
             if(x > 0 && x < playArea.width - topLeft.width*3)
             {
-                if(state === "NODELEFT" && y <= playArea.height - shapeHeight)
+                if(state === "UPRIGHT" && y <= playArea.height - shapeHeight)
                 {
-                    rot = 270
+                    state = "LEFT"
+                    rotation = 180
+                    titem.rotate()
+                }
+                else if(state === "LEFT" && y <= playArea.height - shapeHeight)
+                {
                     state = "UPSIDEDOWN"
-                    tItem.rotation = rot
-                    titem.rotate()
-                }
-                else if(state === "NODERIGHT" && y <= playArea.height - shapeHeight)
-                {
-                    rot = 90
-                    state = "WIDEST"
-                    tItem.rotation = rot
-                    titem.rotate()
-                }
-                else if(state === "WIDEST" && y <= playArea.height - shapeHeight)
-                {
-                    rot = 180
-                    state = "NODELEFT"
-                    tItem.rotation = rot
+                    x += referenceSquare.width
+                    rotation = 270
                     titem.rotate()
                 }
                 else if(state === "UPSIDEDOWN" && y <= playArea.height - shapeHeight)
                 {
-                    rot = 0
-                    state = "NODERIGHT"
-                    tItem.rotation = rot
+                    state = "RIGHT"
+                    rotation = 0
+                    y += referenceSquare.width
                     titem.rotate()
                 }
+                else if(state === "RIGHT" && y <= playArea.height - shapeHeight)
+                {
+                    state = "UPRIGHT"
+                    rotation = 90
+                    x -= referenceSquare.width
+                    titem.rotate()
+                }
+                console.log(state)
             }
         }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
@@ -84,8 +84,8 @@ Shape {
             repeat: true
             onTriggered:
             {
-                if(state === "NODERIGHT" || state === "NODELEFT" && y < playArea.height - shapeHeight ||
-                        (state === "WIDEST" || state === "UPSIDEDOWN" && y < playArea.height - topLeft.width * 2))
+                if(state === "RIGHT" || state === "LEFT" && y < playArea.height - shapeHeight ||
+                        (state === "UPRIGHT" || state === "UPSIDEDOWN" && y < playArea.height - topLeft.width * 2))
                 {
                     y += topLeft.width
                     if(grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue))
@@ -113,17 +113,23 @@ Shape {
                     console.log(state)
                     running = false
                     visible = false
-                    x: referenceSquare.width * 6
-                    y: 0
-                    state = "WIDEST"
+                    x = referenceSquare.width * 6
+                    y = 0
+                    rotation = 90
+                    state = "UPRIGHT"
+                    console.log(state)
+                    getRandomIntInclusive(0,6)
                 }
             }
         }
-        onStateChanged:
-        {
-            if(state === "STOP")
-                getRandomIntInclusive(0,6)
-                console.log("new shape")
-        }
+//        onStateChanged:
+//        {
+//            if(state === "STOP")
+//            {
+//                getRandomIntInclusive(0,6)
+//                console.log("new shape")
+//                //state = "UPRIGHT"
+//            }
+//        }
 
 }

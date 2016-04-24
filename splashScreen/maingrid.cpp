@@ -62,7 +62,7 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
            if(/*localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) ||*/ row == 29)
                 done = true;
         }
-        std::cout << "row: " << row << " col:" << col << "done: " << done << std::endl;
+        //std::cout << "row: " << row << " col:" << col << "done: " << done << std::endl;
     }
     return done;
 

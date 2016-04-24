@@ -15,7 +15,6 @@ Item {
     property int row: 0
     property int col: 0
     property int y_wait: 0
-    property int rot: 0
     property int i: 0
     property int j: 0
     property int index: 0

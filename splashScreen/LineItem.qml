@@ -35,18 +35,16 @@ Shape {
         {
             if(x != 0 && x < playArea.width - topLeft.width * 2)
             {
-                if(rot === 0 && state === "NARROWEST" && y <= playArea.height - shapeHeight)
+                if(state === "NARROWEST" && y <= playArea.height - shapeHeight)
                 {
-                    rot = 90
                     state = "WIDEST"
-                    lineItem.rotation = rot
+                    lineItem.rotation = 90
                     line.rotate()
                 }
                 else if(y < playArea.height - shapeHeight && state === "WIDEST")
                 {
-                    rot = 0
                     state = "NARROWEST"
-                    lineItem.rotation = rot
+                    lineItem.rotation = 0
                     line.rotate()
                 }
             }
@@ -95,15 +93,21 @@ Shape {
                     running = false
                     visible = false
                     focus = false
-                    x: referenceSquare.width * 6
-                    y: 0
+                    x = referenceSquare.width * 6
+                    y = 0
+                    rotation = 90
                     state = "WIDEST"
+                    getRandomIntInclusive(0,6)
                 }
             }
         }
-        onStateChanged:
-        {
-            if(state === "STOP")
-                getRandomIntInclusive(0,6)
-        }
+//        onStateChanged:
+//        {
+//            if(state === "STOP")
+//            {
+//                getRandomIntInclusive(0,6)
+//                console.log("new shape")
+//                state = "WIDEST"
+//            }
+//        }
 }

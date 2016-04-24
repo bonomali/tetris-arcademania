@@ -24,10 +24,9 @@ ApplicationWindow {
         id: playMusic
         source: "Zen.mp3"
         autoPlay: true
+        muted: true
     }
 
-    Hud {
-    }
+    Hud {}
     SplashMenu {}
-
 }
