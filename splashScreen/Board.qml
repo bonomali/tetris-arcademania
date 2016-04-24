@@ -23,42 +23,42 @@ import QTGraphicalEffects 1.0
             sLineItem.focus = true;
             sLineItem.sleep.running = true;
             sLineItem.x = referenceSquare.width * 6
-            sLineItem.y = 0
+            sLineItem.y = (0 - referenceSquare.height)
             break;
         case 2:
             sLItem.visible = true;
             sLItem.focus = true;
             sLItem.sleep.running = true;
             sLItem.x = referenceSquare.width * 6
-            sLItem.y = 0
+            sLItem.y = (0 - referenceSquare.height)
             break;
         case 3:
             sMLItem.visible = true;
             sMLItem.focus = true;
             sMLItem.sleep.running = true;
             sMLItem.x = referenceSquare.width * 6
-            sMLItem.y = 0
+            sMLItem.y = (0 - referenceSquare.height)
             break;
         case 4:
             sMZItem.visible = true;
             sMZItem.focus = true;
             sMZItem.sleep.running = true;
             sMZItem.x = referenceSquare.width * 6
-            sMZItem.y = 0
+            sMZItem.y = (0 - referenceSquare.height)
             break;
         case 5:
             sTItem.visible = true;
             sTItem.focus = true;
             sTItem.sleep.running = true;
             sTItem.x = referenceSquare.width * 6
-            sTItem.y = 0
+            sTItem.y = (0 - referenceSquare.height)
             break;
         case 6:
             sZItem.visible = true;
             sZItem.focus = true;
             sZItem.sleep.running = true;
             sZItem.x = referenceSquare.width * 6
-            sZItem.y = 0
+            sZItem.y = (0 - referenceSquare.height)
             break;
         default:
             throw("Invalid RNG value");

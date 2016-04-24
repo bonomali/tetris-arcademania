@@ -37,7 +37,7 @@ Shape {
         }
         else if(event.key === Qt.Key_Up)
         {
-            if(x > 0 && x < playArea.width - topLeft.width*3)
+            if(x >= 0 && x < playArea.width - topLeft.width)
             {
                 if(state === "UPRIGHT" && y <= playArea.height - shapeHeight)
                 {
@@ -45,21 +45,23 @@ Shape {
                     rotation = 180
                     titem.rotate()
                 }
-                else if(state === "LEFT" && y <= playArea.height - shapeHeight)
+                else if(state === "LEFT" && y <= playArea.height - shapeHeight &&
+                        x < playArea.width - topLeft.width * 2)
                 {
                     state = "UPSIDEDOWN"
                     x += referenceSquare.width
                     rotation = 270
                     titem.rotate()
                 }
-                else if(state === "UPSIDEDOWN" && y <= playArea.height - shapeHeight)
+                else if(state === "UPSIDEDOWN" && y <= playArea.height - shapeHeight &&
+                        x >= 0)
                 {
                     state = "RIGHT"
                     rotation = 0
                     y += referenceSquare.width
                     titem.rotate()
                 }
-                else if(state === "RIGHT" && y <= playArea.height - shapeHeight)
+                else if(state === "RIGHT" && y <= playArea.height - shapeHeight &&  x > 0)
                 {
                     state = "UPRIGHT"
                     rotation = 90
