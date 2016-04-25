@@ -27,12 +27,28 @@ Shape {
         }
         else if(event.key === Qt.Key_Up)
         {}
-        else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
-        {
-            sleep.interval = 100
-        }
+//        else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
+//        {
+//            sleep.interval = 100
+//        }
           event.accept = true
     }
+        Timer
+        {
+            id:downPress
+            interval:1000
+            running: true
+            repeat: true
+
+            Keys.onDownPressed:
+            {
+                sleep.interval = 100
+            }
+            Keys.onReleased:
+            {
+                sleep.interval = 1000
+            }
+        }
 
         Timer
         {
