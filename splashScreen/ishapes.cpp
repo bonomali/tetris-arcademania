@@ -1,6 +1,7 @@
 #include "ishapes.h"
+#include "array2d.h"
 
-ishapes::ishapes() : rotateState(UPRIGHT)
+ishapes::ishapes() : rotateState(UPRIGHT), m_rotateState(4,4)
 {
     for(int i = 0; i < WIDTH; i++)
     {
@@ -15,8 +16,7 @@ ishapes::ishapes() : rotateState(UPRIGHT)
     }
 }
 
-bool * ishapes::getRotateState()
+Array2D<bool> ishapes::getRotateState()
 {
-   // return m_rotateState;
-    return false;
+    return m_rotateState;
 }

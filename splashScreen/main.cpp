@@ -6,6 +6,7 @@
 #include "maingrid.h"
 #include <QQmlContext>
 #include <Qstring>
+#include <QKeyEvent>
 
 int main(int argc, char *argv[])
 {
@@ -23,6 +24,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("zitem", grid.getAllShapes(5));
     engine.rootContext()->setContextProperty("mzitem", grid.getAllShapes(6));
 
+    //QKeyEvent event(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier, "", false);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();

@@ -2,6 +2,7 @@
 #define ISHAPES_H
 
 #include <QObject>
+#include "array2d.h"
 
 const int WIDTH = 4;
 const int LENGTH = 4;
@@ -19,7 +20,7 @@ class ishapes : public QObject
 
 public:
     ishapes();
-    bool * getRotateState();
+    Array2D<bool> getRotateState();
 
 signals:
     void test();
@@ -29,7 +30,7 @@ public slots:
 
 protected:
    shapeStruct m_shapeStruct;
-   bool m_rotateState[WIDTH][LENGTH];
+   Array2D<bool> m_rotateState;
    rotateShape rotateState;
    QString m_color;
 };
