@@ -18,7 +18,7 @@ Item {
     property int i: 0
     property int j: 0
     property int index: 0
-    property int shapeValue: 0
+    property int shapeValue: 1
 
     width: topLeft.width * 2
     height: topLeft.height * 4

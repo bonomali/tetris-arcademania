@@ -4,6 +4,11 @@
 #include "cubeitem.h"
 #include "lineitem.h"
 #include "maingrid.h"
+#include "titem.h"
+#include "litem.h"
+#include "mlitem.h"
+#include "zitem.h"
+#include "mzitem.h"
 #include <QQmlContext>
 #include <Qstring>
 #include <QKeyEvent>
@@ -12,21 +17,27 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    MainGrid grid;
-
+    ishapes * cube = new cubeItem();
+    ishapes * lineitem = new lineItem();
+    ishapes * titem = new tItem();
+    ishapes * litem = new lItem();
+    ishapes * mlitem = new mlItem();
+    ishapes * zitem = new zItem();
+    ishapes * mzitem = new mzItem();
+    MainGrid grid(cube, lineitem, titem, litem, mlitem, zitem, mzitem);
     QQmlApplicationEngine engine;
 
     QCoreApplication::setApplicationName("tetris");
     QCoreApplication::setOrganizationName("arcademania");
     QCoreApplication::setOrganizationDomain(".com");
     engine.rootContext()->setContextProperty("grid", &grid);
-    engine.rootContext()->setContextProperty("cube", grid.getAllShapes(0));
-    engine.rootContext()->setContextProperty("line", grid.getAllShapes(1));
-    engine.rootContext()->setContextProperty("titem", grid.getAllShapes(2));
-    engine.rootContext()->setContextProperty("litem", grid.getAllShapes(3));
-    engine.rootContext()->setContextProperty("mlitem", grid.getAllShapes(4));
-    engine.rootContext()->setContextProperty("zitem", grid.getAllShapes(5));
-    engine.rootContext()->setContextProperty("mzitem", grid.getAllShapes(6));
+    engine.rootContext()->setContextProperty("cube", cube);
+    engine.rootContext()->setContextProperty("line", lineitem);
+    engine.rootContext()->setContextProperty("titem", titem);
+    engine.rootContext()->setContextProperty("litem", litem);
+    engine.rootContext()->setContextProperty("mlitem", mlitem);
+    engine.rootContext()->setContextProperty("zitem", zitem);
+    engine.rootContext()->setContextProperty("mzitem", mzitem);
 
     //QKeyEvent event(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier, "", false);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

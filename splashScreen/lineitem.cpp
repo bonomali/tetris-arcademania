@@ -2,20 +2,20 @@
 #include <iostream>
 lineItem::lineItem()
 {
-    m_shapeStruct.upRight[1][0] = true;
-    m_shapeStruct.upRight[1][1] = true;
-    m_shapeStruct.upRight[1][2] = true;
-    m_shapeStruct.upRight[1][3] = true;
+    m_shapeStruct.upRight[0][0] = true;
+    m_shapeStruct.upRight[0][1] = true;
+    m_shapeStruct.upRight[0][2] = true;
+    m_shapeStruct.upRight[0][3] = true;
 
     m_shapeStruct.right[0][1] = true;
     m_shapeStruct.right[1][1] = true;
     m_shapeStruct.right[2][1] = true;
     m_shapeStruct.right[3][1] = true;
 
-    m_shapeStruct.upsideDown[1][0] = true;
-    m_shapeStruct.upsideDown[1][1] = true;
-    m_shapeStruct.upsideDown[1][2] = true;
-    m_shapeStruct.upsideDown[1][3] = true;
+    m_shapeStruct.upsideDown[0][0] = true;
+    m_shapeStruct.upsideDown[0][1] = true;
+    m_shapeStruct.upsideDown[0][2] = true;
+    m_shapeStruct.upsideDown[0][3] = true;
 
     m_shapeStruct.left[0][1] = true;
     m_shapeStruct.left[1][1] = true;

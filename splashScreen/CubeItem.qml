@@ -7,6 +7,7 @@ Shape {
     thirdLeft.visible: false
     thirdRight.visible: false
     shapeHeight: topLeft.width * 2
+    shapeValue: 0
     state: "GO"
 
     states: [

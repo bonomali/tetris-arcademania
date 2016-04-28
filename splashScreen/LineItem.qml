@@ -11,6 +11,7 @@ Shape {
     shapeWidth: topLeft.width
     state: "WIDEST"
     rotation: 90
+    shapeValue: 1
 
     states: [
            State { name: "WIDEST" },
@@ -47,6 +48,8 @@ Shape {
                     lineItem.rotation = 0
                     line.rotate()
                 }
+
+                console.log(state)
             }
         }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
@@ -80,7 +83,7 @@ Shape {
                                 {
                                     index = ((i * tilesWide) + j)
                                     squareRepeater.itemAt(index).visible = true
-                                    squareRepeater.itemAt(index).color = grid.getColor(0,0);
+                                    squareRepeater.itemAt(index).color = grid.getColor(i,j);
                                     console.log(index)
                                     console.log("i: " + i + " j: " + j)
                                 }

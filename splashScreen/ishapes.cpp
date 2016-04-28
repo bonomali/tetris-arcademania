@@ -12,7 +12,7 @@ ishapes::ishapes() : rotateState(UPRIGHT), m_rotateState(4,4)
             m_shapeStruct.right[i][j] = false;
             m_shapeStruct.upsideDown[i][j] = false;
             m_shapeStruct.left[i][j] = false;
-            m_rotateState[i][j] = true;
+            m_rotateState[i][j] = false;
         }
     }
 }
@@ -20,4 +20,9 @@ ishapes::ishapes() : rotateState(UPRIGHT), m_rotateState(4,4)
 Array2D<bool> ishapes::getRotateState()
 {
     return m_rotateState;
+}
+
+QString ishapes::getColor()
+{
+    return m_color;
 }

@@ -9,6 +9,7 @@ Shape {
     shapeColor: "#f06292"
     shapeHeight: topLeft.width * 3
     state: "RIGHT"
+        shapeValue: 4
     rotation: 90
 
     states: [

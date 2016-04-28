@@ -1,36 +1,29 @@
 #include "maingrid.h"
-#include "cubeitem.h"
-#include "lineitem.h"
-#include "titem.h"
-#include "litem.h"
-#include "mlitem.h"
-#include "zitem.h"
-#include "mzitem.h"
-
 #include <iostream>
 
-MainGrid::MainGrid() : m_gameover(false)
+MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& litem, ishapes *& mlitem, ishapes *& zitem, ishapes *& mzitem, ishapes *& titem)
+    : m_gameover(false)
 {
    for(int i = 0; i < ROW; i++)
        for(int j = 0; j < COL; j++)
        {
            m_grid[i][j].visible = false;
-           m_grid[i][j].color = "#000000";
+           m_grid[i][j].color = "#FFFFFF";
        }
 
-   m_grid[0][15].visible = true;
-        m_grid[31][0].visible = true;
-           m_grid[31][15].visible = true;
-              m_grid[0][0].visible = true;
+   m_allShapes[0] = cube;
+   m_allShapes[1] = line;
+   m_allShapes[2] = litem;
+   m_allShapes[3] = mlitem;
+   m_allShapes[4] = zitem;
+   m_allShapes[5] = mzitem;
+   m_allShapes[6] = titem;
 
-    m_allShapes[0] = new cubeItem();
-    m_allShapes[1] = new lineItem();
-    m_allShapes[2] = new tItem();
-    m_allShapes[3] = new lItem();
-    m_allShapes[4] = new mlItem();
-    m_allShapes[5] = new zItem();
-    m_allShapes[6] = new mzItem();
-
+   m_grid[6][15].visible = true;
+   m_grid[6][15].color = "#FFFFFF";
+//        m_grid[31][0].visible = true;
+//           m_grid[31][15].visible = true;
+//              m_grid[0][0].visible = true;
 }
 int MainGrid::lineCheck(int row)
 {
@@ -50,18 +43,31 @@ ishapes* MainGrid::generateShapes()
 bool MainGrid::checkIfComplete(int row, int col, int block_type)
 {
     bool done = false;
-    //Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
+    Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
 
-     m_allShapes[block_type]->getRotateState().DisplayArray();
-//    if(localShape[1][1])
+   //  m_allShapes[block_type]->getRotateState().DisplayArray();
+//   if(localShape[1][1])
 //        std::cout << "true" << std::endl;
 
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 4 && !done; i++)
     {
-        for(int j = 0; j < 4; j++)
+        for(int j = 0; j < 4 && !done; j++)
         {
-           if(/*localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) ||*/ row == 29)
-                done = true;
+           if(localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) || row == 28)
+                {
+                   for(int k = 0; k < 4; k++)
+                   {
+                       for (int l = 0; l < 4; l++)
+                       {
+                           if(localShape[k][l] == true)
+                           {
+                               m_grid[k + row][l + col - 1].visible = true;
+                               m_grid[k + row][l + col - 1].color = m_allShapes[block_type]->getColor();
+                           }
+                       }
+                   }
+                    done = true;
+                }
 
 //           if(localShape[i][j] == true)
 //           {
@@ -71,38 +77,15 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
         }
         //std::cout << "row: " << row << " col:" << col << "done: " << done << std::endl;
     }
+
     return done;
-
-//    switch (static_cast<shapeTypes>(block_type))
-//    {
-//    case CUBE:
-//        break;
-//    case LINE:
-//        break;
-//    case TITEM:
-//        break;
-//    case LITEM:
-//        break;
-//    case MLITEM:
-//        break;
-//    case ZITEM:
-//        break;
-//    case MZITEM:
-//        break;
-//    default:
-//        throw("Undefined shape for checkIfComplete functions");
-
-//    }
-
-    //std::cout << "IM DONE :D" << std::endl;
-}
-
-QString MainGrid::getColor(int row, int col)
-{
-    return m_grid[row][col].color;
 }
 
 ishapes * MainGrid::getAllShapes(int index)
 {
     return m_allShapes[index];
+}
+QString MainGrid::getColor(int row, int col)
+{
+    return m_grid[row][col].color;
 }

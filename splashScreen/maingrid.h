@@ -3,6 +3,14 @@
 
 #include <QObject>
 #include "ishapes.h"
+#include "maingrid.h"
+#include "cubeitem.h"
+#include "lineitem.h"
+#include "titem.h"
+#include "litem.h"
+#include "mlitem.h"
+#include "zitem.h"
+#include "mzitem.h"
 
 const int ROW = 32;
 const int COL = 16;
@@ -16,7 +24,7 @@ class MainGrid : public QObject
 {
     Q_OBJECT
 public:
-    MainGrid();
+    MainGrid(ishapes *& cube, ishapes *& line, ishapes *& litem, ishapes *& mlitem, ishapes *& zitem, ishapes *& mzitem, ishapes *& titem);
     ishapes * getAllShapes(int index);
 
 signals:

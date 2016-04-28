@@ -21,6 +21,7 @@ class ishapes : public QObject
 public:
     ishapes();
     Array2D<bool> getRotateState();
+    QString getColor();
 
 signals:
     void test();
