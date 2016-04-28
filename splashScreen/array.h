@@ -163,7 +163,7 @@ T& Array<T>::operator[](int index) const
 	index = index - m_start_index;	//adjust index to correct value
 
 	if (index >= m_length || index < 0)	//check for in bounds index
-		throw Exception ("Error! Index out of array bounds");	//error message for out of bounds index
+        throw ("Error! Index out of array bounds");	//error message for out of bounds index
 
 
 	return m_array[index];
@@ -216,7 +216,7 @@ template <typename T>
 void Array<T>::setLength(int length)
 {
 	if (length < 0)	//check for valid length
-		throw Exception("Error! Length must be greater than 0");	//error message for invalid length
+        throw ("Error! Length must be greater than 0");	//error message for invalid length
 	
 	T* temp = nullptr;		//create temp array with specified length
 	temp = new T[length];

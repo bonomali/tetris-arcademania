@@ -15,6 +15,10 @@ int main(int argc, char *argv[])
     MainGrid grid;
 
     QQmlApplicationEngine engine;
+
+    QCoreApplication::setApplicationName("tetris");
+    QCoreApplication::setOrganizationName("arcademania");
+    QCoreApplication::setOrganizationDomain(".com");
     engine.rootContext()->setContextProperty("grid", &grid);
     engine.rootContext()->setContextProperty("cube", grid.getAllShapes(0));
     engine.rootContext()->setContextProperty("line", grid.getAllShapes(1));

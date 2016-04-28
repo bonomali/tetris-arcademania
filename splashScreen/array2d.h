@@ -32,7 +32,6 @@
 
 #include <iomanip>
 #include "array.h"
-#include "exception.h"
 #include "row.h"
 
 using std::setw;
@@ -85,7 +84,7 @@ template <typename T>
 Array2D<T>::Array2D(int row, int col) : m_row(0), m_col(0)
 {
 	if (row < 0 || col < 0)
-		throw Exception("Error! Array number of rows and columns must be 0 or greater. Array not created.");
+        throw ("Error! Array number of rows and columns must be 0 or greater. Array not created.");
 
 	m_row = row;
 	m_col = col;
@@ -156,7 +155,7 @@ template <typename T>
 Row<T> Array2D<T>::operator[](int row) const
 {
 	if (row >= m_row || row < 0)
-		throw Exception("Error! Row index out of array bounds!"); //exception object
+        throw ("Error! Row index out of array bounds!"); //exception object
 
 	return Row<T>(*this, row);	//return Row object
 }
@@ -260,7 +259,7 @@ T& Array2D<T>::Select(int row, int col) const
 	return m_array[target];			//return data at target index
 }
 /*************************************************************************************************
-* *****************************************FOR TESTING ONLY!!!!***********************************
+******************************************FOR TESTING ONLY!!!!***********************************
 ***************************************************************************************************/
 template <typename T>
 void Array2D<T>::DisplayArray() const

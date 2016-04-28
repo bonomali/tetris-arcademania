@@ -19,5 +19,8 @@
         <file>ZItem.qml</file>
         <file>MZItem.qml</file>
         <file>LineItem.qml</file>
+        <file>volume-down.png</file>
+        <file>volume-mute.png</file>
+        <file>VolumeButton.qml</file>
     </qresource>
 </RCC>

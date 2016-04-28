@@ -86,7 +86,7 @@ template <typename T>
 T& Row<T>::operator[](int col) const
 {
 	if (col >= m_array2D.getColumns() || col < 0)	
-		throw Exception ("Error! Column index out of array bounds!"); //exception object
+        throw ("Error! Column index out of array bounds!"); //exception object
 
 	return m_array2D.Select(m_row, col);	//return data at array location
 }

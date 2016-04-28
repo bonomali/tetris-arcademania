@@ -13,8 +13,7 @@ SOURCES += main.cpp \
     zitem.cpp \
     mzitem.cpp \
     litem.cpp \
-    mlitem.cpp \
-    exception.cpp
+    mlitem.cpp
 
 RESOURCES += qml.qrc \
     sound.qrc
@@ -39,5 +38,4 @@ HEADERS += \
     mlitem.h \
     array.h \
     array2d.h \
-    exception.h \
     row.h

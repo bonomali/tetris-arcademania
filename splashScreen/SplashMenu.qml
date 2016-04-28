@@ -10,7 +10,6 @@ Rectangle{
         source: "background.jpg"
         anchors.fill: parent
     }
-
     Buttons {
         id:startButton
         anchors.bottom: parent.bottom
@@ -80,6 +79,7 @@ Rectangle{
         diagButtonFont.pointSize: ourNames.height * .07
         rectangleText: "Hello from Isaac and Stephanie!"
         diagButtonText: "Goodbye"
+        visible: false
     }
 
     Dialog{
@@ -95,6 +95,7 @@ Rectangle{
         diagButtonText: "Okay"
         x: parent.width / 11
         y: parent.height / 11
+        visible: false
     }
 }
 
