@@ -34,6 +34,10 @@
 #include "array.h"
 #include "row.h"
 
+#include <iostream>
+using std::endl;
+using std::cout;
+
 using std::setw;
 using std::left;
 
@@ -49,9 +53,9 @@ public:
 
 	Row<T> operator[](int row) const;		//overloaded subscript op
 	int getRow() const;						//return row
-	int getColumns() const;						//return column
+    int getColumns() const;					//return column
 	void setRow(int row);					//set row
-	void setColumns(int col);					//set column
+    void setColumns(int col);				//set column
 	T& Select(int row, int col) const;		//return item from array
 	void DisplayArray() const;				//display data in array
 

@@ -25,31 +25,9 @@ Shape {
             if(state === "GO" && x < (playArea.width - shapeWidth))
                 x += topLeft.width
         }
-        else if(event.key === Qt.Key_Up)
-        {}
-        if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
-        {
-            while(Keys.onDownPressed(40))
-            {
-                console.log("down")
-                sleep.interval = 100
-            }
-            sleep.interval = 1000
-        }
-        else if(event.key === Qt.Key_Up)
-        {
-            console.log("up")
-            sleep.interval = 1000
-        }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
         {
-            console.log("down")
             sleep.interval = 100
-        }
-        else if(event.key === Qt.Key_Up)
-        {
-            console.log("up")
-            sleep.interval = 1000
         }
         event.accept = true
     }

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "ishapes.h"
 #include "array2d.h"
 
@@ -11,7 +12,7 @@ ishapes::ishapes() : rotateState(UPRIGHT), m_rotateState(4,4)
             m_shapeStruct.right[i][j] = false;
             m_shapeStruct.upsideDown[i][j] = false;
             m_shapeStruct.left[i][j] = false;
-            m_rotateState[i][j] = false;
+            m_rotateState[i][j] = true;
         }
     }
 }
