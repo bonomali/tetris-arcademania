@@ -2,12 +2,12 @@
 #include <iostream>
 lineItem::lineItem()
 {
-    m_shapeStruct.upRight[0][0] = true;
+    m_shapeStruct.upRight[0][0] = true;     //widest
     m_shapeStruct.upRight[0][1] = true;
     m_shapeStruct.upRight[0][2] = true;
     m_shapeStruct.upRight[0][3] = true;
 
-    m_shapeStruct.right[0][1] = true;
+    m_shapeStruct.right[0][1] = true;       //narrowest
     m_shapeStruct.right[1][1] = true;
     m_shapeStruct.right[2][1] = true;
     m_shapeStruct.right[3][1] = true;
@@ -27,6 +27,7 @@ lineItem::lineItem()
             m_rotateState[i][j] = m_shapeStruct.upRight[i][j];
 
     m_color = "#ff0000";
+    m_endIndex = 31;
 }
 void lineItem::rotate()
 {
@@ -41,24 +42,36 @@ void lineItem::rotate()
             for(int i = 0; i < 4; i++)
                 for(int j = 0; j < 4; j++)
                     m_rotateState[i][j] = m_shapeStruct.upRight[i][j];
+
+                m_endIndex = 31;
             break;
         case RIGHT:
             for(int i = 0; i < 4; i++)
                 for(int j = 0; j < 4; j++)
                     m_rotateState[i][j] = m_shapeStruct.right[i][j];
+
+                m_endIndex = 28;
             break;
         case UPSIDE_DOWN:
             for(int i = 0; i < 4; i++)
                 for(int j = 0; j < 4; j++)
                     m_rotateState[i][j] = m_shapeStruct.upsideDown[i][j];
+
+                m_endIndex = 31;
             break;
         case LEFT:
             for(int i = 0; i < 4; i++)
                 for(int j = 0; j < 4; j++)
                     m_rotateState[i][j] = m_shapeStruct.left[i][j];
+
+                m_endIndex = 28;
             break;
         default:
             throw("Rotate state undefined");
     }
     std::cout << rotateState << std::endl;
+}
+void lineItem::resetEndIndex()
+{
+    m_endIndex = 31;
 }

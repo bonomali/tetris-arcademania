@@ -8,6 +8,7 @@ class tItem : public ishapes
 public:
     tItem();
     void rotate();
+    void resetEndIndex();
 };
 
 #endif // TITEM_H

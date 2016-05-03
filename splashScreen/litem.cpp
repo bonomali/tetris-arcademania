@@ -8,4 +8,8 @@ void lItem::rotate()
 {
 
 }
+void lItem::resetEndIndex()
+{
+    m_endIndex = 31;
+}
 

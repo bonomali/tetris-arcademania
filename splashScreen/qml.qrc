@@ -22,5 +22,6 @@
         <file>volume-down.png</file>
         <file>volume-mute.png</file>
         <file>VolumeButton.qml</file>
+        <file>GameOver.qml</file>
     </qresource>
 </RCC>

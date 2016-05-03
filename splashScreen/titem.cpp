@@ -61,3 +61,7 @@ void tItem::rotate()
             throw("Rotate state undefined");
     }
 }
+void tItem::resetEndIndex()
+{
+    m_endIndex = 31;
+}

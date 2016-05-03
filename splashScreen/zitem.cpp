@@ -63,4 +63,7 @@ void zItem::rotate()
     }
     std::cout << "zrotate" << std::endl;
 }
-
+void zItem::resetEndIndex()
+{
+    m_endIndex = 31;
+}

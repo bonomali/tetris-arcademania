@@ -13,6 +13,7 @@ ApplicationWindow {
     property alias playMusic:playMusic
     property int rand: 0
     property bool muted: false
+
     //property alias getRandomIntInclusive: getRandomIntInclusive(min, max)
 
     // Returns a random integer between min (included) and max (included)
@@ -40,4 +41,10 @@ ApplicationWindow {
     VolumeButton{
         id:volumeButton
     }
+
+    GameOver{
+        id:gameOver
+        visible: false
+    }
+
 }

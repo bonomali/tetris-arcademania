@@ -61,3 +61,7 @@ void mzItem::rotate()
             throw("Rotate state undefined");
     }
 }
+void mzItem::resetEndIndex()
+{
+    m_endIndex = 31;
+}

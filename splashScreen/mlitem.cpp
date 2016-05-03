@@ -8,3 +8,8 @@ void mlItem::rotate()
 {
 
 }
+void mlItem::resetEndIndex()
+{
+    m_endIndex = 31;
+}
+

@@ -8,6 +8,7 @@ class mlItem : public ishapes
 public:
     mlItem();
     void rotate();
+    void resetEndIndex();
 };
 
 #endif // MLITEM_H

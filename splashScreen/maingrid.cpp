@@ -1,5 +1,7 @@
 #include "maingrid.h"
 #include <iostream>
+using std::cout;
+using std::endl;
 
 MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& litem, ishapes *& mlitem, ishapes *& zitem, ishapes *& mzitem, ishapes *& titem)
     : m_gameover(false)
@@ -19,41 +21,35 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& litem, ishapes *
    m_allShapes[5] = mzitem;
    m_allShapes[6] = titem;
 
-   m_grid[6][15].visible = true;
-   m_grid[6][15].color = "#FFFFFF";
-//        m_grid[31][0].visible = true;
-//           m_grid[31][15].visible = true;
-//              m_grid[0][0].visible = true;
+   for(int i = 6; i < 10; i++)
+   {
+       m_grid[i][10].visible = true;
+       m_grid[i][10].color = "#FFFFFF";
+       m_grid[i][3].visible = true;
+       m_grid[i][3].color = "#FFFFFF";
+   }
 }
-int MainGrid::lineCheck(int row)
+bool MainGrid::lineCheck()
 {
-    return 0;
+    return false;
 }
 bool MainGrid::updateGrid(int row, int col)
 {
     //std::cout << "row: " << row << ", col: " << col << std::endl;
     return m_grid[row][col].visible;
 }
-ishapes* MainGrid::generateShapes()
-{
-   // IShapes* shape = new CubeItem();
 
-    return nullptr;
-}
 bool MainGrid::checkIfComplete(int row, int col, int block_type)
 {
     bool done = false;
+    bool topRow = false;
     Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
-
-   //  m_allShapes[block_type]->getRotateState().DisplayArray();
-//   if(localShape[1][1])
-//        std::cout << "true" << std::endl;
 
     for(int i = 0; i < 4 && !done; i++)
     {
         for(int j = 0; j < 4 && !done; j++)
         {
-           if(localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) || row == 28)
+           if(localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) || row == m_allShapes[block_type]->getEndIndex())
                 {
                    for(int k = 0; k < 4; k++)
                    {
@@ -61,24 +57,66 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
                        {
                            if(localShape[k][l] == true)
                            {
-                               m_grid[k + row][l + col - 1].visible = true;
-                               m_grid[k + row][l + col - 1].color = m_allShapes[block_type]->getColor();
+                               cout << "row: " << k + row << " col: " << l + col << endl;
+                               m_grid[k + row][l + col].visible = true;
+                               m_grid[k + row][l + col].color = m_allShapes[block_type]->getColor();
+                               if(k + row == 1)
+                                   topRow = true;
                            }
                        }
                    }
-                    done = true;
+                   if(!lineCheck() && topRow)
+                    emit gameOver();
+
+                   done = true;
+                    m_allShapes[block_type]->resetRotateState();
+                    m_allShapes[block_type]->resetEndIndex();
                 }
-
-//           if(localShape[i][j] == true)
-//           {
-//               std::cout << "i: " << i << " j: " << j << std::endl;
-//           }
-
         }
-        //std::cout << "row: " << row << " col:" << col << "done: " << done << std::endl;
     }
 
     return done;
+}
+bool MainGrid::checkMoveLeft(int row, int col, int block_type)
+{
+    bool validMove = true;
+
+    Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
+
+    for(int i = 0; i < 4 && validMove; i++)
+    {
+        for(int j = 0; j < 4 && validMove; j++)
+        {
+           if(localShape[i][j] == true && (m_grid[i + row][j + col - 1].visible == true))
+                {
+                    cout << "i= " << i << "j= " << j << "col: " << col << endl;
+                    validMove = false;
+                }
+        }
+    }
+
+    return validMove;
+}
+
+bool MainGrid::checkMoveRight(int row, int col, int block_type)
+{
+    bool validMove = true;
+
+    Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
+
+    for(int i = 0; i < 4 && validMove; i++)
+    {
+        for(int j = 0; j < 4 && validMove; j++)
+        {
+           if(localShape[i][j] == true && (m_grid[i + row][j + col + 1].visible == true))
+                {
+                    cout << "i= " << i << "j= " << j << "col: " << col << endl;
+                    validMove = false;
+                }
+        }
+    }
+
+    return validMove;
 }
 
 ishapes * MainGrid::getAllShapes(int index)

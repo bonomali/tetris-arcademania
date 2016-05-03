@@ -9,6 +9,7 @@ public:
     lineItem();
     void rotate();  //rotate item
     Array2D<bool> getRotateState();
+    void resetEndIndex();
 };
 
 #endif // LINEITEM_H

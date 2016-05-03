@@ -8,6 +8,7 @@ class cubeItem : public ishapes
 public:
     cubeItem();
     void rotate();
+    void resetEndIndex();
 };
 
 #endif // CUBEITEM_H

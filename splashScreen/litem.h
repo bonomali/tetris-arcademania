@@ -8,6 +8,7 @@ class lItem : public ishapes
 public:
     lItem();
     void rotate();
+    void resetEndIndex();
 };
 
 #endif // LITEM_H

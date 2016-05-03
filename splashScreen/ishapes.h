@@ -22,6 +22,9 @@ public:
     ishapes();
     Array2D<bool> getRotateState();
     QString getColor();
+    void resetRotateState();
+    int getEndIndex();
+    virtual void resetEndIndex() = 0;
 
 signals:
     void test();
@@ -34,6 +37,7 @@ protected:
    Array2D<bool> m_rotateState;
    rotateShape rotateState;
    QString m_color;
+   int m_endIndex;
 };
 
 #endif // ISHAPES_H

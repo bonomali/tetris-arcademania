@@ -14,3 +14,7 @@ void cubeItem::rotate()
     emit test();
     cout << "Hello" << endl;
 }
+void cubeItem::resetEndIndex()
+{
+    m_endIndex = 29;
+}

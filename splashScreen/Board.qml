@@ -77,6 +77,20 @@ import QTGraphicalEffects 1.0
     property int i: 0
     property int j: 0
     focus: true
+
+    Connections {
+        target: grid
+        onGameOver: {
+            gameOver.visible = true
+            sCube.state = "GAMEOVER"
+            sLineItem.state = "GAMEOVER"
+            sLItem.state = "GAMEOVER"
+            sMLItem.state = "GAMEOVER"
+            sMZItem.state = "GAMEOVER"
+            sZItem.state = "GAMEOVER"
+            sTItem.state = "GAMEOVER"
+        }
+    }
 //    onWidthChanged:
 //    {
 //        exampleShape.x = exampleShape.col * (width / tilesWide)
