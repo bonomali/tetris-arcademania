@@ -7,7 +7,7 @@ import QTGraphicalEffects 1.0
 
     function getRandomIntInclusive(min, max) {
 
-      rand = 1;//Math.floor(Math.random() * (max - min + 1)) + min;
+      rand = 5;//Math.floor(Math.random() * (max - min + 1)) + min;
 
         switch(rand)
         {

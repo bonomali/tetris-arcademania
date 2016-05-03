@@ -1,35 +1,37 @@
+
 import QtQuick 2.4
 
 Shape {
-    id:zItem
+    id: zItem
     property alias sleep:sleep
-    topRight.visible: false
-    bottomRight.visible: false
-    thirdLeft.visible: false
+    topLeft.visible: false
+    thirdRight.visible: false
     bottomLeft.visible: false
-    shapeColor: "#7FFFD4"
+    bottomRight.visible: false
+    shapeColor: "#ce93d8"
     shapeHeight: topLeft.width * 2
     state: "WIDEST"
-        shapeValue: 5
+    shapeValue: 5
     rotation: 90
 
     states: [
            State { name: "WIDEST" },
            State { name: "NARROWEST" },
-           State { name: "STOP" }
+           State { name: "STOP" },
+           State { name: "GAMEOVER" }
        ]
 
     Keys.onPressed: {
         if(event.key === Qt.Key_Left)
         {
-            if(state === "NARROWEST" && x > 0 ||
-                state === "WIDEST" && x >= topLeft.width)
+            if(state === "NARROWEST" && x > 0 && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
+                state === "WIDEST" && x >= topLeft.width && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue))
                     x -= topLeft.width
         }
         else if(event.key === Qt.Key_Right)
         {
-            if(state === "NARROWEST" && x < (playArea.width - shapeWidth) ||
-                    state === "WIDEST" && x < playArea.width - topLeft.width * 3)
+            if(state === "NARROWEST" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
+                    state === "WIDEST" && x < playArea.width - topLeft.width * 3 && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue))
                         x += topLeft.width
         }
         else if(event.key === Qt.Key_Up)
@@ -42,11 +44,10 @@ Shape {
                     zItem.rotation = 90
                     zitem.rotate()
                 }
-                else if(y < playArea.height - shapeHeight && state === "WIDEST")
+                else if(y < playArea.height - shapeHeight && y >= 0 && state === "WIDEST")
                 {
                     state = "NARROWEST"
                     zItem.rotation = 0
-                    y += referenceSquare.width
                     zitem.rotate()
                 }
             }
@@ -70,9 +71,12 @@ Shape {
                         (state === "WIDEST" && y < playArea.height - topLeft.width * 2))
                 {
                     y += topLeft.width
-                    if(grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue))
+
+                    if((state === "WIDEST" && grid.checkIfComplete(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue)) ||
+                            (state === "NARROWEST" && grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)))
                     {
-                        state = "STOP"
+                        if(state != "GAMEOVER")
+                            state = "STOP"
 
                         for(i  = 0; i < 32; i++)
                         {
@@ -82,9 +86,7 @@ Shape {
                                 {
                                     index = ((i * tilesWide) + j)
                                     squareRepeater.itemAt(index).visible = true
-                                    squareRepeater.itemAt(index).color = grid.getColor(0,0);
-                                    console.log(index)
-                                    console.log("i: " + i + " j: " + j)
+                                    squareRepeater.itemAt(index).color = grid.getColor(i,j);
                                 }
                             }
                         }
@@ -92,7 +94,6 @@ Shape {
                 }
                 else if(state === "STOP")
                 {
-                    console.log(state)
                     running = false
                     visible = false
                     x = referenceSquare.width * 6
@@ -103,13 +104,4 @@ Shape {
                 }
             }
         }
-//        onStateChanged:
-//        {
-//            if(state === "STOP")
-//            {
-//                getRandomIntInclusive(0,6)
-//                console.log("new shape")
-//                state = "WIDEST"
-//            }
-//        }
 }

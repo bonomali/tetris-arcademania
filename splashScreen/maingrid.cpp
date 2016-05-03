@@ -3,7 +3,7 @@
 using std::cout;
 using std::endl;
 
-MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& litem, ishapes *& mlitem, ishapes *& zitem, ishapes *& mzitem, ishapes *& titem)
+MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *& litem, ishapes *& mlitem, ishapes *& zitem, ishapes *& mzitem)
     : m_gameover(false)
 {
    for(int i = 0; i < ROW; i++)
@@ -15,11 +15,11 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& litem, ishapes *
 
    m_allShapes[0] = cube;
    m_allShapes[1] = line;
-   m_allShapes[2] = litem;
-   m_allShapes[3] = mlitem;
-   m_allShapes[4] = zitem;
-   m_allShapes[5] = mzitem;
-   m_allShapes[6] = titem;
+   m_allShapes[2] = titem;
+   m_allShapes[3] = litem;
+   m_allShapes[4] = mlitem;
+   m_allShapes[5] = zitem;
+   m_allShapes[6] = mzitem;
 
    for(int i = 6; i < 10; i++)
    {
@@ -66,7 +66,7 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
                        }
                    }
                    if(!lineCheck() && topRow)
-                    emit gameOver();
+                        emit gameOver();
 
                    done = true;
                     m_allShapes[block_type]->resetRotateState();

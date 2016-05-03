@@ -10,7 +10,7 @@ Shape {
     shapeColor: "#FFBF00"
     shapeHeight: topLeft.width * 3
     state: "UPRIGHT"
-        shapeValue: 2
+    shapeValue: 2
     rotation: 90
 
     states: [
@@ -18,22 +18,25 @@ Shape {
            State { name: "UPSIDEDOWN" },
            State { name: "RIGHT" },
            State { name: "LEFT" },
-           State { name: "STOP" }
+           State { name: "STOP" },
+           State { name: "GAMEOVER" }
        ]
 
     Keys.onPressed: {
         if(event.key === Qt.Key_Left)
         {
-            if((state === "RIGHT" || state === "LEFT") && x > 0 ||
-                state === "UPRIGHT"  && x >= topLeft.width ||
-                    state === "UPSIDEDOWN" && x > topLeft.width)
-                    x -= topLeft.width
+            if(state === "RIGHT" && x > 0 && grid.checkMoveLeft(Math.floor((y - referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
+                    state == "LEFT" && x > 0 && grid.checkMoveLeft(Math.floor((y + referenceSquare.width)/ referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
+                    state === "UPRIGHT"  && x >= topLeft.width  && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue) ||
+                    state === "UPSIDEDOWN" && x > topLeft.width && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width * 2)/ referenceSquare.width), shapeValue))
+                        x -= topLeft.width
         }
         else if(event.key === Qt.Key_Right)
         {
-            if((state === "RIGHT" || state === "LEFT") && x < playArea.width - shapeWidth ||
-                    state === "UPRIGHT" && x < playArea.width - topLeft.width * 3 ||
-                        state === "UPSIDEDOWN" && x <= playArea.width - topLeft.width * 3)
+            if(state === "RIGHT" && x < playArea.width - shapeWidth && grid.checkMoveRight(Math.floor((y - referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
+                    state === "LEFT" && x < playArea.width - shapeWidth && grid.checkMoveRight(Math.floor((y + referenceSquare.width)/ referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
+                    state === "UPRIGHT" && x < playArea.width - topLeft.width * 3 && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue)||
+                    state === "UPSIDEDOWN" && x <= playArea.width - topLeft.width * 3 && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width * 2)/ referenceSquare.width), shapeValue))
                         x += topLeft.width
         }
         else if(event.key === Qt.Key_Up)
@@ -54,8 +57,7 @@ Shape {
                     rotation = 270
                     titem.rotate()
                 }
-                else if(state === "UPSIDEDOWN" && y <= playArea.height - shapeHeight &&
-                        x >= 0)
+                else if(state === "UPSIDEDOWN" && y <= playArea.height - shapeHeight && x >= 0)
                 {
                     state = "RIGHT"
                     rotation = 0
@@ -69,7 +71,6 @@ Shape {
                     x -= referenceSquare.width
                     titem.rotate()
                 }
-                console.log(state)
             }
         }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
@@ -91,9 +92,14 @@ Shape {
                         (state === "UPRIGHT" || state === "UPSIDEDOWN" && y < playArea.height - topLeft.width * 2))
                 {
                     y += topLeft.width
-                    if(grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue))
+
+                    if((state === "UPRIGHT" && grid.checkIfComplete(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue)) ||
+                            (state === "UPSIDEDOWN" && grid.checkIfComplete(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width * 2)/ referenceSquare.width), shapeValue)) ||
+                            (state === "RIGHT" && grid.checkIfComplete(Math.floor((y - referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)) ||
+                            (state === "LEFT" && grid.checkIfComplete(Math.floor((y + referenceSquare.width)/ referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)))
                     {
-                        state = "STOP"
+                        if(state != "GAMEOVER")
+                            state = "STOP"
 
                         for(i  = 0; i < 32; i++)
                         {
@@ -103,9 +109,7 @@ Shape {
                                 {
                                     index = ((i * tilesWide) + j)
                                     squareRepeater.itemAt(index).visible = true
-                                    squareRepeater.itemAt(index).color = grid.getColor(0,0);
-                                    console.log(index)
-                                    console.log("i: " + i + " j: " + j)
+                                    squareRepeater.itemAt(index).color = grid.getColor(i,j);
                                 }
                             }
                         }
@@ -113,26 +117,14 @@ Shape {
                 }
                 else if(state === "STOP")
                 {
-                    console.log(state)
                     running = false
                     visible = false
                     x = referenceSquare.width * 6
                     y = 0
                     rotation = 90
                     state = "UPRIGHT"
-                    console.log(state)
                     getRandomIntInclusive(0,6)
                 }
             }
         }
-//        onStateChanged:
-//        {
-//            if(state === "STOP")
-//            {
-//                getRandomIntInclusive(0,6)
-//                console.log("new shape")
-//                //state = "UPRIGHT"
-//            }
-//        }
-
 }
