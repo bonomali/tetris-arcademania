@@ -29,6 +29,7 @@ public:
 
 signals:
     void gameOver();
+    void completeLine();
 
 public slots:
     bool lineCheck();             //return row# to break, recursive: argument = starting row

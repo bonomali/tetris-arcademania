@@ -7,17 +7,17 @@ import QTGraphicalEffects 1.0
 
     function getRandomIntInclusive(min, max) {
 
-      rand = 5;//Math.floor(Math.random() * (max - min + 1)) + min;
+      rand = 1//Math.floor(Math.random() * (max - min + 1)) + min;
 
         switch(rand)
         {
-        case 0:
-            sCube.visible = true;
-            sCube.focus = true;
-            sCube.sleep.running = true;
-            sCube.x = referenceSquare.width * 6
-            sCube.y = 0
-            break;
+//        case 0:
+//            sCube.visible = true;
+//            sCube.focus = true;
+//            sCube.sleep.running = true;
+//            sCube.x = referenceSquare.width * 6
+//            sCube.y = 0
+//            break;
         case 1:
             sLineItem.visible = true;
             sLineItem.focus = true;
@@ -25,35 +25,35 @@ import QTGraphicalEffects 1.0
             sLineItem.x = referenceSquare.width * 6
             sLineItem.y = (0 - referenceSquare.height)
             break;
-        case 2:
-            sLItem.visible = true;
-            sLItem.focus = true;
-            sLItem.sleep.running = true;
-            sLItem.x = referenceSquare.width * 6
-            sLItem.y = (0 - referenceSquare.height)
-            break;
-        case 3:
-            sMLItem.visible = true;
-            sMLItem.focus = true;
-            sMLItem.sleep.running = true;
-            sMLItem.x = referenceSquare.width * 6
-            sMLItem.y = (0 - referenceSquare.height)
-            break;
-        case 4:
+//        case 2:
+//            sLItem.visible = true;
+//            sLItem.focus = true;
+//            sLItem.sleep.running = true;
+//            sLItem.x = referenceSquare.width * 6
+//            sLItem.y = (0 - referenceSquare.height)
+//            break;
+//        case 3:
+//            sMLItem.visible = true;
+//            sMLItem.focus = true;
+//            sMLItem.sleep.running = true;
+//            sMLItem.x = referenceSquare.width * 6
+//            sMLItem.y = (0 - referenceSquare.height)
+//            break;
+        case 0:
             sMZItem.visible = true;
             sMZItem.focus = true;
             sMZItem.sleep.running = true;
             sMZItem.x = referenceSquare.width * 6
             sMZItem.y = (0 - referenceSquare.height)
             break;
-        case 5:
+        case 3:
             sTItem.visible = true;
             sTItem.focus = true;
             sTItem.sleep.running = true;
             sTItem.x = referenceSquare.width * 6
             sTItem.y = (0 - referenceSquare.height)
             break;
-        case 6:
+        case 2:
             sZItem.visible = true;
             sZItem.focus = true;
             sZItem.sleep.running = true;
@@ -103,7 +103,7 @@ import QTGraphicalEffects 1.0
 //    }
 
     Keys.onReturnPressed: {
-        getRandomIntInclusive(0,6)
+        getRandomIntInclusive(0,3)
         console.log(rand)
     }
 

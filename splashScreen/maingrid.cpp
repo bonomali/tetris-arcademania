@@ -21,17 +21,58 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *
    m_allShapes[5] = zitem;
    m_allShapes[6] = mzitem;
 
-   for(int i = 6; i < 10; i++)
+   for(int i = 0; i < 16; i++)
    {
-       m_grid[i][10].visible = true;
-       m_grid[i][10].color = "#FFFFFF";
-       m_grid[i][3].visible = true;
-       m_grid[i][3].color = "#FFFFFF";
+      // m_grid[31][i].visible = true;
+      // m_grid[3][i].color = "#FFFFFF";
+//       m_grid[i][3].visible = true;
+//       m_grid[i][3].color = "#FFFFFF";
    }
 }
 bool MainGrid::lineCheck()
 {
-    return false;
+    bool completeLines = false;
+    bool lineFound = true;
+    int i = ROW - 1;
+    int j = COL - 1;
+
+    for(i = ROW - 1; i >= 0; i--)
+    {
+        for(j = COL - 1; j >= 0 && lineFound == true; j--)
+        {
+            if(!m_grid[i][j].visible)
+            {
+                lineFound = false;
+            }
+        }
+
+        if(lineFound)
+        {
+//            cout << "complete line/ i: " << i << endl;
+//            for(i; i > 0; i--)
+//            {
+//                cout << "i value: " << i << endl;
+//                for(j = COL - 1; j >= 0; j--)
+//                {
+//                    m_grid[i][j].visible = m_grid[i - 1][j].visible;
+//                    m_grid[i][j].color = m_grid[i - 1][j].color;
+//                }
+//            }
+            for(int j = COL - 1; j >= 0; j--)
+            {
+                cout << "here" << endl;
+                m_grid[i][j].visible = false;
+              // m_grid[i][j].color = "#FFBF00";
+            }
+            //i = ROW - 1;
+            //j = COL - 1;
+            completeLines = true;
+          //  emit completeLine();
+        }
+        else
+            lineFound = true;
+    }
+    return completeLines;
 }
 bool MainGrid::updateGrid(int row, int col)
 {
@@ -65,8 +106,8 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
                            }
                        }
                    }
-                   if(!lineCheck() && topRow)
-                        emit gameOver();
+                   //if(!lineCheck() && topRow)
+                     //   emit gameOver();
 
                    done = true;
                     m_allShapes[block_type]->resetRotateState();
@@ -74,6 +115,8 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
                 }
         }
     }
+    if(!lineCheck() && topRow)
+         emit gameOver();
 
     return done;
 }

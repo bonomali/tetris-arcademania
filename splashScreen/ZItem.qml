@@ -100,7 +100,7 @@ Shape {
                     y = 0
                     rotation = 90
                     state = "WIDEST"
-                    getRandomIntInclusive(0,6)
+                    getRandomIntInclusive(0,3)
                 }
             }
         }
