@@ -3,11 +3,23 @@ import QTGraphicalEffects 1.0
 
     Rectangle {
     id: playArea
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    anchors.bottomMargin: parent.height * .025
+    height: referenceSquare.height * tilesHigh
+    width: referenceSquare.width * tilesWide
+    border.color: "#002355"
+    border.width: 3
+    property int index: 0
+    property int i: 0
+    property int j: 0
+    property int fallingShape: -1
+    property int onDeckShape: 0
     property alias squareRepeater:squareRepeater
+    focus: true
 
-    //Component.onCompleted: initializeBoard()
     function initializeBoard(){
-        //grid.resetBoard()
+        grid.resetBoard()
 
         for(i  = 0; i < 32; i++)
         {
@@ -30,10 +42,50 @@ import QTGraphicalEffects 1.0
     }
 
     function getRandomIntInclusive(min, max) {
+      if(fallingShape === -1)
+        fallingShape = Math.floor(Math.random() * (max - min + 1)) + min;
 
-      rand = Math.floor(Math.random() * (max - min + 1)) + min;
-        console.log("random number ", rand)
-        switch(rand)
+      else
+          fallingShape = onDeckShape;
+
+      onDeckShape = Math.floor(Math.random() * (max - min + 1)) + min;
+       console.log("random deck number ", onDeckShape)
+
+      appWindow.cubeItem1 = false
+      appWindow.lineItem1 = false
+      appWindow.mLItem1 = false
+      appWindow.lItem1 = false
+      appWindow.mZItem1 = false
+      appWindow.zItem1 = false
+      appWindow.tItem1 = false
+
+      switch(onDeckShape)
+        {
+        case 0:
+            appWindow.cubeItem1 = true
+            break;
+        case 1:
+            appWindow.lineItem1 = true
+            break;
+        case 2:
+            appWindow.lItem1 = true
+            break;
+        case 3:
+            appWindow.mLItem1 = true
+            break;
+        case 4:
+            appWindow.mZItem1 = true
+            break;
+        case 5:
+            appWindow.tItem1 = true
+            break;
+        case 6:
+            appWindow.zItem1 = true
+            break;
+        default:
+            throw("Invalid RNG value");
+        }
+      switch(fallingShape)
         {
         case 0:
             sCube.visible = true;
@@ -41,6 +93,7 @@ import QTGraphicalEffects 1.0
             sCube.sleep.running = true;
             sCube.x = referenceSquare.width * 6
             sCube.y = 0
+            sCube.sleep.interval = hud._speed
             break;
         case 1:
             sLineItem.visible = true;
@@ -48,6 +101,7 @@ import QTGraphicalEffects 1.0
             sLineItem.sleep.running = true;
             sLineItem.x = referenceSquare.width * 6
             sLineItem.y = (0 - referenceSquare.height)
+            sLineItem.sleep.interval = hud._speed
             break;
         case 2:
             sLItem.visible = true;
@@ -88,19 +142,6 @@ import QTGraphicalEffects 1.0
             throw("Invalid RNG value");
         }
     }
-    //property alias drawnSquare:drawnSquare
-    anchors.horizontalCenter: parent.horizontalCenter
-    anchors.bottom: parent.bottom
-    anchors.bottomMargin: parent.height * .025
-    height: referenceSquare.height * tilesHigh
-    width: referenceSquare.width * tilesWide
-    //Component.onCompleted: console.log (height)
-    border.color: "#002355"
-    border.width: 3
-    property int index: 0
-    property int i: 0
-    property int j: 0
-    focus: true
 
     Connections {
         target: grid
@@ -113,6 +154,7 @@ import QTGraphicalEffects 1.0
             sMZItem.state = "GAMEOVER"
             sZItem.state = "GAMEOVER"
             sTItem.state = "GAMEOVER"
+            fallingShape = -1
         }
     }
 //    onWidthChanged:
@@ -123,7 +165,6 @@ import QTGraphicalEffects 1.0
 //    onHeightChanged:
 //    {
 //        exampleShape.y = exampleShape.row * (height / tilesHigh)
-
 //    }
 
     RadialGradient{
@@ -156,42 +197,49 @@ import QTGraphicalEffects 1.0
         visible: false
         focus: false
         sleep.running: false
+        sleep.interval: _speed
     }
     LineItem {
         id:sLineItem
         visible: false
         focus: false
         sleep.running: false
+        sleep.interval: _speed
     }
     LItem{
         id:sLItem
         visible: false
         focus: false
         sleep.running: false
+        sleep.interval: _speed
     }
     MLItem{
         id:sMLItem
         visible: false
         focus: false
         sleep.running: false
+        sleep.interval: _speed
     }
     MZItem{
         id: sMZItem
         visible: false
         focus: false
         sleep.running: false
+        sleep.interval: _speed
     }
     TItem{
         id: sTItem
         visible: false
         focus: false
         sleep.running: false
+        sleep.interval: _speed
     }
     ZItem{
         id: sZItem
         visible: false
         focus: false
         sleep.running: false
+        sleep.interval: _speed
     }
 
     Canvas {

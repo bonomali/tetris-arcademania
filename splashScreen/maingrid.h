@@ -29,6 +29,7 @@ public:
 
 signals:
     void gameOver();
+    void lineBrake();
 
 public slots:
     bool lineCheck();             //return row# to break, recursive: argument = starting row
@@ -38,6 +39,8 @@ public slots:
     bool checkMoveRight(int row, int col, int block_type);
     QString getColor(int row, int col);
     void resetBoard();
+    int nextShape();
+    //int getDisplayedShapes();
 
 protected:
     gridData m_grid[ROW][COL];

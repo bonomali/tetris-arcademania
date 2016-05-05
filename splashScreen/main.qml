@@ -11,9 +11,17 @@ ApplicationWindow {
     property int tilesWide: 16
     property int tilesHigh: 32
     property alias playMusic:playMusic
-    property int rand: 0
     property bool muted: false
     property alias initializeBoard1: localHud.localBoard
+    property alias currentLevel: localHud._level
+    property alias cubeItem1: localHud.cubeItem1
+    property alias lineItem1: localHud.lineItem1
+    property alias mLItem1: localHud.mLItem1
+    property alias lItem1: localHud.lItem1
+    property alias mZItem1: localHud.mZItem1
+    property alias zItem1: localHud.zItem1
+    property alias tItem1: localHud.tItem1
+
     //property alias getRandomIntInclusive: getRandomIntInclusive(min, max)
     // Returns a random integer between min (included) and max (included)
     // Using Math.round() will give you a non-uniform distribution!
@@ -22,6 +30,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 640
+
 
     Audio {
         id: playMusic
@@ -38,7 +47,8 @@ ApplicationWindow {
     Hud {
     id: localHud
     }
-    SplashMenu {}
+    SplashMenu {
+    }
     VolumeButton{
         id:volumeButton
     }
@@ -47,5 +57,4 @@ ApplicationWindow {
         id:gameOver
         visible: false
     }
-
 }

@@ -6,6 +6,8 @@ using std::endl;
 MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *& litem, ishapes *& mlitem, ishapes *& zitem, ishapes *& mzitem)
     : m_gameover(false)
 {
+    srand(static_cast<unsigned int>(time(nullptr)));  //  using the time seed from srand explanation
+
    for(int i = 0; i < ROW; i++)
    {
        for(int j = 0; j < COL; j++)
@@ -23,13 +25,16 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *
    m_allShapes[5] = zitem;
    m_allShapes[6] = mzitem;
 
-//   for(int i = 0; i < 6; i++)
-//   {
-//       m_grid[i][12].visible = true;
-//       m_grid[i][12].color = "#FFFFFF";
-//       m_grid[i][3].visible = true;
-//       m_grid[i][3].color = "#FFFFFF";
-//   }
+   for(int i = 0; i < 15; i++)
+   {
+       for (int j= 8; j <= 31; j++)
+       {
+           m_grid[j][i].visible = true;
+           m_grid[j][i].color = "#FFFFFF";
+    //       m_grid[i][3].visible = true;
+    //       m_grid[i][3].color = "#FFFFFF";
+       }
+   }
 }
 bool MainGrid::lineCheck()
 {
@@ -50,6 +55,8 @@ bool MainGrid::lineCheck()
 
         if(lineFound)
         {
+            emit lineBrake();
+
             for(i; i > 0; i--)
             {
                 for(j = COL - 1; j >= 0; j--)
@@ -77,14 +84,6 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
     bool topRow = false;
     Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
 
-//    for(int i = 0; i < ROW; i++)
-//    {
-//        for(int j = 0; j < COL; j++)
-//        {
-//            cout << m_grid[i][j].visible << ", ";
-//        }
-//        cout << endl;
-//    }
     for(int i = 0; i < 4 && !done; i++)
     {
         for(int j = 0; j < 4 && !done; j++)
@@ -105,8 +104,6 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
                            }
                        }
                    }
-                   //if(!lineCheck() && topRow)
-                     //   emit gameOver();
 
                    done = true;
                     m_allShapes[block_type]->resetRotateState();
@@ -182,4 +179,7 @@ void MainGrid::resetBoard()
     }
     m_gameover = false;
 }
-
+int MainGrid::nextShape()
+{
+    return rand() % 6;
+}

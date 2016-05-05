@@ -61,14 +61,43 @@ Shape {
           event.accept = true
     }
 
+    Keys.onReleased: {
+        if(event.isAutoRepeat)
+        return
+        if(event.key === Qt.Key_Down)
+        {
+            sleep.stop()
+            sleep.interval = _speed
+            sleep.start()
+        }
+    }
+
         Timer
         {
             id:sleep
-            interval: 1000
+            interval: _speed
             running: true
             repeat: true
             onTriggered:
             {
+                console.log(interval)
+                for(i  = 0; i < 32; i++)
+                {
+                    for (j = 0; j < 16; j++)
+                    {
+                        index = ((i * tilesWide) + j)
+                        if (grid.updateGrid(i, j) === true)
+                        {
+                            squareRepeater.itemAt(index).visible = true
+                            squareRepeater.itemAt(index).color = grid.getColor(i,j);
+                        }
+                        else
+                        {
+                            squareRepeater.itemAt(index).visible = false
+                        }
+                    }
+                }
+
                 if(state === "NARROWEST" && y < playArea.height - shapeHeight ||
                         (state === "WIDEST" && y < playArea.height - topLeft.width * 2))
                 {

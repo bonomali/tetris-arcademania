@@ -1,6 +1,5 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
-//#include <QMediaPlayer>
 #include "cubeitem.h"
 #include "lineitem.h"
 #include "maingrid.h"
@@ -39,7 +38,9 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("zitem", zitem);
     engine.rootContext()->setContextProperty("mzitem", mzitem);
 
-    //QKeyEvent event(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier, "", false);
+    QKeyEvent event(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier, "", false);
+    QKeyEvent event2(QEvent::KeyRelease, Qt::Key_Down, Qt::NoModifier, "", false);
+
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();

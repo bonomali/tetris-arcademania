@@ -4,7 +4,7 @@ import QtQuick.Controls 1.3
 Rectangle{
     id: splashScreen
     anchors.fill: parent
-    property int level: 1
+    property int selectedLevel: 1
 
     Image{
         source: "background.jpg"
@@ -16,6 +16,7 @@ Rectangle{
         anchors.bottomMargin: parent.height * .10
         anchors.horizontalCenter: parent.horizontalCenter
         mouseArea.onClicked: {
+            currentLevel = selectedLevel
             parent.visible = false, appWindow.initializeBoard1.initializeBoard()
         }
         buttonText : "Start"
@@ -29,8 +30,8 @@ Rectangle{
         anchors.horizontalCenter: startButton.horizontalCenter
         anchors.horizontalCenterOffset: startButton.width * -.35
         mouseArea.onClicked: {
-            if (level > 1)
-                level--
+            if (selectedLevel > 1)
+                selectedLevel--
         }
         buttonText : "<-"
         }
@@ -43,8 +44,8 @@ Rectangle{
         anchors.horizontalCenter: startButton.horizontalCenter
         anchors.horizontalCenterOffset: startButton.width * .35
         mouseArea.onClicked: {
-            if (level < 10)
-                level++
+            if (selectedLevel < 10)
+                selectedLevel++
         }
         buttonText : "->"
     }
@@ -58,7 +59,7 @@ Rectangle{
         anchors.horizontalCenter: startButton.horizontalCenter
         rectangleFont.pointSize: 15
         baseRectangleText.anchors.centerIn: textRect
-        rectangleText: level
+        rectangleText: selectedLevel
     }
 
     Image{

@@ -16,6 +16,9 @@ Shape {
        ]
 
     Keys.onPressed: {
+        if(event.isAutoRepeat)
+        return
+
         if(event.key === Qt.Key_Left)
         {
             if(state === "GO" && x > 0 && grid.checkMoveLeft(Math.floor((y - referenceSquare.width)/ referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
@@ -32,6 +35,18 @@ Shape {
         }
         event.accept = true
     }
+
+    Keys.onReleased: {
+        if(event.isAutoRepeat)
+        return
+        if(event.key === Qt.Key_Down)
+        {
+            sleep.stop()
+            sleep.interval = 1000
+            sleep.start()
+        }
+    }
+
     Timer
     {
         id:sleep

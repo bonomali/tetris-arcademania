@@ -11,21 +11,6 @@ Shape {
     state: "UPRIGHT"
     shapeValue: 3
     rotation: 90
-    Component.onCompleted: {
-        for(i  = 0; i < 32; i++)
-        {
-            for (j = 0; j < 16; j++)
-            {
-                if (grid.updateGrid(i, j) === true)
-                {
-                    //console.log("i: " + i + "j: " + j)
-                    index = ((i * tilesWide) + j)
-                    squareRepeater.itemAt(index).visible = true
-                    squareRepeater.itemAt(index).color = grid.getColor(i,j);
-                }
-            }
-        }
-    }
 
     states: [
            State { name: "UPRIGHT" },
@@ -94,6 +79,18 @@ Shape {
         }
           event.accept = true
     }
+
+    Keys.onReleased: {
+        if(event.isAutoRepeat)
+        return
+        if(event.key === Qt.Key_Down)
+        {
+            sleep.stop()
+            sleep.interval = 1000
+            sleep.start()
+        }
+    }
+
     Timer
     {
         id:sleep

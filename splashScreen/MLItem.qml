@@ -36,7 +36,7 @@ Shape {
                     state == "LEFT" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
                     state === "UPRIGHT"  && x < (playArea.width - referenceSquare.width * 3)  && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) ||
                     state === "UPSIDEDOWN" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x + referenceSquare.width)/ referenceSquare.width), shapeValue))
-                        x += topLeft.width
+                    x += topLeft.width
         }
         else if(event.key === Qt.Key_Up)
         {
@@ -79,6 +79,17 @@ Shape {
         }
           event.accept = true
     }
+    Keys.onReleased: {
+        if(event.isAutoRepeat)
+        return
+        if(event.key === Qt.Key_Down)
+        {
+            sleep.stop()
+            sleep.interval = 1000
+            sleep.start()
+        }
+    }
+
     Timer
     {
         id:sleep

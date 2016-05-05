@@ -58,6 +58,16 @@ Shape {
         }
           event.accept = true
     }
+    Keys.onReleased: {
+        if(event.isAutoRepeat)
+        return
+        if(event.key === Qt.Key_Down)
+        {
+            sleep.stop()
+            sleep.interval = 1000
+            sleep.start()
+        }
+    }
 
         Timer
         {
