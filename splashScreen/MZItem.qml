@@ -88,6 +88,11 @@ Shape {
                                     squareRepeater.itemAt(index).visible = true
                                     squareRepeater.itemAt(index).color = grid.getColor(i,j);
                                 }
+                                else
+                                {
+                                    index = ((i * tilesWide) + j)
+                                    squareRepeater.itemAt(index).visible = false
+                                }
                             }
                         }
                     }
@@ -100,7 +105,7 @@ Shape {
                     y = 0
                     rotation = 90
                     state = "WIDEST"
-                    getRandomIntInclusive(0,3)
+                    getRandomIntInclusive(0,6)
                 }
             }
         }

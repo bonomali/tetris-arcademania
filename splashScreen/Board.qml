@@ -5,7 +5,7 @@ import QTGraphicalEffects 1.0
     id: playArea
     property alias squareRepeater:squareRepeater
 
-    Component.onCompleted: initializeBoard()
+    //Component.onCompleted: initializeBoard()
     function initializeBoard(){
         grid.resetBoard()
 
@@ -17,21 +17,22 @@ import QTGraphicalEffects 1.0
                     squareRepeater.itemAt(index).visible = false
             }
         }
-        sCube.state = "WIDEST"
+
+        sCube.state = "GO"
         sLineItem.state = "WIDEST"
-        sLItem.state = "WIDEST"
-        sMLItem.state = "WIDEST"
+        sLItem.state = "UPRIGHT"
+        sMLItem.state = "RIGHT"
         sMZItem.state = "WIDEST"
         sZItem.state = "WIDEST"
-        sTItem.state = "WIDEST"
+        sTItem.state = "UPRIGHT"
 
-        getRandomIntInclusive(0,3)
+        getRandomIntInclusive(0,6)
     }
 
     function getRandomIntInclusive(min, max) {
 
-      rand = 1//Math.floor(Math.random() * (max - min + 1)) + min;
-
+      rand = Math.floor(Math.random() * (max - min + 1)) + min;
+        console.log("random number ", rand)
         switch(rand)
         {
         case 0:

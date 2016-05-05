@@ -58,8 +58,7 @@ bool MainGrid::lineCheck()
                     m_grid[i][j].color = m_grid[i - 1][j].color;
                 }
             }
-            i = ROW - 1;
-            j = COL - 1;
+            i = ROW;
             completeLines = true;
         }
         else
@@ -78,14 +77,14 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
     bool topRow = false;
     Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
 
-    for(int i = 0; i < ROW; i++)
-    {
-        for(int j = 0; j < COL; j++)
-        {
-            cout << m_grid[i][j].visible << ", ";
-        }
-        cout << endl;
-    }
+//    for(int i = 0; i < ROW; i++)
+//    {
+//        for(int j = 0; j < COL; j++)
+//        {
+//            cout << m_grid[i][j].visible << ", ";
+//        }
+//        cout << endl;
+//    }
     for(int i = 0; i < 4 && !done; i++)
     {
         for(int j = 0; j < 4 && !done; j++)
