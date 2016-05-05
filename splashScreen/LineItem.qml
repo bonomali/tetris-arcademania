@@ -1,4 +1,4 @@
-import QtQuick 2.4
+import QtQuick 2.5
 
 Shape {
     id:lineItem
@@ -72,11 +72,6 @@ Shape {
                 if(state === "NARROWEST" && y < playArea.height - shapeHeight ||
                         (state === "WIDEST" && y < playArea.height - topLeft.width * 2))
                 {
-                    //console.log(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width))
-
-                    //console.log(x)
-                    //console.log(y)
-
                     y += topLeft.width
 
                     if((state === "WIDEST" && grid.checkIfComplete(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)) ||
@@ -91,10 +86,15 @@ Shape {
                             {
                                 if (grid.updateGrid(i, j) === true)
                                 {
-                                    //console.log("i: " + i + "j: " + j)
                                     index = ((i * tilesWide) + j)
                                     squareRepeater.itemAt(index).visible = true
                                     squareRepeater.itemAt(index).color = grid.getColor(i,j);
+                                }
+                                else
+                                {
+                                    index = ((i * tilesWide) + j)
+                                    squareRepeater.itemAt(index).visible = false
+                                    console.log("false")
                                 }
                             }
                         }

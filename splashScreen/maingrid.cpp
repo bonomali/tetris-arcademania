@@ -7,11 +7,13 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *
     : m_gameover(false)
 {
    for(int i = 0; i < ROW; i++)
+   {
        for(int j = 0; j < COL; j++)
        {
            m_grid[i][j].visible = false;
            m_grid[i][j].color = "#FFFFFF";
        }
+   }
 
    m_allShapes[0] = cube;
    m_allShapes[1] = line;
@@ -21,10 +23,10 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *
    m_allShapes[5] = zitem;
    m_allShapes[6] = mzitem;
 
-   for(int i = 0; i < 16; i++)
+   for(int i = 0; i < 15; i++)
    {
-      // m_grid[31][i].visible = true;
-      // m_grid[3][i].color = "#FFFFFF";
+//       m_grid[2][i].visible = true;
+//       m_grid[2][i].color = "#FFFFFF";
 //       m_grid[i][3].visible = true;
 //       m_grid[i][3].color = "#FFFFFF";
    }
@@ -48,26 +50,17 @@ bool MainGrid::lineCheck()
 
         if(lineFound)
         {
-//            cout << "complete line/ i: " << i << endl;
-//            for(i; i > 0; i--)
-//            {
-//                cout << "i value: " << i << endl;
-//                for(j = COL - 1; j >= 0; j--)
-//                {
-//                    m_grid[i][j].visible = m_grid[i - 1][j].visible;
-//                    m_grid[i][j].color = m_grid[i - 1][j].color;
-//                }
-//            }
-            for(int j = COL - 1; j >= 0; j--)
+            for(i; i > 0; i--)
             {
-                cout << "here" << endl;
-                m_grid[i][j].visible = false;
-              // m_grid[i][j].color = "#FFBF00";
+                for(j = COL - 1; j >= 0; j--)
+                {
+                    m_grid[i][j].visible = m_grid[i - 1][j].visible;
+                    m_grid[i][j].color = m_grid[i - 1][j].color;
+                }
             }
-            //i = ROW - 1;
-            //j = COL - 1;
+            i = ROW - 1;
+            j = COL - 1;
             completeLines = true;
-          //  emit completeLine();
         }
         else
             lineFound = true;
@@ -76,7 +69,6 @@ bool MainGrid::lineCheck()
 }
 bool MainGrid::updateGrid(int row, int col)
 {
-    //std::cout << "row: " << row << ", col: " << col << std::endl;
     return m_grid[row][col].visible;
 }
 
@@ -86,6 +78,14 @@ bool MainGrid::checkIfComplete(int row, int col, int block_type)
     bool topRow = false;
     Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
 
+    for(int i = 0; i < ROW; i++)
+    {
+        for(int j = 0; j < COL; j++)
+        {
+            cout << m_grid[i][j].visible << ", ";
+        }
+        cout << endl;
+    }
     for(int i = 0; i < 4 && !done; i++)
     {
         for(int j = 0; j < 4 && !done; j++)
@@ -170,3 +170,17 @@ QString MainGrid::getColor(int row, int col)
 {
     return m_grid[row][col].color;
 }
+
+void MainGrid::resetBoard()
+{
+    for(int i = 0; i < ROW; i++)
+    {
+        for(int j = 0; j < COL; j++)
+        {
+            m_grid[i][j].visible = false;
+            m_grid[i][j].color = "#FFFFFF";
+        }
+    }
+    m_gameover = false;
+}
+

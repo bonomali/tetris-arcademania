@@ -1,7 +1,7 @@
 //Name: Isaac Harries, Stephanie Vetter
 //Lab: 2
 //Project Name: Tetris
-import QtQuick 2.4
+import QtQuick 2.5
 import QtQuick.Controls 1.3
 import QtMultimedia 5.6
 import Qt.labs.settings 1.0
@@ -13,9 +13,8 @@ ApplicationWindow {
     property alias playMusic:playMusic
     property int rand: 0
     property bool muted: false
-
+    property alias initializeBoard1: localHud.localBoard
     //property alias getRandomIntInclusive: getRandomIntInclusive(min, max)
-
     // Returns a random integer between min (included) and max (included)
     // Using Math.round() will give you a non-uniform distribution!
 
@@ -36,7 +35,9 @@ ApplicationWindow {
         property alias muted: volumeButton.isMuted
     }
 
-    Hud {}
+    Hud {
+    id: localHud
+    }
     SplashMenu {}
     VolumeButton{
         id:volumeButton

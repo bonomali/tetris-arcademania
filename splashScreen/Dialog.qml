@@ -1,9 +1,13 @@
-import QtQuick 2.4
+import QtQuick 2.5
 
 TextRect{
     property alias dialog:dialog
     property alias diagButtonText:diagButton.buttonText
     property alias diagButtonFont:diagButton.buttonFont
+    property alias diagButtonMouse:diagButton.mouseArea
+    property alias diagButton2Text:diagButton2.buttonText
+    property alias diagButton2Font:diagButton2.buttonFont
+    property alias diagButton2Mouse:diagButton2.mouseArea
     property alias diagButton: diagButton
     property alias diagMouseArea:diagMouseArea
     property alias drag:diagMouseArea.drag
@@ -30,7 +34,19 @@ TextRect{
         height: dialog.height * .15
         anchors.bottom: dialog.bottom
         anchors.bottomMargin: dialog.height * .05
-        anchors.horizontalCenter: dialog.horizontalCenter
+        anchors.left: dialog.left
+        anchors.leftMargin: dialog.width * .19
+        mouseArea.onClicked: dialog.visible = false
+    }
+
+    Buttons {
+        id: diagButton2
+        width: dialog.width * .25
+        height: dialog.height * .15
+        anchors.bottom: dialog.bottom
+        anchors.bottomMargin: dialog.height * .05
+        anchors.left: diagButton.right
+        anchors.leftMargin: diagButton.width * .50
         mouseArea.onClicked: dialog.visible = false
     }
 }

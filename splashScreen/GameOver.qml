@@ -1,6 +1,8 @@
-import QtQuick 2.0
+import QtQuick 2.5
     Dialog{
         property alias gameOver: gameOver.visible
+        signal restart()
+
         id:gameOver
         height: parent.height * .2
         width: parent.width * .57
@@ -11,5 +13,10 @@ import QtQuick 2.0
         diagButtonFont.pointSize: height * .07
         rectangleText: "GAME OVER LOSER :P!"
         diagButtonText: "Again?"
+        diagButton2Text: "Exit"
+        diagButton2Font.pointSize: height * .07
+        diagButton2Mouse.onClicked: Qt.quit()
+        diagButtonMouse.onClicked: { appWindow.initializeBoard1.initializeBoard() }
+
         visible: false
 }

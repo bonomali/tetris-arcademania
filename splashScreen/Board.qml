@@ -1,9 +1,32 @@
-import QtQuick 2.4
+import QtQuick 2.5
 import QTGraphicalEffects 1.0
 
     Rectangle {
     id: playArea
     property alias squareRepeater:squareRepeater
+
+    Component.onCompleted: initializeBoard()
+    function initializeBoard(){
+        grid.resetBoard()
+
+        for(i  = 0; i < 32; i++)
+        {
+            for (j = 0; j < 16; j++)
+            {
+                    index = ((i * tilesWide) + j)
+                    squareRepeater.itemAt(index).visible = false
+            }
+        }
+        sCube.state = "WIDEST"
+        sLineItem.state = "WIDEST"
+        sLItem.state = "WIDEST"
+        sMLItem.state = "WIDEST"
+        sMZItem.state = "WIDEST"
+        sZItem.state = "WIDEST"
+        sTItem.state = "WIDEST"
+
+        getRandomIntInclusive(0,3)
+    }
 
     function getRandomIntInclusive(min, max) {
 
@@ -11,13 +34,13 @@ import QTGraphicalEffects 1.0
 
         switch(rand)
         {
-//        case 0:
-//            sCube.visible = true;
-//            sCube.focus = true;
-//            sCube.sleep.running = true;
-//            sCube.x = referenceSquare.width * 6
-//            sCube.y = 0
-//            break;
+        case 0:
+            sCube.visible = true;
+            sCube.focus = true;
+            sCube.sleep.running = true;
+            sCube.x = referenceSquare.width * 6
+            sCube.y = 0
+            break;
         case 1:
             sLineItem.visible = true;
             sLineItem.focus = true;
@@ -25,35 +48,35 @@ import QTGraphicalEffects 1.0
             sLineItem.x = referenceSquare.width * 6
             sLineItem.y = (0 - referenceSquare.height)
             break;
-//        case 2:
-//            sLItem.visible = true;
-//            sLItem.focus = true;
-//            sLItem.sleep.running = true;
-//            sLItem.x = referenceSquare.width * 6
-//            sLItem.y = (0 - referenceSquare.height)
-//            break;
-//        case 3:
-//            sMLItem.visible = true;
-//            sMLItem.focus = true;
-//            sMLItem.sleep.running = true;
-//            sMLItem.x = referenceSquare.width * 6
-//            sMLItem.y = (0 - referenceSquare.height)
-//            break;
-        case 0:
+        case 2:
+            sLItem.visible = true;
+            sLItem.focus = true;
+            sLItem.sleep.running = true;
+            sLItem.x = referenceSquare.width * 6
+            sLItem.y = (0 - referenceSquare.height)
+            break;
+        case 3:
+            sMLItem.visible = true;
+            sMLItem.focus = true;
+            sMLItem.sleep.running = true;
+            sMLItem.x = referenceSquare.width * 6
+            sMLItem.y = (0 - referenceSquare.height)
+            break;
+        case 4:
             sMZItem.visible = true;
             sMZItem.focus = true;
             sMZItem.sleep.running = true;
             sMZItem.x = referenceSquare.width * 6
             sMZItem.y = (0 - referenceSquare.height)
             break;
-        case 3:
+        case 5:
             sTItem.visible = true;
             sTItem.focus = true;
             sTItem.sleep.running = true;
             sTItem.x = referenceSquare.width * 6
             sTItem.y = (0 - referenceSquare.height)
             break;
-        case 2:
+        case 6:
             sZItem.visible = true;
             sZItem.focus = true;
             sZItem.sleep.running = true;
@@ -102,11 +125,6 @@ import QTGraphicalEffects 1.0
 
 //    }
 
-    Keys.onReturnPressed: {
-        getRandomIntInclusive(0,3)
-        console.log(rand)
-    }
-
     RadialGradient{
         anchors.fill: playArea
         gradient: Gradient{
@@ -120,7 +138,6 @@ import QTGraphicalEffects 1.0
         color:"transparent"
         border.color: "transparent"
     }
-
 
     Repeater {
         id: squareRepeater

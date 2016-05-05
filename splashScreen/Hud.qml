@@ -1,17 +1,18 @@
-import QtQuick 2.0
+import QtQuick 2.5
 
 Rectangle {
     id: hud
     property int _score : 0
     property int _goal : 0
     property int _level : 0
-
-
+    property alias localBoard: localBoard
     anchors.fill: parent
     color: "grey"
 
     Background{}
-    Board {}
+    Board {
+    id: localBoard
+    }
 
     TextRect {
         id: score

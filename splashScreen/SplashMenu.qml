@@ -1,4 +1,4 @@
-import QtQuick 2.4
+import QtQuick 2.5
 import QtQuick.Controls 1.3
 
 Rectangle{
@@ -15,7 +15,9 @@ Rectangle{
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.height * .10
         anchors.horizontalCenter: parent.horizontalCenter
-        mouseArea.onClicked: parent.visible = false;
+        mouseArea.onClicked: {
+            parent.visible = false, appWindow.initializeBoard1.initializeBoard()
+        }
         buttonText : "Start"
     }
 
