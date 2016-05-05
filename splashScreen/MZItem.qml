@@ -82,15 +82,15 @@ Shape {
                         {
                             for (j = 0; j < 16; j++)
                             {
+                                index = ((i * tilesWide) + j)
+
                                 if (grid.updateGrid(i, j) === true)
                                 {
-                                    index = ((i * tilesWide) + j)
                                     squareRepeater.itemAt(index).visible = true
                                     squareRepeater.itemAt(index).color = grid.getColor(i,j);
                                 }
                                 else
                                 {
-                                    index = ((i * tilesWide) + j)
                                     squareRepeater.itemAt(index).visible = false
                                 }
                             }

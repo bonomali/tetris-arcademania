@@ -23,13 +23,13 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *
    m_allShapes[5] = zitem;
    m_allShapes[6] = mzitem;
 
-   for(int i = 0; i < 15; i++)
-   {
-//       m_grid[2][i].visible = true;
-//       m_grid[2][i].color = "#FFFFFF";
+//   for(int i = 0; i < 6; i++)
+//   {
+//       m_grid[i][12].visible = true;
+//       m_grid[i][12].color = "#FFFFFF";
 //       m_grid[i][3].visible = true;
 //       m_grid[i][3].color = "#FFFFFF";
-   }
+//   }
 }
 bool MainGrid::lineCheck()
 {

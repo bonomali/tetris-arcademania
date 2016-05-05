@@ -40,19 +40,18 @@ Shape {
         if(event.key === Qt.Key_Left)
         {
             if(state === "RIGHT" && x > 0 && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) ||
-                    state == "LEFT" && x > 0 && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue) ||
+                    state == "LEFT" && x > 0 && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
                     state === "UPRIGHT"  && x >= topLeft.width  && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue) ||
-                    state === "UPSIDEDOWN" && x > topLeft.width && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue))
+                    state === "UPSIDEDOWN" && x > topLeft.width && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
                     x -= topLeft.width
         }
         else if(event.key === Qt.Key_Right)
         {
-            if(state === "RIGHT" && x > 0 && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x + referenceSquare.width * 2) / referenceSquare.width), shapeValue) ||
-                    state == "LEFT" && x > 0 && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue) ||
-                    state === "UPRIGHT"  && x >= topLeft.width  && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x + referenceSquare.width * 2)/ referenceSquare.width), shapeValue) ||
-                    state === "UPSIDEDOWN" && x > topLeft.width && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue))
+            if(state === "RIGHT" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x + referenceSquare.width * 2) / referenceSquare.width), shapeValue) ||
+                    state == "LEFT" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x + referenceSquare.width)/ referenceSquare.width), shapeValue) ||
+                    state === "UPRIGHT"  && x < (playArea.width - referenceSquare.width * 3)  && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x + referenceSquare.width * 2)/ referenceSquare.width), shapeValue) ||
+                    state === "UPSIDEDOWN" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x + referenceSquare.width)/ referenceSquare.width), shapeValue))
                     x += topLeft.width
-
         }
         else if(event.key === Qt.Key_Up)
         {
@@ -103,7 +102,6 @@ Shape {
         repeat: true
         onTriggered:
         {   // outer bounderies
-
             if((state === "LEFT" && y < playArea.height - shapeHeight) ||
                     (state === "RIGHT" && y < playArea.height - referenceSquare.width * 4) ||
                     ((state === "UPRIGHT" || state === "UPSIDEDOWN" )&& y < playArea.height - topLeft.width * 3))
@@ -121,11 +119,15 @@ Shape {
                     {
                         for (j = 0; j < 16; j++)
                         {
+                            index = ((i * tilesWide) + j)
                             if (grid.updateGrid(i, j) === true)
                             {
-                                index = ((i * tilesWide) + j)
                                 squareRepeater.itemAt(index).visible = true
                                 squareRepeater.itemAt(index).color = grid.getColor(i,j);
+                            }
+                            else
+                            {
+                                squareRepeater.itemAt(index).visible = false
                             }
                         }
                     }

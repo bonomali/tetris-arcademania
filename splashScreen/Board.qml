@@ -7,7 +7,7 @@ import QTGraphicalEffects 1.0
 
     //Component.onCompleted: initializeBoard()
     function initializeBoard(){
-        grid.resetBoard()
+        //grid.resetBoard()
 
         for(i  = 0; i < 32; i++)
         {
@@ -21,7 +21,7 @@ import QTGraphicalEffects 1.0
         sCube.state = "GO"
         sLineItem.state = "WIDEST"
         sLItem.state = "UPRIGHT"
-        sMLItem.state = "RIGHT"
+        sMLItem.state = "UPRIGHT"
         sMZItem.state = "WIDEST"
         sZItem.state = "WIDEST"
         sTItem.state = "UPRIGHT"
