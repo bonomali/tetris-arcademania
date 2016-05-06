@@ -25,15 +25,15 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *
    m_allShapes[5] = zitem;
    m_allShapes[6] = mzitem;
 
-   for(int i = 0; i < 15; i++)
+   for(int i = 0; i < 31; i++)
    {
-       for (int j= 8; j <= 31; j++)
-       {
-           m_grid[j][i].visible = true;
-           m_grid[j][i].color = "#FFFFFF";
-    //       m_grid[i][3].visible = true;
-    //       m_grid[i][3].color = "#FFFFFF";
-       }
+//       for (int j= 8; j <= 31; j++)
+//       {
+           m_grid[i][3].visible = true;
+           m_grid[i][3].color = "#FFFFFF";
+           m_grid[i][13].visible = true;
+           m_grid[i][13].color = "#FFFFFF";
+    //   }
    }
 }
 bool MainGrid::lineCheck()
@@ -149,7 +149,6 @@ bool MainGrid::checkMoveRight(int row, int col, int block_type)
         {
            if(localShape[i][j] == true && (m_grid[i + row][j + col + 1].visible == true))
                 {
-                    cout << "i= " << i << "j= " << j << "col: " << col << endl;
                     validMove = false;
                 }
         }

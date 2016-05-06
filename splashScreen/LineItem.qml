@@ -38,7 +38,8 @@ Shape {
         {
             if(x != 0 && x < playArea.width - topLeft.width * 2)
             {
-                if(state === "NARROWEST" && y <= playArea.height - shapeHeight)
+                if(state === "NARROWEST" && y <= playArea.height - shapeHeight && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) &&
+                        grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width) / referenceSquare.width), shapeValue))
                 {
                     state = "WIDEST"
                     lineItem.rotation = 90

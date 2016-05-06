@@ -46,28 +46,29 @@ Shape {
                 {
                     state = "RIGHT"
                     rotation = 180
-                    x += topLeft.width
+                    y -= referenceSquare.width
                     mlitem.rotate()
                 }
-                else if(state === "RIGHT" && y <= playArea.height - shapeHeight)
+                else if(state === "RIGHT" && y <= playArea.height - shapeHeight &&
+                        grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue))
                 {
                     state = "UPSIDEDOWN"
                     rotation = 270
-                    y += topLeft.width
+                    x += referenceSquare.width
                     mlitem.rotate()
                 }
                 else if(state === "UPSIDEDOWN" && y <= playArea.height - shapeHeight)
                 {
                     state = "LEFT"
                     rotation = 0
-                    x -= topLeft.width
+                    y += referenceSquare.width
                     mlitem.rotate()
                 }
-                else if(state === "LEFT" && y <= playArea.height - shapeHeight)
+                else if(state === "LEFT" && y <= playArea.height - shapeHeight && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
                 {
                     state = "UPRIGHT"
                     rotation = 90
-                    y -= topLeft.width
+                    x -= referenceSquare.width
                     mlitem.rotate()
                 }
             }

@@ -99,7 +99,6 @@ Rectangle {
             font.pointSize: hud.height * .05
             color: "#b9d6e1"
         }
-
     }
 
     TextRect {
