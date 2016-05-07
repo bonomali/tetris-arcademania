@@ -1,7 +1,6 @@
 import QtQuick 2.5
     Dialog{
         property alias gameOver: gameOver.visible
-        signal restart()
 
         id:gameOver
         height: parent.height * .2

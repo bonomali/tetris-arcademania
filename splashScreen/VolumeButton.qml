@@ -12,7 +12,7 @@ Item {
         anchors.rightMargin: parent.width * .025
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.width * .025
-        width: parent.width * 0.05
+        width: parent.height * 0.05
         height: parent.height * 0.05
         visible: !isMuted
     }
@@ -22,7 +22,7 @@ Item {
         anchors.rightMargin: parent.width * .025
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.width * .025
-        width: parent.width * 0.05
+        width: parent.height * 0.05
         height: parent.height * 0.05
         visible: isMuted
     }

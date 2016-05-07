@@ -31,12 +31,12 @@ ApplicationWindow {
     width: 640
     height: 640
 
-
     Audio {
         id: playMusic
         source: "Zen.mp3"
         autoPlay: true
         muted: volumeButton.isMuted
+        loops: Audio.Infinite
     }
 
     Settings {

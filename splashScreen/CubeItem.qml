@@ -30,6 +30,11 @@ Shape {
         {
             sleep.interval = 100
         }
+        if(event.key === Qt.Key_Up)
+        {
+            rotateSound.play()
+        }
+
         event.accept = true
     }
 
@@ -39,7 +44,7 @@ Shape {
         if(event.key === Qt.Key_Down)
         {
             sleep.stop()
-            sleep.interval = 1000
+            sleep.interval = _speed
             sleep.start()
         }
     }
@@ -47,36 +52,22 @@ Shape {
     Timer
     {
         id:sleep
-        interval: 1000
+        interval: _speed
         running: true
         repeat: true
         onTriggered:
         {
-            for(i  = 0; i < 32; i++)
-            {
-                for (j = 0; j < 16; j++)
-                {
-                    if (grid.updateGrid(i, j) === true)
-                    {
-                        index = ((i * tilesWide) + j)
-                        squareRepeater.itemAt(index).visible = true
-                        squareRepeater.itemAt(index).color = grid.getColor(i,j);
-                    }
-                    else
-                    {
-                        index = ((i * tilesWide) + j)
-                        squareRepeater.itemAt(index).visible = false
-                    }
-                }
-            }
-
             if(state === "GO" && y < playArea.height - topLeft.width * 2)
             {
                 y = localBoard.yCoord++ * topLeft.width
 
                 if(grid.checkIfComplete(Math.floor((y - referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width) / referenceSquare.width), shapeValue))
                 {
-                    state = "STOP"
+                    if(state != "GAMEOVER")
+                    {
+                        impactSound.play()
+                        state = "STOP"
+                    }
 
                     for(i  = 0; i < 32; i++)
                     {

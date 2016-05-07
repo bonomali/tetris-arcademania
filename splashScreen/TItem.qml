@@ -45,37 +45,41 @@ Shape {
         {
             if(x >= 0 && x < playArea.width - topLeft.width)
             {
-                if(state === "UPRIGHT" && y <= playArea.height - shapeHeight)
+                if(state === "UPRIGHT")
                 {
                     state = "LEFT"
                     rotation = 180
 //                    y -= referenceSquare.width
                     y = --yCoord * topLeft.width
+                    rotateSound.play()
                     titem.rotate()
                 }
-                else if(state === "LEFT" && y <= playArea.height - shapeHeight &&
+                else if(state === "LEFT" &&
                         x < playArea.width - topLeft.width * 2)
                 {
                     state = "UPSIDEDOWN"
 //                    x += referenceSquare.width
                     x = ++xCoord * topLeft.width
                     rotation = 270
+                    rotateSound.play()
                     titem.rotate()
                 }
-                else if(state === "UPSIDEDOWN" && y <= playArea.height - shapeHeight && x >= 0)
+                else if(state === "UPSIDEDOWN" && x >= 0)
                 {
                     state = "RIGHT"
                     rotation = 0
 //                    y += referenceSquare.width
                     y = ++yCoord * topLeft.width
+                    rotateSound.play()
                     titem.rotate()
                 }
-                else if(state === "RIGHT" && y <= playArea.height - shapeHeight &&  x > 0)
+                else if(state === "RIGHT" &&  x > 0)
                 {
                     state = "UPRIGHT"
                     rotation = 90
 //                    x -= referenceSquare.width
                     x = --xCoord * topLeft.width
+                    rotateSound.play()
                     titem.rotate()
                 }
             }
@@ -92,7 +96,7 @@ Shape {
         if(event.key === Qt.Key_Down)
         {
             sleep.stop()
-            sleep.interval = 1000
+            sleep.interval = _speed
             sleep.start()
         }
     }
@@ -100,7 +104,7 @@ Shape {
         Timer
         {
             id:sleep
-            interval: 1000
+            interval: _speed
             running: true
             repeat: true
             onTriggered:
@@ -136,7 +140,10 @@ Shape {
                             (state === "LEFT" && grid.checkIfComplete(Math.floor((y + referenceSquare.width)/ referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)))
                     {
                         if(state != "GAMEOVER")
+                        {
+                            impactSound.play()
                             state = "STOP"
+                        }
 
                         for(i  = 0; i < 32; i++)
                         {

@@ -25,15 +25,15 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *
    m_allShapes[5] = zitem;
    m_allShapes[6] = mzitem;
 
-   for(int i = 0; i < 4; i++)
+   for(int i = 0; i < 15; i++)
    {
-//       for (int j= 8; j <= 31; j++)
-//       {
-           m_grid[i][3].visible = true;
-           m_grid[i][3].color = "#FFFFFF";
-           m_grid[i][13].visible = true;
-           m_grid[i][13].color = "#FFFFFF";
-    //   }
+       for (int j= 8; j <= 31; j++)
+       {
+           m_grid[j][i].visible = true;
+           m_grid[j][i].color = "#FFFFFF";
+//           m_grid[i][13].visible = true;
+//           m_grid[i][13].color = "#FFFFFF";
+       }
    }
 }
 bool MainGrid::lineCheck()

@@ -15,7 +15,6 @@ TextRect{
     property real maximumDragY: 0
 
     id:dialog
-    signal clicked
 
     MouseArea{
         id:diagMouseArea

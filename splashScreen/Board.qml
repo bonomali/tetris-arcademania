@@ -21,8 +21,7 @@ import QTGraphicalEffects 1.0
     focus: true
 
     function initializeBoard(){
-        grid.resetBoard()
-
+//        grid.resetBoard()
         for(i  = 0; i < 32; i++)
         {
             for (j = 0; j < 16; j++)
@@ -45,12 +44,12 @@ import QTGraphicalEffects 1.0
 
     function getRandomIntInclusive(min, max) {
       if(fallingShape === -1)
-        fallingShape = Math.floor(Math.random() * (max - min + 1)) + min;
+        fallingShape = 1;//Math.floor(Math.random() * (max - min + 1)) + min;
 
       else
           fallingShape = onDeckShape;
 
-      onDeckShape = Math.floor(Math.random() * (max - min + 1)) + min;
+      onDeckShape = 1;//Math.floor(Math.random() * (max - min + 1)) + min;
       console.log("random deck number ", onDeckShape)
 
       appWindow.cubeItem1 = false
@@ -171,7 +170,6 @@ import QTGraphicalEffects 1.0
         case 1:
             sLineItem.x = referenceSquare.width * xCoord
             sLineItem.y = yCoord * referenceSquare.height
-            console.log(xCoord)
             break;
         case 2:
             sLItem.x = referenceSquare.width * xCoord
@@ -201,8 +199,8 @@ import QTGraphicalEffects 1.0
     RadialGradient{
         anchors.fill: playArea
         gradient: Gradient{
-            GradientStop{ position: 0.0; color: "#002355"}
-            GradientStop{ position: 0.5; color: "#03142b"}
+            GradientStop{ position: 0.0; color: _mainColorArray[_level - 1]}
+            GradientStop{ position: 0.5; color: _gradientArray[_level - 1]}
         }
     }
 

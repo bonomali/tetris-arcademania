@@ -42,15 +42,17 @@ Shape {
         {
             if(x != 0 && x < playArea.width - topLeft.width * 2)
             {
-                if(state === "NARROWEST" && y <= playArea.height - shapeHeight && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) &&
+                if(state === "NARROWEST" && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) &&
                         grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width) / referenceSquare.width), shapeValue))
                 {
+                    rotateSound.play()
                     state = "WIDEST"
                     lineItem.rotation = 90
                     line.rotate()
                 }
-                else if(y < playArea.height - shapeHeight && y >= 0 && state === "WIDEST")
+                else if(state === "WIDEST")
                 {
+                    rotateSound.play()
                     state = "NARROWEST"
                     lineItem.rotation = 0
                     line.rotate()
@@ -59,6 +61,8 @@ Shape {
         }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
         {
+            if(event.isAutoRepeat)
+                return
             sleep.interval = 100
         }
           event.accept = true
@@ -109,7 +113,10 @@ Shape {
                             (state === "NARROWEST" && grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)))
                     {
                         if(state != "GAMEOVER")
+                        {
+                            impactSound.play()
                             state = "STOP"
+                        }
 
                         for(i  = 0; i < 32; i++)
                         {

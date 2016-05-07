@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import QtMultimedia 5.6
 
 Item {
     id: basicShape
@@ -10,6 +11,8 @@ Item {
     property alias thirdLeft:thirdLeft
     property alias bottomRight:bottomRight
     property alias bottomLeft:bottomLeft
+    property alias rotateSound:rotateSound
+    property alias impactSound:impactSound
     property int shapeWidth: topLeft.width * 2
     property int shapeHeight: topLeft.height * 4
     property int row: 0
@@ -19,6 +22,20 @@ Item {
     property int j: 0
     property int index: 0
     property int shapeValue: 1
+
+    Audio {
+        id: rotateSound
+        source: "rotate.wav"
+//        volume: .5
+        autoLoad: true
+    }
+
+    Audio {
+        id: impactSound
+        source: "impact.wav"
+//        volume: .5
+        autoLoad: true
+    }
 
     width: topLeft.width * 2
     height: topLeft.height * 4

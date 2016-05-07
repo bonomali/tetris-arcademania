@@ -1,10 +1,22 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.3
+import QtMultimedia 5.6
 
 Rectangle{
     id: splashScreen
     anchors.fill: parent
     property int selectedLevel: 1
+
+    Audio {
+        id: defButtonSound
+        source: "Scary impact.wav"
+        autoLoad: true
+    }
+    Audio {
+        id: levelSelectSFX
+        source: "Fast zing.wav"
+        autoLoad: true
+    }
 
     Image{
         source: "background.jpg"
@@ -16,6 +28,7 @@ Rectangle{
         anchors.bottomMargin: parent.height * .10
         anchors.horizontalCenter: parent.horizontalCenter
         mouseArea.onClicked: {
+            defButtonSound.play()
             currentLevel = selectedLevel
             parent.visible = false, appWindow.initializeBoard1.initializeBoard()
         }
@@ -31,7 +44,10 @@ Rectangle{
         anchors.horizontalCenterOffset: startButton.width * -.35
         mouseArea.onClicked: {
             if (selectedLevel > 1)
+            {
                 selectedLevel--
+                levelSelectSFX.play()
+            }
         }
         buttonText : "<-"
         }
@@ -45,7 +61,10 @@ Rectangle{
         anchors.horizontalCenterOffset: startButton.width * .35
         mouseArea.onClicked: {
             if (selectedLevel < 10)
+            {
                 selectedLevel++
+                levelSelectSFX.play()
+            }
         }
         buttonText : "->"
     }

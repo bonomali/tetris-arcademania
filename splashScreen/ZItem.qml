@@ -41,16 +41,18 @@ Shape {
         {
             if(x >= 0 && x < playArea.width - topLeft.width*2)
             {
-                if(state === "NARROWEST" && y <= playArea.height - shapeHeight)
+                if(state === "NARROWEST")
                 {
                     state = "WIDEST"
                     zItem.rotation = 90
+                    rotateSound.play()
                     zitem.rotate()
                 }
-                else if(y < playArea.height - shapeHeight && y >= 0 && state === "WIDEST")
+                else if(state === "WIDEST")
                 {
                     state = "NARROWEST"
                     zItem.rotation = 0
+                    rotateSound.play()
                     zitem.rotate()
                 }
             }
@@ -67,7 +69,7 @@ Shape {
         if(event.key === Qt.Key_Down)
         {
             sleep.stop()
-            sleep.interval = 1000
+            sleep.interval = _speed
             sleep.start()
         }
     }
@@ -75,7 +77,7 @@ Shape {
         Timer
         {
             id:sleep
-            interval: 1000
+            interval: _speed
             running: true
             repeat: true
             onTriggered:
@@ -109,7 +111,10 @@ Shape {
                             (state === "NARROWEST" && grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)))
                     {
                         if(state != "GAMEOVER")
+                        {
+                            impactSound.play()
                             state = "STOP"
+                        }
 
                         for(i  = 0; i < 32; i++)
                         {

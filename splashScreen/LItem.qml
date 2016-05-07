@@ -40,36 +40,39 @@ Shape {
         }
         else if(event.key === Qt.Key_Up)
         {
-            if(x < playArea.width - topLeft.width * 2)
+            if(x < playArea.width - topLeft.width)
             {
-                if(state === "UPRIGHT" && y < playArea.height - shapeHeight)
+                if(state === "UPRIGHT")
                 {
                     state = "RIGHT"
                     rotation = 180
                     y = --yCoord * referenceSquare.width
-
+                    rotateSound.play()
                     litem.rotate()
                 }
-                else if(state === "RIGHT" && y <= playArea.height - shapeHeight &&
+                else if(state === "RIGHT" && x < playArea.width - topLeft.width * 2 &&
                         grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue))
                 {
                     state = "UPSIDEDOWN"
                     rotation = 270
                     x = ++xCoord * topLeft.width
+                    rotateSound.play()
                     litem.rotate()
                 }
-                else if(state === "UPSIDEDOWN" && y <= playArea.height - shapeHeight)
+                else if(state === "UPSIDEDOWN")
                 {
                     state = "LEFT"
                     rotation = 0
                     y = ++yCoord * topLeft.width
+                    rotateSound.play()
                     litem.rotate()
                 }
-                else if(state === "LEFT" && x !== 0 && y <= playArea.height - shapeHeight && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
+                else if(state === "LEFT" && x !== 0 && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
                 {
                     state = "UPRIGHT"
                     rotation = 90
                     x = --xCoord * topLeft.width
+                    rotateSound.play()
                     litem.rotate()
                 }
             }
@@ -88,7 +91,7 @@ Shape {
         if(event.key === Qt.Key_Down)
         {
             sleep.stop()
-            sleep.interval = 1000
+            sleep.interval = _speed
             sleep.start()
         }
     }
@@ -96,7 +99,7 @@ Shape {
     Timer
     {
         id:sleep
-        interval: 1000
+        interval: _speed
         running: true
         repeat: true
         onTriggered:
@@ -132,7 +135,10 @@ Shape {
                         (state === "LEFT" && grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width) / referenceSquare.width), shapeValue)))
                 {
                     if(state != "GAMEOVER")
+                    {
+                        impactSound.play()
                         state = "STOP"
+                    }
 
                     for(i  = 0; i < 32; i++)
                     {

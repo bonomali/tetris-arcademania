@@ -1,5 +1,17 @@
 <RCC>
     <qresource prefix="/">
         <file>Zen.mp3</file>
+        <file>Fast zing.wav</file>
+        <file>impact.wav</file>
+        <file>rotate.wav</file>
+        <file>goal1.wav</file>
+        <file>goal2.wav</file>
+        <file>goal3.wav</file>
+        <file>goal4.wav</file>
+        <file>goal5.wav</file>
+        <file>goal6.wav</file>
+        <file>goal7.wav</file>
+        <file>Levelup.wav</file>
+        <file>Scary impact.wav</file>
     </qresource>
 </RCC>
