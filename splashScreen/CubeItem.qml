@@ -16,18 +16,15 @@ Shape {
        ]
 
     Keys.onPressed: {
-        if(event.isAutoRepeat)
-        return
-
         if(event.key === Qt.Key_Left)
         {
             if(state === "GO" && x > 0 && grid.checkMoveLeft(Math.floor((y - referenceSquare.width)/ referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
-                x -= topLeft.width
+                x = --xCoord * topLeft.width
         }
         else if(event.key === Qt.Key_Right)
         {
             if(state === "GO" && x < (playArea.width - shapeWidth)&& grid.checkMoveRight(Math.floor((y - referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
-                x += topLeft.width
+                x = ++xCoord * topLeft.width
         }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
         {
@@ -75,7 +72,8 @@ Shape {
 
             if(state === "GO" && y < playArea.height - topLeft.width * 2)
             {
-                y += topLeft.width
+                y = localBoard.yCoord++ * topLeft.width
+
                 if(grid.checkIfComplete(Math.floor((y - referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width) / referenceSquare.width), shapeValue))
                 {
                     state = "STOP"
@@ -104,8 +102,8 @@ Shape {
                 running = false
                 visible = false
                 focus = false
-                x = referenceSquare.width * 6
-                y = 0
+                xCoord = 6
+                yCoord = 0
                 state = "GO"
                 getRandomIntInclusive(0,6)
             }

@@ -69,7 +69,6 @@ void lItem::rotate()
         default:
             throw("Rotate state undefined");
     }
-    std::cout << rotateState << std::endl;
 }
 void lItem::resetEndIndex()
 {

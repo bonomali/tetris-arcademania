@@ -10,6 +10,8 @@ import QTGraphicalEffects 1.0
     width: referenceSquare.width * tilesWide
     border.color: "#002355"
     border.width: 3
+    property int xCoord: 6
+    property int yCoord: 0
     property int index: 0
     property int i: 0
     property int j: 0
@@ -19,7 +21,7 @@ import QTGraphicalEffects 1.0
     focus: true
 
     function initializeBoard(){
-        //grid.resetBoard()
+        grid.resetBoard()
 
         for(i  = 0; i < 32; i++)
         {
@@ -43,13 +45,13 @@ import QTGraphicalEffects 1.0
 
     function getRandomIntInclusive(min, max) {
       if(fallingShape === -1)
-        fallingShape = 1; //Math.floor(Math.random() * (max - min + 1)) + min;
+        fallingShape = Math.floor(Math.random() * (max - min + 1)) + min;
 
       else
           fallingShape = onDeckShape;
 
-      onDeckShape = 1; //Math.floor(Math.random() * (max - min + 1)) + min;
-       console.log("random deck number ", onDeckShape)
+      onDeckShape = Math.floor(Math.random() * (max - min + 1)) + min;
+      console.log("random deck number ", onDeckShape)
 
       appWindow.cubeItem1 = false
       appWindow.lineItem1 = false
@@ -91,7 +93,7 @@ import QTGraphicalEffects 1.0
             sCube.visible = true;
             sCube.focus = true;
             sCube.sleep.running = true;
-            sCube.x = referenceSquare.width * 6
+            sCube.x = referenceSquare.width * xCoord
             sCube.y = 0
             sCube.sleep.interval = hud._speed
             break;
@@ -99,44 +101,44 @@ import QTGraphicalEffects 1.0
             sLineItem.visible = true;
             sLineItem.focus = true;
             sLineItem.sleep.running = true;
-            sLineItem.x = referenceSquare.width * 6
-            sLineItem.y = (0 - referenceSquare.height)
+            sLineItem.x = referenceSquare.width * xCoord
+            sLineItem.y = -referenceSquare.height
             sLineItem.sleep.interval = hud._speed
             break;
         case 2:
             sLItem.visible = true;
             sLItem.focus = true;
             sLItem.sleep.running = true;
-            sLItem.x = referenceSquare.width * 6
-            sLItem.y = (0 - referenceSquare.height)
+            sLItem.x = referenceSquare.width * xCoord
+            sLItem.y = -referenceSquare.height
             break;
         case 3:
             sMLItem.visible = true;
             sMLItem.focus = true;
             sMLItem.sleep.running = true;
-            sMLItem.x = referenceSquare.width * 6
-            sMLItem.y = (0 - referenceSquare.height)
+            sMLItem.x = referenceSquare.width * xCoord
+            sMLItem.y = -referenceSquare.height
             break;
         case 4:
             sMZItem.visible = true;
             sMZItem.focus = true;
             sMZItem.sleep.running = true;
-            sMZItem.x = referenceSquare.width * 6
-            sMZItem.y = (0 - referenceSquare.height)
+            sMZItem.x = referenceSquare.width * xCoord
+            sMZItem.y = -referenceSquare.height
             break;
         case 5:
             sTItem.visible = true;
             sTItem.focus = true;
             sTItem.sleep.running = true;
-            sTItem.x = referenceSquare.width * 6
-            sTItem.y = (0 - referenceSquare.height)
+            sTItem.x = referenceSquare.width * xCoord
+            sTItem.y = -referenceSquare.height
             break;
         case 6:
             sZItem.visible = true;
             sZItem.focus = true;
             sZItem.sleep.running = true;
-            sZItem.x = referenceSquare.width * 6
-            sZItem.y = (0 - referenceSquare.height)
+            sZItem.x = referenceSquare.width * xCoord
+            sZItem.y = -referenceSquare.height
             break;
         default:
             throw("Invalid RNG value");
@@ -157,15 +159,44 @@ import QTGraphicalEffects 1.0
             fallingShape = -1
         }
     }
-//    onWidthChanged:
-//    {
-//        exampleShape.x = exampleShape.col * (width / tilesWide)
-//    }
 
-//    onHeightChanged:
-//    {
-//        exampleShape.y = exampleShape.row * (height / tilesHigh)
-//    }
+    onHeightChanged:
+    {
+        switch(fallingShape)
+          {
+        case 0:
+            sCube.x = referenceSquare.width * xCoord
+            sCube.y = yCoord * referenceSquare.height
+            break;
+        case 1:
+            sLineItem.x = referenceSquare.width * xCoord
+            sLineItem.y = yCoord * referenceSquare.height
+            console.log(xCoord)
+            break;
+        case 2:
+            sLItem.x = referenceSquare.width * xCoord
+            sLItem.y = yCoord * referenceSquare.height
+            break;
+        case 3:
+            sMLItem.x = referenceSquare.width * xCoord
+            sMLItem.y = yCoord * referenceSquare.height
+            break;
+        case 4:
+            sMZItem.x = referenceSquare.width * xCoord
+            sMZItem.y = yCoord * referenceSquare.height
+            break;
+        case 5:
+            sTItem.x = referenceSquare.width * xCoord
+            sTItem.y = yCoord * referenceSquare.height
+            break;
+        case 6:
+            sZItem.x = referenceSquare.width * xCoord
+            sZItem.y = yCoord * referenceSquare.height
+            break;
+        default:
+            break;
+        }
+    }
 
     RadialGradient{
         anchors.fill: playArea

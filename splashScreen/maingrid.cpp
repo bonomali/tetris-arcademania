@@ -25,7 +25,7 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *
    m_allShapes[5] = zitem;
    m_allShapes[6] = mzitem;
 
-   for(int i = 0; i < 31; i++)
+   for(int i = 0; i < 4; i++)
    {
 //       for (int j= 8; j <= 31; j++)
 //       {

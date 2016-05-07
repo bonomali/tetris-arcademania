@@ -26,49 +26,50 @@ Shape {
         {
             if(state === "RIGHT" && x > 0 && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) ||
                     state == "LEFT" && x > 0 && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
-                    state === "UPRIGHT"  && x >= topLeft.width  && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor(x/ referenceSquare.width), shapeValue) ||
-                    state === "UPSIDEDOWN" && x > topLeft.width && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
-                    x -= topLeft.width
+                    state === "UPRIGHT"  && x >= topLeft.width  && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) ||
+                    state === "UPSIDEDOWN" && x > topLeft.width && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
+                    x = --xCoord * topLeft.width
         }
         else if(event.key === Qt.Key_Right)
         {
             if(state === "RIGHT" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) ||
                     state == "LEFT" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
                     state === "UPRIGHT"  && x < (playArea.width - referenceSquare.width * 3)  && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) ||
-                    state === "UPSIDEDOWN" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x + referenceSquare.width)/ referenceSquare.width), shapeValue))
-                    x += topLeft.width
+                    state === "UPSIDEDOWN" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
+                    x = ++xCoord * topLeft.width
         }
         else if(event.key === Qt.Key_Up)
         {
-            if(x !== 0 && x < playArea.width - topLeft.width * 2)
+            if(x < playArea.width - topLeft.width)
             {
                 if(state === "UPRIGHT" && y < playArea.height - shapeHeight)
                 {
                     state = "RIGHT"
                     rotation = 180
-                    y -= referenceSquare.width
+                    y = --yCoord * referenceSquare.width
+
                     mlitem.rotate()
                 }
-                else if(state === "RIGHT" && y <= playArea.height - shapeHeight &&
+                else if(state === "RIGHT" && x < playArea.width - topLeft.width * 2 && y <= playArea.height - shapeHeight &&
                         grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue))
                 {
                     state = "UPSIDEDOWN"
                     rotation = 270
-                    x += referenceSquare.width
+                    x = ++xCoord * topLeft.width
                     mlitem.rotate()
                 }
                 else if(state === "UPSIDEDOWN" && y <= playArea.height - shapeHeight)
                 {
                     state = "LEFT"
                     rotation = 0
-                    y += referenceSquare.width
+                    y = ++yCoord * topLeft.width
                     mlitem.rotate()
                 }
-                else if(state === "LEFT" && y <= playArea.height - shapeHeight && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
+                else if(state === "LEFT" && x !== 0 && y <= playArea.height - shapeHeight && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
                 {
                     state = "UPRIGHT"
                     rotation = 90
-                    x -= referenceSquare.width
+                    x = --xCoord * topLeft.width
                     mlitem.rotate()
                 }
             }
@@ -122,7 +123,9 @@ Shape {
                     (state === "RIGHT" && y < playArea.height - referenceSquare.width * 4) ||
                     ((state === "UPRIGHT" || state === "UPSIDEDOWN" )&& y < playArea.height - topLeft.width * 3))
             {
-                y += topLeft.width
+                y += referenceSquare.width
+                yCoord = Math.floor(y / referenceSquare.width)
+
                 if((state === "UPRIGHT" && grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue)) ||
                         (state === "UPSIDEDOWN" && grid.checkIfComplete(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width) / referenceSquare.width), shapeValue)) ||
                         (state === "RIGHT" && grid.checkIfComplete(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue)) ||
@@ -156,8 +159,8 @@ Shape {
                 running = false
                 visible = false
                 focus = false
-                x = topLeft.width * 6
-                y = 0
+                xCoord = 6
+                yCoord = 0
                 rotation = 90
                 state = "UPRIGHT"
                 getRandomIntInclusive(0,6)

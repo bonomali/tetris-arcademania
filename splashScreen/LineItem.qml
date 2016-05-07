@@ -25,21 +25,25 @@ Shape {
         {
             if(state === "NARROWEST" && x > 0 && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
                 state === "WIDEST" && x > topLeft.width && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
-                    x -= topLeft.width
+                    {
+                x = --xCoord * topLeft.width
+            }
             console.log("x: " + ((x - referenceSquare.width)/ referenceSquare.width))
         }
         else if(event.key === Qt.Key_Right)
         {
             if(state === "NARROWEST" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)||
                     state === "WIDEST" && x < playArea.width - topLeft.width * 3 && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
-                        x += topLeft.width
+                        {
+                x = ++xCoord * topLeft.width
+            }
         }
         else if(event.key === Qt.Key_Up)
         {
             if(x != 0 && x < playArea.width - topLeft.width * 2)
             {
                 if(state === "NARROWEST" && y <= playArea.height - shapeHeight && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) &&
-                        grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width) / referenceSquare.width), shapeValue))
+                        grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width) / referenceSquare.width), shapeValue))
                 {
                     state = "WIDEST"
                     lineItem.rotation = 90
@@ -51,8 +55,6 @@ Shape {
                     lineItem.rotation = 0
                     line.rotate()
                 }
-
-                console.log(state)
             }
         }
         else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
@@ -64,7 +66,7 @@ Shape {
 
     Keys.onReleased: {
         if(event.isAutoRepeat)
-        return
+            return
         if(event.key === Qt.Key_Down)
         {
             sleep.stop()
@@ -81,7 +83,6 @@ Shape {
             repeat: true
             onTriggered:
             {
-                console.log(interval)
                 for(i  = 0; i < 32; i++)
                 {
                     for (j = 0; j < 16; j++)
@@ -102,7 +103,7 @@ Shape {
                 if(state === "NARROWEST" && y < playArea.height - shapeHeight ||
                         (state === "WIDEST" && y < playArea.height - topLeft.width * 2))
                 {
-                    y += topLeft.width
+                    y = localBoard.yCoord++ * topLeft.width
 
                     if((state === "WIDEST" && grid.checkIfComplete(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)) ||
                             (state === "NARROWEST" && grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)))
@@ -133,8 +134,8 @@ Shape {
                     running = false
                     visible = false
                     focus = false
-                    x = referenceSquare.width * 6
-                    y = 0
+                    xCoord = 6
+                    yCoord = 0
                     rotation = 90
                     state = "WIDEST"
                     getRandomIntInclusive(0,6)
