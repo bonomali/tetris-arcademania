@@ -21,7 +21,7 @@ import QTGraphicalEffects 1.0
     focus: true
 
     function initializeBoard(){
-//        grid.resetBoard()
+    grid.resetBoard()
         for(i  = 0; i < 32; i++)
         {
             for (j = 0; j < 16; j++)
@@ -44,12 +44,12 @@ import QTGraphicalEffects 1.0
 
     function getRandomIntInclusive(min, max) {
       if(fallingShape === -1)
-        fallingShape = 1;//Math.floor(Math.random() * (max - min + 1)) + min;
+        fallingShape = Math.floor(Math.random() * (max - min + 1)) + min;
 
       else
           fallingShape = onDeckShape;
 
-      onDeckShape = 1;//Math.floor(Math.random() * (max - min + 1)) + min;
+      onDeckShape = Math.floor(Math.random() * (max - min + 1)) + min;
       console.log("random deck number ", onDeckShape)
 
       appWindow.cubeItem1 = false

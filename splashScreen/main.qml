@@ -21,7 +21,7 @@ ApplicationWindow {
     property alias mZItem1: localHud.mZItem1
     property alias zItem1: localHud.zItem1
     property alias tItem1: localHud.tItem1
-
+    property alias _level: localHud._level
     //property alias getRandomIntInclusive: getRandomIntInclusive(min, max)
     // Returns a random integer between min (included) and max (included)
     // Using Math.round() will give you a non-uniform distribution!

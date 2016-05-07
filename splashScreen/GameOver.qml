@@ -15,7 +15,7 @@ import QtQuick 2.5
         diagButton2Text: "Exit"
         diagButton2Font.pointSize: height * .07
         diagButton2Mouse.onClicked: Qt.quit()
-        diagButtonMouse.onClicked: { appWindow.initializeBoard1.initializeBoard() }
+        diagButtonMouse.onClicked: { appWindow.initializeBoard1.initializeBoard(), _level = 1 }
 
         visible: false
 }
