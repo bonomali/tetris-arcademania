@@ -12,12 +12,12 @@ Rectangle {
     property int _speed: _speedArray[_level - 1]
     property int _level: 1
     property int index: 0
-    property var _speedArray: [900, 750, 550, 400, 350, 300, 250, 200, 150, 100]
-    property var _mainColorArray: ["#020055", "#002355", "#4f0055", "#550500", "#552800", "#554e00", "#315500", "#00554f", "#004055", "#553200"]
-    property var _secondaryColorArray: ["#02007b", "#00337b", "#72007b", "#7b0600", "#7b3900", "#7b7000", "#477b00", "#007b72", "#005e7b", "#7b4800"]
-    property var _backColorArray: ["#020044", "#001c44", "#3f0044", "#440400", "#442000", "#443e00", "#274400", "#00443f", "#003444", "#442800"]
-    property var _windowColorArray: [ "#AA0033a9" ,"#AA0060a9", "#AA9200a9" , "#AAa9001f", "#AAa94900", "#AAa98100", "#AA8aa900", "#AA00a995", "#AA0095a9", "#AAa96a00"]
-    property var _gradientArray: [ "#07032b", "#03142b", "#23032b", "#2b0307", "#2b1a03", "#2b2703", "#032b09", "#032b2a", "#03222b", "#2b1403"]
+    property var _speedArray: [900, 700, 575, 475, 400, 350, 300, 250, 150, 100]
+    property var _mainColorArray: ["#002355", "#4f0055", "#550500", "#552800", "#553200", "#554e00", "#315500", "#00554f", "#004055", "#020055"]
+    property var _secondaryColorArray: ["#00337b", "#72007b", "#7b0600", "#7b3900", "#7b4800", "#7b7000", "#477b00", "#007b72", "#005e7b", "#02007b"]
+    property var _backColorArray: ["#001c44", "#3f0044", "#440400", "#442000", "#442800", "#443e00", "#274400", "#00443f", "#003444", "#020044"]
+    property var _windowColorArray: ["#AA0060a9", "#AA9200a9" , "#AAa9001f", "#AAa94900", "#AAa96a00", "#AAa98100", "#AA8aa900", "#AA00a995", "#AA0095a9","#AA0033a9"]
+    property var _gradientArray: ["#03142b", "#23032b", "#2b0307", "#2b1a03", "#2b1403", "#2b2703", "#032b09", "#032b2a", "#03222b", "#07032b"]
     property alias cubeItem1:cubeItem1.visible
     property alias lineItem1:lineItem1.visible
     property alias mLItem1:mLItem1.visible

@@ -16,7 +16,11 @@ Shape {
        ]
 
     Keys.onPressed: {
-        if(event.key === Qt.Key_Left)
+        if(event.key === Qt.Key_Up)
+        {
+            rotateSound.play()
+        }
+        else if(event.key === Qt.Key_Left)
         {
             if(state === "GO" && x > 0 && grid.checkMoveLeft(Math.floor((y - referenceSquare.width)/ referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
                 x = --xCoord * topLeft.width
@@ -26,28 +30,22 @@ Shape {
             if(state === "GO" && x < (playArea.width - shapeWidth)&& grid.checkMoveRight(Math.floor((y - referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
                 x = ++xCoord * topLeft.width
         }
-        else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
+        else if(event.key === Qt.Key_Down)
         {
-            sleep.interval = 100
+            sleep.interval = _speed / 18
         }
-        if(event.key === Qt.Key_Up)
+        else if(event.key === Qt.Key_Space)
         {
-            rotateSound.play()
+            sleep.interval = _speed / 36
         }
 
         event.accept = true
     }
 
-    Keys.onReleased: {
-        if(event.isAutoRepeat)
-        return
-        if(event.key === Qt.Key_Down)
-        {
-            sleep.stop()
-            sleep.interval = _speed
-            sleep.start()
-        }
-    }
+Keys.onReleased: {
+    if(event.key === Qt.Key_Down && !event.isAutoRepeat)
+        sleep.interval = _speed
+}
 
     Timer
     {

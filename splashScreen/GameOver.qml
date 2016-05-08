@@ -3,8 +3,8 @@ import QtQuick 2.5
         property alias gameOver: gameOver.visible
 
         id:gameOver
-        height: parent.height * .2
-        width: parent.width * .57
+        height: appWindow.height * .2
+        width: appWindow.width * .57
         x: parent.width * .20
         y: parent.height * .40
         rectangleFont.pointSize: height * .09

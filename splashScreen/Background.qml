@@ -2,10 +2,10 @@ import QtQuick 2.5
 
 Rectangle {
     id:baseBackground
-    property color backColor: "#020044"
-    property color mainColor: "#020055"
-    property color secColor: "#020044"
-    property color triColor: "#02007b"
+    property color backColor: _backColorArray[0]
+    property color mainColor: _mainColorArray[0]
+    property color secColor: _backColorArray[0]
+    property color triColor: _secondaryColorArray[0]
     property alias anim1: anim1
     anchors.fill: parent
     color: backColor

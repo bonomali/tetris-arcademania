@@ -57,21 +57,19 @@ Shape {
                 }
             }
         }
-        else if(event.key === Qt.Key_Down && y < playArea.height - shapeHeight)
+        else if(event.key === Qt.Key_Down)
         {
-            sleep.interval = 100
+            sleep.interval = _speed / 18
+        }
+        else if(event.key === Qt.Key_Space)
+        {
+            sleep.interval = _speed / 36
         }
           event.accept = true
     }
     Keys.onReleased: {
-        if(event.isAutoRepeat)
-        return
-        if(event.key === Qt.Key_Down)
-        {
-            sleep.stop()
+        if(event.key === Qt.Key_Down && !event.isAutoRepeat)
             sleep.interval = _speed
-            sleep.start()
-        }
     }
 
         Timer

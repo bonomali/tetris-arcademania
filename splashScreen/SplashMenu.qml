@@ -4,7 +4,9 @@ import QtMultimedia 5.6
 
 Rectangle{
     id: splashScreen
-    anchors.fill: parent
+    width: appWindow.width
+    height: appWindow.height
+
     property int selectedLevel: 1
 
     Audio {
