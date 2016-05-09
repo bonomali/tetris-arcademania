@@ -140,6 +140,13 @@ import QTGraphicalEffects 1.0
             sZItem.state = "GAMEOVER"
             sTItem.state = "GAMEOVER"
             fallingShape = -1
+            appWindow.cubeItem1 = false
+            appWindow.lineItme1 = false
+            appWindow.lItem1 = false
+            appWindow.mLItem1 = false
+            appWindow.mZItem1 = false
+            appWindow.tItem1 = false
+            appWindow.zItem1 = false
         }
     }
 

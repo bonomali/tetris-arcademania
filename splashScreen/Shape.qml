@@ -122,7 +122,7 @@ Item {
     Keys.onPressed: {
         if(event.key === Qt.Key_Left)
         {
-            if(state === "RIGHT" && borderHorzShift("left", rlBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue) ||
+            if(state == "STOP" || state === "RIGHT" && borderHorzShift("left", rlBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue) ||
                     state == "LEFT" && borderHorzShift("left", llBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue) ||
                     state === "UPRIGHT"  && borderHorzShift("left", ulBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue) ||
                     state === "UPSIDEDOWN" && borderHorzShift("left", dlboardHorzShiftNum) && grid.checkMoveLeft(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue))
@@ -206,23 +206,6 @@ Item {
         repeat: true
         onTriggered:
         {
-//            for(i  = 0; i < 32; i++)
-//            {
-//                for (j = 0; j < 16; j++)
-//                {
-//                    index = ((i * tilesWide) + j)
-//                    if (grid.updateGrid(i, j) === true)
-//                    {
-//                        squareRepeater.itemAt(index).visible = true
-//                        squareRepeater.itemAt(index).color = grid.getColor(i,j);
-//                    }
-//                    else
-//                    {
-//                        squareRepeater.itemAt(index).visible = false
-//                    }
-//                }
-//            }
-
             if((state === "LEFT" && borderVirtShift(leftBoardVirtShiftNum)) ||
                     (state === "RIGHT" && borderVirtShift(rightBoardVirtShiftNum)) ||
                     (state === "UPRIGHT" && borderVirtShift(upBoardVirtShiftNum)) ||
@@ -236,12 +219,6 @@ Item {
                         (state === "RIGHT" && grid.checkIfComplete(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)) ||
                         (state === "LEFT" && grid.checkIfComplete(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue)))
                 {
-                    if(state != "GAMEOVER")
-                    {
-                        impactSound.play()
-                        state = "STOP"
-                    }
-
                     for(i  = 0; i < 32; i++)
                     {
                         for (j = 0; j < 16; j++)
@@ -257,6 +234,12 @@ Item {
                                 squareRepeater.itemAt(index).visible = false
                             }
                         }
+                    }
+
+                    if(state != "GAMEOVER")
+                    {
+                        impactSound.play()
+                        state = "STOP"
                     }
                 }
             }

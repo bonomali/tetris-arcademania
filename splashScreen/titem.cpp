@@ -27,7 +27,7 @@ tItem::tItem()
             m_rotateState[i][j] = m_shapeStruct.upRight[i][j];
 
     m_endIndex = 30;
-    m_color = "#FFBF00";
+    m_color = "#00FFFF";
 }
 void tItem::rotate()
 {
