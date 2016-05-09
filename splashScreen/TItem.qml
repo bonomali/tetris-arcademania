@@ -8,7 +8,6 @@ Shape {
     shapeColor: "#FFBF00"
     shapeHeight: topLeft.width * 3
     shapeValue: 2
-    focus: true // needed?
 
     rightVirtShift: "up"
     rightHorzShift: "left"
@@ -22,6 +21,7 @@ Shape {
     lrBoardHorzShiftNum: 2
     urBoardHorzShiftNum: 3
     drBoardHorzShiftNum: 2
+    dlboardHorzShiftNum: 1
 
     rlRotateShift: -1
     ulRotateShift: -1

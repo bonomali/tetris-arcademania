@@ -21,7 +21,7 @@ import QTGraphicalEffects 1.0
     focus: true
 
     function initializeBoard(){
-    //grid.resetBoard()
+    grid.resetBoard()
         for(i  = 0; i < 32; i++)
         {
             for (j = 0; j < 16; j++)
@@ -92,52 +92,36 @@ import QTGraphicalEffects 1.0
             sCube.visible = true;
             sCube.focus = true;
             sCube.sleep.running = true;
-            sCube.x = referenceSquare.width * xCoord
-            sCube.y = -referenceSquare.height
-            sCube.sleep.interval = hud._speed
             break;
         case 1:
             sLineItem.visible = true;
             sLineItem.focus = true;
             sLineItem.sleep.running = true;
-            sLineItem.x = referenceSquare.width * xCoord
-            sLineItem.y = -referenceSquare.height
-            sLineItem.sleep.interval = hud._speed
             break;
         case 2:
             sLItem.visible = true;
             sLItem.focus = true;
             sLItem.sleep.running = true;
-            sLItem.x = referenceSquare.width * xCoord
-            sLItem.y = -referenceSquare.height
             break;
         case 3:
             sMLItem.visible = true;
             sMLItem.focus = true;
             sMLItem.sleep.running = true;
-            sMLItem.x = referenceSquare.width * xCoord
-            sMLItem.y = -referenceSquare.height
             break;
         case 4:
             sMZItem.visible = true;
             sMZItem.focus = true;
             sMZItem.sleep.running = true;
-            sMZItem.x = referenceSquare.width * xCoord
-            sMZItem.y = -referenceSquare.height
             break;
         case 5:
             sTItem.visible = true;
             sTItem.focus = true;
             sTItem.sleep.running = true;
-            sTItem.x = referenceSquare.width * xCoord
-            sTItem.y = -referenceSquare.height
             break;
         case 6:
             sZItem.visible = true;
             sZItem.focus = true;
             sZItem.sleep.running = true;
-            sZItem.x = referenceSquare.width * xCoord
-            sZItem.y = -referenceSquare.height
             break;
         default:
             throw("Invalid RNG value");
@@ -223,6 +207,8 @@ import QTGraphicalEffects 1.0
 
     CubeItem {
         id:sCube
+        x: topLeft.width * xCoord
+        y: -topLeft.height
         visible: false
         focus: false
         sleep.running: false
@@ -230,6 +216,8 @@ import QTGraphicalEffects 1.0
     }
     LineItem {
         id:sLineItem
+        x: topLeft.width * xCoord
+        y: -topLeft.height
         visible: false
         focus: false
         sleep.running: false
@@ -237,6 +225,8 @@ import QTGraphicalEffects 1.0
     }
     LItem{
         id:sLItem
+        x: topLeft.width * xCoord
+        y: -topLeft.height
         visible: false
         focus: false
         sleep.running: false
@@ -244,6 +234,8 @@ import QTGraphicalEffects 1.0
     }
     MLItem{
         id:sMLItem
+        x: topLeft.width * xCoord
+        y: -topLeft.height
         visible: false
         focus: false
         sleep.running: false
@@ -251,6 +243,8 @@ import QTGraphicalEffects 1.0
     }
     MZItem{
         id: sMZItem
+        x: topLeft.width * xCoord
+        y: -topLeft.height
         visible: false
         focus: false
         sleep.running: false
@@ -258,6 +252,8 @@ import QTGraphicalEffects 1.0
     }
     TItem{
         id: sTItem
+        x: topLeft.width * xCoord
+        y: -topLeft.height
         visible: false
         focus: false
         sleep.running: false
@@ -265,6 +261,8 @@ import QTGraphicalEffects 1.0
     }
     ZItem{
         id: sZItem
+        x: topLeft.width * xCoord
+        y: -topLeft.height
         visible: false
         focus: false
         sleep.running: false

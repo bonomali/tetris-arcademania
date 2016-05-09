@@ -8,7 +8,6 @@ Shape {
     shapeColor: "#f06292"
     shapeHeight: topLeft.width * 3
     shapeValue: 4
-    focus: true // needed?
 
     rightVirtShift: "up"
     leftHorzShift: "left"

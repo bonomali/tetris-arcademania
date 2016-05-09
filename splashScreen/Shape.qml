@@ -266,6 +266,8 @@ Item {
                 visible = false
                 xCoord = 6
                 yCoord = 0
+                x = referenceSquare.width * xCoord
+                y = -referenceSquare.height
                 rotation = 90
                 state = "UPRIGHT"
                 localBoard.getRandomIntInclusive(0,6)
