@@ -29,7 +29,10 @@ Rectangle {
     property int counter: 0
     property alias anim1: localBackground.anim1
     property color winColor: "#AA0033a9"
-
+    property alias squareRepeater: localBoard.squareRepeater
+    property alias playArea: localBoard
+    property alias yCoord: localBoard.yCoord
+    property alias xCoord: localBoard.xCoord
     anchors.fill: parent
     color: "grey"
 
@@ -198,7 +201,7 @@ Rectangle {
             anchors.centerIn: parent
             color: "transparent"
 
-            CubeItem { id: cubeItem1; visible: false; focus: false; sleep.running: false; x: lItem1.topLeft.width}
+            CubeItem { id: cubeItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
             LineItem { id:lineItem1;visible: false; focus: false; sleep.running: false; x: lItem1.topLeft.width}
             MLItem { id:mLItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
             LItem { id:lItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}

@@ -28,6 +28,7 @@ ApplicationWindow {
     width: 640
     height: 640
 
+
     Audio {
         id: playMusic
         source: "Zen.mp3"
@@ -46,6 +47,7 @@ ApplicationWindow {
     }
     SplashMenu {
     }
+
     VolumeButton{
         id:volumeButton
     }

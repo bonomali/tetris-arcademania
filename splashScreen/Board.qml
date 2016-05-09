@@ -21,7 +21,7 @@ import QTGraphicalEffects 1.0
     focus: true
 
     function initializeBoard(){
-    grid.resetBoard()
+    //grid.resetBoard()
         for(i  = 0; i < 32; i++)
         {
             for (j = 0; j < 16; j++)
@@ -31,12 +31,12 @@ import QTGraphicalEffects 1.0
             }
         }
 
-        sCube.state = "GO"
-        sLineItem.state = "WIDEST"
+        sCube.state = "UPRIGHT"
+        sLineItem.state = "UPRIGHT"
         sLItem.state = "UPRIGHT"
         sMLItem.state = "UPRIGHT"
-        sMZItem.state = "WIDEST"
-        sZItem.state = "WIDEST"
+        sMZItem.state = "UPRIGHT"
+        sZItem.state = "UPRIGHT"
         sTItem.state = "UPRIGHT"
 
         getRandomIntInclusive(0,6)
@@ -93,7 +93,7 @@ import QTGraphicalEffects 1.0
             sCube.focus = true;
             sCube.sleep.running = true;
             sCube.x = referenceSquare.width * xCoord
-            sCube.y = 0
+            sCube.y = -referenceSquare.height
             sCube.sleep.interval = hud._speed
             break;
         case 1:

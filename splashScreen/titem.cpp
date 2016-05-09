@@ -12,10 +12,10 @@ tItem::tItem()
     m_shapeStruct.right[2][2] = true;
     m_shapeStruct.right[1][1] = true;
 
-    m_shapeStruct.upsideDown[0][2] = true;
+    m_shapeStruct.upsideDown[0][1] = true;
+    m_shapeStruct.upsideDown[1][0] = true;
     m_shapeStruct.upsideDown[1][1] = true;
     m_shapeStruct.upsideDown[1][2] = true;
-    m_shapeStruct.upsideDown[1][3] = true;
 
     m_shapeStruct.left[1][1] = true;
     m_shapeStruct.left[2][1] = true;

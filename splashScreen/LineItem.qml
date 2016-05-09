@@ -1,147 +1,35 @@
 import QtQuick 2.5
 
 Shape {
-    id:lineItem
-    property alias sleep:sleep
     topRight.visible: false
     secondRight.visible: false
     thirdRight.visible: false
     bottomRight.visible: false
     shapeColor: "#ff0000"
-    shapeWidth: topLeft.width
-    state: "WIDEST"
-    rotation: 90
+    shapeHeight: topLeft.width * 3
     shapeValue: 1
 
-    states: [
-           State { name: "WIDEST" },
-           State { name: "NARROWEST" },
-           State { name: "STOP" },
-           State { name: "GAMEOVER" }
-       ]
+    rightHorzShift: "left"
+    leftHorzShift: "left"
+    upVirtShift: "up"
+    upHorzShift: "left"
+    downVirtShift: "up"
+    downHorzShift: "left"
+    rrBoardHorzShiftNum: 1
+    lrBoardHorzShiftNum: 1
+    ulBoardHorzShiftNum: 1
+    urBoardHorzShiftNum: 3
+    dlboardHorzShiftNum: 1
+    drBoardHorzShiftNum: 3
 
-    Keys.onPressed: {
-        if(event.key === Qt.Key_Left)
-        {
-            if(state === "NARROWEST" && x > 0 && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) ||
-                state === "WIDEST" && x > topLeft.width && grid.checkMoveLeft(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
-                    {
-                x = --xCoord * topLeft.width
-            }
-        }
-        else if(event.key === Qt.Key_Right)
-        {
-            if(state === "NARROWEST" && x < (playArea.width - shapeWidth) && grid.checkMoveRight(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)||
-                    state === "WIDEST" && x < playArea.width - topLeft.width * 3 && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue))
-                        {
-                x = ++xCoord * topLeft.width
-            }
-        }
-        else if(event.key === Qt.Key_Up)
-        {
-            if(x != 0 && x < playArea.width - topLeft.width * 2)
-            {
-                if(state === "NARROWEST" && grid.checkMoveLeft(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue) &&
-                        grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor(x / referenceSquare.width), shapeValue) && grid.checkMoveRight(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width) / referenceSquare.width), shapeValue))
-                {
-                    rotateSound.play()
-                    state = "WIDEST"
-                    lineItem.rotation = 90
-                    line.rotate()
-                }
-                else if(state === "WIDEST")
-                {
-                    rotateSound.play()
-                    state = "NARROWEST"
-                    lineItem.rotation = 0
-                    line.rotate()
-                }
-            }
-        }
-        else if(event.key === Qt.Key_Down)
-        {
-            sleep.interval = _speed / 18
-        }
-        else if(event.key === Qt.Key_Space)
-        {
-            sleep.interval = _speed / 36
-        }
-          event.accept = true
-    }
+    rightBoardVirtShiftNum: 2
+    leftBoardVirtShiftNum: 2
+    upBoardVirtShiftNum: 2
+    downBoardVirtShiftNum: 2
 
-    Keys.onReleased: {
-        if(event.key === Qt.Key_Down && !event.isAutoRepeat)
-            sleep.interval = _speed
-    }
+    lrRotateShift: 2
+    rrRotateShift: 2
 
-        Timer
-        {
-            id:sleep
-            interval: _speed
-            running: true
-            repeat: true
-            onTriggered:
-            {
-                for(i  = 0; i < 32; i++)
-                {
-                    for (j = 0; j < 16; j++)
-                    {
-                        index = ((i * tilesWide) + j)
-                        if (grid.updateGrid(i, j) === true)
-                        {
-                            squareRepeater.itemAt(index).visible = true
-                            squareRepeater.itemAt(index).color = grid.getColor(i,j);
-                        }
-                        else
-                        {
-                            squareRepeater.itemAt(index).visible = false
-                        }
-                    }
-                }
-
-                if(state === "NARROWEST" && y < playArea.height - shapeHeight ||
-                        (state === "WIDEST" && y < playArea.height - topLeft.width * 2))
-                {
-                    y = localBoard.yCoord++ * topLeft.width
-
-                    if((state === "WIDEST" && grid.checkIfComplete(Math.floor((y + referenceSquare.width) / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)) ||
-                            (state === "NARROWEST" && grid.checkIfComplete(Math.floor(y / referenceSquare.width), Math.floor((x - referenceSquare.width)/ referenceSquare.width), shapeValue)))
-                    {
-                        if(state != "GAMEOVER")
-                        {
-                            impactSound.play()
-                            state = "STOP"
-                        }
-
-                        for(i  = 0; i < 32; i++)
-                        {
-                            for (j = 0; j < 16; j++)
-                            {
-                                index = ((i * tilesWide) + j)
-                                if (grid.updateGrid(i, j) === true)
-                                {
-                                    squareRepeater.itemAt(index).visible = true
-                                    squareRepeater.itemAt(index).color = grid.getColor(i,j);
-                                }
-                                else
-                                {
-                                    squareRepeater.itemAt(index).visible = false
-                                }
-                            }
-                        }
-                    }
-                }
-                else if(state === "STOP")
-                {
-                    running = false
-                    visible = false
-                    focus = false
-                    xCoord = 6
-                    yCoord = 0
-                    rotation = 90
-                    state = "WIDEST"
-                    getRandomIntInclusive(0,6)
-                }
-            }
-        }
+    fourStates: false
+    rotate:(function() {line.rotate();})
 }
