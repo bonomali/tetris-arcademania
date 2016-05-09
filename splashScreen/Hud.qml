@@ -32,6 +32,7 @@ Rectangle {
     property alias playArea: localBoard
     property alias yCoord: localBoard.yCoord
     property alias xCoord: localBoard.xCoord
+    property alias playTimer: playTimer
     anchors.fill: parent
     color: "grey"
 
@@ -41,6 +42,25 @@ Rectangle {
         localBackground.backColor = _backColorArray[_level - 1]
         localBackground.triColor = _secondaryColorArray[_level - 1]
     }
+    Timer {
+            id: playTimer
+            interval: 1000;
+            repeat: true
+            running: true
+
+            onTriggered: {
+                seconds++
+
+                if(seconds % 60 === 0)
+                {
+                    minutes++
+                    seconds = 0
+                }
+
+                gamePlayTimer.rectangleText = minutes + ":" + ((seconds < 10) ? "0": "") + seconds
+            }
+        }
+
     Background{
     id: localBackground
     }
@@ -110,7 +130,7 @@ Rectangle {
         anchors.left: score.right
         anchors.leftMargin: score.width * .05
         color: _windowColorArray[_level - 1]
-        rectangleText: "2"
+        rectangleText: "0:00"
         rectangleFont.pointSize: parent.height * .015
         baseRectangleText.color: "#b9d6e1"
         baseRectangleText.anchors.verticalCenter: verticalCenter

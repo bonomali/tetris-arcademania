@@ -261,7 +261,6 @@ Item {
             }
             if(state === "STOP" || state === "GAMEOVER")
             {
-                console.log("collision: ", collision)
                 running = false
                 visible = false
                 collision = false

@@ -147,6 +147,7 @@ import QTGraphicalEffects 1.0
             appWindow.mZItem1 = false
             appWindow.tItem1 = false
             appWindow.zItem1 = false
+            playTimer.stop()
         }
     }
 

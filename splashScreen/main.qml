@@ -23,7 +23,9 @@ ApplicationWindow {
     property alias tItem1: localHud.tItem1
     property alias _level: localHud._level
     property var _speedArray: [500, 450, 400, 350, 300, 250, 200, 150, 100, 75]
-
+    property int minutes: 0
+    property int seconds: 0
+    property alias playTimer: localHud.playTimer
     title: playMusic.errorString
     visible: true
     width: 640
