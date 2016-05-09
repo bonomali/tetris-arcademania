@@ -12,7 +12,6 @@ Rectangle {
     property int _speed: _speedArray[_level - 1]
     property int _level: 1
     property int index: 0
-    property var _speedArray: [500, 450, 400, 350, 300, 250, 200, 150, 100, 75]
     property var _mainColorArray: ["#002355", "#4f0055", "#550500", "#552800", "#553200", "#554e00", "#315500", "#00554f", "#004055", "#020055"]
     property var _secondaryColorArray: ["#00337b", "#72007b", "#7b0600", "#7b3900", "#7b4800", "#7b7000", "#477b00", "#007b72", "#005e7b", "#02007b"]
     property var _backColorArray: ["#001c44", "#3f0044", "#440400", "#442000", "#442800", "#443e00", "#274400", "#00443f", "#003444", "#020044"]

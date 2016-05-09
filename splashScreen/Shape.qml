@@ -244,8 +244,6 @@ Item {
                         impactSound.play()
                         state = "STOP"
                     }
-                    else
-                        collision = false
                 }
                 else
                 {
@@ -261,8 +259,9 @@ Item {
                         }
                 }
             }
-            else if(state === "STOP")
+            if(state === "STOP" || state === "GAMEOVER")
             {
+                console.log("collision: ", collision)
                 running = false
                 visible = false
                 collision = false
@@ -271,17 +270,16 @@ Item {
                 x = referenceSquare.width * xCoord
                 y = -referenceSquare.height
                 rotation = 90
+
+                if(state !== "GAMEOVER")
+                    localBoard.getRandomIntInclusive(0,6)
+
                 state = "UPRIGHT"
-                localBoard.getRandomIntInclusive(0,6)
-                if (fastDrop)
-                {
-                    fastDrop = false
-                    sleep.interval = _speed * 36
-                }
+
+                sleep.interval = _speedArray[_level - 1]
             }
         }
     }
-
     Audio {
         id: rotateSound
         source: "rotate.wav"
