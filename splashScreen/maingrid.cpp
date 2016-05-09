@@ -78,44 +78,51 @@ bool MainGrid::updateGrid(int row, int col)
     return m_grid[row][col].visible;
 }
 
-bool MainGrid::checkIfComplete(int row, int col, int block_type)
+bool MainGrid::checkForCollision(int row, int col, int block_type)
 {
     bool done = false;
-    bool topRow = false;
     Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
 
     for(int i = 0; i < 4 && !done; i++)
     {
         for(int j = 0; j < 4 && !done; j++)
         {
-           if(localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) || row == m_allShapes[block_type]->getEndIndex())
-                {
-                   for(int k = 0; k < 4; k++)
-                   {
-                       for (int l = 0; l < 4; l++)
-                       {
-                           if(localShape[k][l] == true)
-                           {
-                               cout << "row: " << k + row << " col: " << l + col << endl;
-                               m_grid[k + row][l + col].visible = true;
-                               m_grid[k + row][l + col].color = m_allShapes[block_type]->getColor();
-                               if(k + row == 1)
-                                   topRow = true;
-                           }
-                       }
-                   }
-
-                   done = true;
-                    m_allShapes[block_type]->resetRotateState();
-                    m_allShapes[block_type]->resetEndIndex();
-                }
+            if(localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) || row == m_allShapes[block_type]->getEndIndex())
+                done = true;
         }
     }
+    return done;
+}
+
+void MainGrid::drawGrid(int row, int col, int block_type)
+{
+    Array2D<bool> localShape = m_allShapes[block_type]->getRotateState();
+    bool topRow = false;
+
+    for(int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+           if(localShape[i][j] == true)
+           {
+               cout << "row: " << i + row << " col: " << j + col << endl;
+               m_grid[i + row][j + col].visible = true;
+               m_grid[i + row][j + col].color = m_allShapes[block_type]->getColor();
+               if(m_grid[1][j + col].visible == true)
+               {
+                   topRow = true;
+               }
+           }
+       }
+   }
+    m_allShapes[block_type]->resetRotateState();
+    m_allShapes[block_type]->resetEndIndex();
+
     if(!lineCheck() && topRow)
          emit gameOver();
 
-    return done;
 }
+
 bool MainGrid::checkMoveLeft(int row, int col, int block_type)
 {
     bool validMove = true;

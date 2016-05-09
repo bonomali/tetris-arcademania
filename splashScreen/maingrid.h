@@ -34,7 +34,8 @@ signals:
 public slots:
     bool lineCheck();             //return row# to break, recursive: argument = starting row
     bool updateGrid(int row, int col);  //update grid after shape is dropped
-    bool checkIfComplete(int row, int col, int block_type);  //-1 no collision, 0 collision, 1 game over
+    bool checkForCollision(int row, int col, int block_type);  //-1 no collision, 0 collision, 1 game over
+    void drawGrid(int row, int col, int block_type);
     bool checkMoveLeft(int row, int col, int block_type);
     bool checkMoveRight(int row, int col, int block_type);
     QString getColor(int row, int col);

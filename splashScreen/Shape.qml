@@ -35,6 +35,7 @@ Item {
     property bool fastDrop: false
     property bool fourStates: true
     property bool rotateShape: true
+    property bool collision: false
     property int rlBoardHorzShiftNum: 0
     property int rrBoardHorzShiftNum: 0
     property int llBoardHorzShiftNum: 0
@@ -122,7 +123,7 @@ Item {
     Keys.onPressed: {
         if(event.key === Qt.Key_Left)
         {
-            if(state == "STOP" || state === "RIGHT" && borderHorzShift("left", rlBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue) ||
+            if(state === "RIGHT" && borderHorzShift("left", rlBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue) ||
                     state == "LEFT" && borderHorzShift("left", llBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue) ||
                     state === "UPRIGHT"  && borderHorzShift("left", ulBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue) ||
                     state === "UPSIDEDOWN" && borderHorzShift("left", dlboardHorzShiftNum) && grid.checkMoveLeft(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue))
@@ -211,14 +212,17 @@ Item {
                     (state === "UPRIGHT" && borderVirtShift(upBoardVirtShiftNum)) ||
                     (state === "UPSIDEDOWN" && borderVirtShift(downBoardVirtShiftNum)))
             {
-                y += topLeft.width
-                yCoord = Math.floor(y / topLeft.width)
-
-                if((state === "UPRIGHT" && grid.checkIfComplete(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue)) ||
-                        (state === "UPSIDEDOWN" && grid.checkIfComplete(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue)) ||
-                        (state === "RIGHT" && grid.checkIfComplete(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)) ||
-                        (state === "LEFT" && grid.checkIfComplete(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue)))
+                if (collision)
                 {
+                    if(state === "UPRIGHT")
+                        grid.drawGrid(virtShift(upVirtShift),horzShift(upHorzShift), shapeValue)
+                    else if(state === "UPSIDEDOWN")
+                        grid.drawGrid(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue)
+                    else if(state === "RIGHT")
+                        grid.drawGrid(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)
+                    else if(state === "LEFT")
+                        grid.drawGrid(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue)
+
                     for(i  = 0; i < 32; i++)
                     {
                         for (j = 0; j < 16; j++)
@@ -235,18 +239,33 @@ Item {
                             }
                         }
                     }
-
                     if(state != "GAMEOVER")
                     {
                         impactSound.play()
                         state = "STOP"
                     }
+                    else
+                        collision = false
+                }
+                else
+                {
+                    y += topLeft.width
+                    yCoord = Math.floor(y / topLeft.width)
+
+                    if((state === "UPRIGHT" && grid.checkForCollision(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue)) ||
+                        (state === "UPSIDEDOWN" && grid.checkForCollision(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue)) ||
+                        (state === "RIGHT" && grid.checkForCollision(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)) ||
+                        (state === "LEFT" && grid.checkForCollision(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue)))
+                        {
+                            collision = true
+                        }
                 }
             }
             else if(state === "STOP")
             {
                 running = false
                 visible = false
+                collision = false
                 xCoord = 6
                 yCoord = 0
                 x = referenceSquare.width * xCoord
@@ -257,7 +276,7 @@ Item {
                 if (fastDrop)
                 {
                     fastDrop = false
-                    sleep.interval = _speed
+                    sleep.interval = _speed * 36
                 }
             }
         }
