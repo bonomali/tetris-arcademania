@@ -17,12 +17,20 @@ TextRect{
     {
         score_board.writeToFile()
         score_board.readFromFile()
+<<<<<<< HEAD
         newIndex = score_board.checkHighScore(score)
         if(newIndex !== -1)
         {
             score_board.setScore(score)
             enterName = true
         }
+=======
+//        if(score_board.checkHighScore(score))
+//        {
+//            doneButton.visible = false;
+//            score_board.setScore(score)
+//        }
+>>>>>>> 954cf877bc916b177d6e94bc639ac2985a85cd66
     }
 
     rectangleFont.pointSize: scoreBoard.width * .020
@@ -42,12 +50,19 @@ TextRect{
             model: 10
 
             Text {
+<<<<<<< HEAD
                 text: (index + 1) + ". " + score_board.getName((index + 1)) + "\n"
                 x: parent.width * .05
                 y: index * (font.pointSize * 1.8)
                 font.pointSize: parent.height * .05
                 font.family: "Courier"
                 color: "#b9d6e1"
+=======
+                font.family: "Courier"
+                text: (index + 1) + score_board.getPlayerStats((index + 1)) + "\n"
+                y: (index + 1) * parent.height * .05
+
+>>>>>>> 954cf877bc916b177d6e94bc639ac2985a85cd66
             }
         }
     }

@@ -13,6 +13,8 @@ ScoreBoard::ScoreBoard()
     m_highScores[2].name = "Joshie";
     m_highScores[2].score = "5000000";
     m_highScores[2].time = "1:04";
+
+    readFromFile();
 }
 void ScoreBoard::writeToFile()
 {
@@ -43,11 +45,16 @@ void ScoreBoard::readFromFile()
         {
             getline(file, line);
             m_highScores[i].name = line;
-            for(int j = m_highScores[i].name.length(); j < 10; j++)
-                m_highScores[j].name += " ";
+            for(int j = (int)m_highScores[i].name.length(); j < 15; j++)
+                m_highScores[i].name += " ";
+
+            cout << "name: " << m_highScores[i].name << "!" << endl;
 
             getline(file, line);
             m_highScores[i].score = line;
+            for(int j = (int)m_highScores[i].score.length(); j < 15; j++)
+                m_highScores[i].score += " ";
+
             getline(file, line);
             m_highScores[i].time = line;
         }
@@ -83,25 +90,20 @@ QString ScoreBoard::getTime(int index)
 {
     return QString::fromStdString(m_highScores[(index - 1)].time);
 }
+QString ScoreBoard::getPlayerStats(int index)
+{
+    return QString::fromStdString(m_highScores[(index - 1)].name + m_highScores[(index - 1)].score +
+            m_highScores[(index - 1)].time);
+}
 void ScoreBoard::setName(QString newName, int index)
 {
     m_highScores[index].name = newName.toStdString();
 }
 void ScoreBoard::setScore(int newScore, int index)
 {
-    string score = std::to_string(newScore);
-    for(int i = 0; i < 10; i++)
-        if(i > score.length())
-            m_highScores[index].score += " ";
-        else
-            m_highScores[index].score += score[i];
+    m_highScores[index].score = std::to_string(newScore);
 }
 void ScoreBoard::setTime(QString newTime, int index)
 {
-    string time = newTime.toStdString();
-    for(int i = 0; i < 6; i++)
-        if(i > time.length())
-            m_highScores[index].time += " ";
-        else
-            m_highScores[index].time += time[i];
+    m_highScores[index].time = newTime.toStdString();
 }
