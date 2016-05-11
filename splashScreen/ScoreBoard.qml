@@ -3,24 +3,27 @@ import QtQuick 2.5
 TextRect{
     property alias scoreBoard: scoreBoard.visible
     property int listBullets: 1
+    property bool enterName: true
+    property int newIndex: 0
     id:scoreBoard
-
-    function updateScoreBoard(score)
-    {
-        score_board.writeToFile()
-        score_board.readFromFile()
-        if(score_board.checkHighScore(score))
-        {
-            doneButton.visible = false;
-            score_board.setScore(score)
-        }
-    }
-
     anchors.centerIn: parent
     height: appWindow.height * .75
     width: appWindow.height * .85
     x: parent.width * .20
     y: parent.height * .40
+    visible: false
+
+    function updateScoreBoard(score)
+    {
+        score_board.writeToFile()
+        score_board.readFromFile()
+        newIndex = score_board.checkHighScore(score)
+        if(newIndex !== -1)
+        {
+            score_board.setScore(score)
+            enterName = true
+        }
+    }
 
     rectangleFont.pointSize: scoreBoard.width * .020
     baseRectangleText.anchors.top: scoreBoardColumns.bottom
@@ -33,21 +36,21 @@ TextRect{
         anchors.top: scoreBoardColumns.bottom
         anchors.topMargin: scoreBoardColumns.height * .25
         anchors.horizontalCenter: parent.horizontalCenter
-
+        color: "transparent"
         Repeater {
             id: scoreBoardEntries
             model: 10
 
             Text {
-                text: (index + 1) + score_board.getName((index + 1)) + score_board.getScore((index + 1)) + score_board.getTime((index + 1)) + "\n"
-                y: (index + 1) * parent.height * .05
-
+                text: (index + 1) + ". " + score_board.getName((index + 1)) + "\n"
+                x: parent.width * .05
+                y: index * (font.pointSize * 1.8)
+                font.pointSize: parent.height * .05
+                font.family: "Courier"
+                color: "#b9d6e1"
             }
         }
     }
-//    rectangleText: "1. " + score_board.getName(1) + score_board.getScore(1) + score_board.getTime(1) + "\n2. " + score_board.getName(2) +
-//                   + score_board.getScore(2) + score_board.getTime(2) + " \n3. " + score_board.getName(3) + score_board.getScore(3) + score_board.getTime(3)
-    visible: false
 
     Text {
         id: scoreBoardHeader
@@ -80,30 +83,45 @@ TextRect{
         anchors.bottom: scoreBoard.bottom
         anchors.bottomMargin: scoreBoard.height * .01
         anchors.horizontalCenter: scoreBoard.horizontalCenter
+        buttonText : "Done"
+        buttonFont.pointSize: doneButton.height * .3
+        visible: !enterName
+
         mouseArea.onClicked: {
             scoreBoard.visible = false
             gameOver.visible = true
         }
-        buttonText : "Done"
-        buttonFont.pointSize: doneButton.height * .3
     }
+
+//    Text{
+//        id: enterNametxt
+//        text: "Enter Name: "
+////        anchors.bottom: scoreBoard.bottom
+////        anchors.bottomMargin: scoreBoard.height * .15
+////        anchors.left: scoreBoard.left
+//        font.pointSize: scoreBoard.width * .025
+//        color: "#b9d6e1"
+//    }
 
     TextInput
     {
         id: txtin_input
         anchors.bottom: scoreBoard.bottom
         anchors.bottomMargin: scoreBoard.height * .15
-        anchors.left: scoreBoard.left
+        anchors.left: enterNametxt.right
+        anchors.leftMargin: enterName.width * .005
         focus: true
-        visible: true
+        visible: enterName
         cursorVisible: true
-        text: "Enter Name: "
+        text: "Enter Name: here"
         font.pointSize: scoreBoard.width * .025
         color: "#b9d6e1"
         Keys.onReturnPressed:
         {
-            score_board.setName(txtin_input.text)
-            doneButton.visible = true
+            console.log(text)
+            score_board.setName(text, newIndex)
+            enterName = false
         }
     }
+
 }
