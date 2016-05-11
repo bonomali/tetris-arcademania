@@ -14,10 +14,11 @@ using std::ifstream;
 #include <string>
 using std::string;
 
-const int NUM_HSCORES = 3;
+const int NUM_HSCORES = 10;
 struct high_scores {
     string name;
-    int score;
+    string score;
+    string time;
 };
 
 class ScoreBoard : public QObject
@@ -26,17 +27,20 @@ class ScoreBoard : public QObject
 
 public:
     ScoreBoard();
+    void setScore(int newScore, int index);
+    void setTime(QString newTime, int index);
 
 public slots:
     void writeToFile();
     void readFromFile();
-    int checkHighScore(int newScore);
+    int checkHighScore(int newScore, QString newTime);
     void setName(QString newName, int index);
     QString getName(int index);
-    int getScore(int index);
+    QString getScore(int index);
+    QString getTime(int index);
 
 private:
-    high_scores m_highScores[3];
+    high_scores m_highScores[NUM_HSCORES];
 };
 
 #endif // SCOREBOARD_H

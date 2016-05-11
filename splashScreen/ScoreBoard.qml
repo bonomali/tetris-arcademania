@@ -2,11 +2,13 @@ import QtQuick 2.5
 
 TextRect{
     property alias scoreBoard: scoreBoard.visible
-
+    property int listBullets: 1
     id:scoreBoard
 
     function updateScoreBoard(score)
     {
+        score_board.writeToFile()
+        score_board.readFromFile()
         if(score_board.checkHighScore(score))
         {
             doneButton.visible = false;
@@ -16,16 +18,35 @@ TextRect{
 
     anchors.centerIn: parent
     height: appWindow.height * .75
-    width: appWindow.width * .85
+    width: appWindow.height * .85
     x: parent.width * .20
     y: parent.height * .40
 
     rectangleFont.pointSize: scoreBoard.width * .020
     baseRectangleText.anchors.top: scoreBoardColumns.bottom
-    baseRectangleText.anchors.topMargin: scoreBoard.height * .05
+    baseRectangleText.anchors.topMargin: scoreBoard.height * .01
     baseRectangleText.anchors.leftMargin: scoreBoard.width * .01
-    rectangleText: "1. " + score_board.getName(1) + "      " + score_board.getScore(1) + "\n2. " + score_board.getName(2) + "      "
-                   + score_board.getScore(1) + " \n3. " + score_board.getName(3) + "      " + score_board.getScore(3)
+
+    Rectangle {
+        height: parent.height * .65
+        width: parent.height * 1.1
+        anchors.top: scoreBoardColumns.bottom
+        anchors.topMargin: scoreBoardColumns.height * .25
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        Repeater {
+            id: scoreBoardEntries
+            model: 10
+
+            Text {
+                text: (index + 1) + score_board.getName((index + 1)) + score_board.getScore((index + 1)) + score_board.getTime((index + 1)) + "\n"
+                y: (index + 1) * parent.height * .05
+
+            }
+        }
+    }
+//    rectangleText: "1. " + score_board.getName(1) + score_board.getScore(1) + score_board.getTime(1) + "\n2. " + score_board.getName(2) +
+//                   + score_board.getScore(2) + score_board.getTime(2) + " \n3. " + score_board.getName(3) + score_board.getScore(3) + score_board.getTime(3)
     visible: false
 
     Text {
@@ -49,19 +70,22 @@ TextRect{
         text: "Name      Score"
         anchors.top: scoreBoardHeader.bottom
         anchors.leftMargin: scoreBoard.width * .02
-        anchors.topMargin: scoreBoard.height * .06
+        anchors.topMargin: scoreBoard.height * .02
     }
 
     Buttons {
         id:doneButton
+        height: scoreBoard.height * .075
+        width: scoreBoard.height * .2
         anchors.bottom: scoreBoard.bottom
-        anchors.bottomMargin: scoreBoard.height * .10
+        anchors.bottomMargin: scoreBoard.height * .01
         anchors.horizontalCenter: scoreBoard.horizontalCenter
         mouseArea.onClicked: {
             scoreBoard.visible = false
             gameOver.visible = true
         }
         buttonText : "Done"
+        buttonFont.pointSize: doneButton.height * .3
     }
 
     TextInput
