@@ -14,6 +14,8 @@ ScoreBoard::ScoreBoard()
     m_highScores[2].score = "5000000";
     m_highScores[2].time = "1:04";
 
+    writeToFile();
+
     readFromFile();
 }
 void ScoreBoard::writeToFile()
@@ -45,14 +47,15 @@ void ScoreBoard::readFromFile()
         {
             getline(file, line);
             m_highScores[i].name = line;
-            for(int j = (int)m_highScores[i].name.length(); j < 15; j++)
+            for(int j = (int)m_highScores[i].name.length(); j < 12; j++)
                 m_highScores[i].name += " ";
 
             cout << "name: " << m_highScores[i].name << "!" << endl;
 
             getline(file, line);
             m_highScores[i].score = line;
-            for(int j = (int)m_highScores[i].score.length(); j < 15; j++)
+
+            for(int j = (int)m_highScores[i].score.length(); j < 12; j++)
                 m_highScores[i].score += " ";
 
             getline(file, line);
@@ -61,7 +64,11 @@ void ScoreBoard::readFromFile()
         file.close();
     }
     else
+    {
         cout << "Unable to open file" << endl;
+        writeToFile();
+        readFromFile();
+    }
 }
 int ScoreBoard::checkHighScore(int newScore, QString newTime)
 {
@@ -98,6 +105,8 @@ QString ScoreBoard::getPlayerStats(int index)
 void ScoreBoard::setName(QString newName, int index)
 {
     m_highScores[index].name = newName.toStdString();
+    writeToFile();
+    readFromFile();
 }
 void ScoreBoard::setScore(int newScore, int index)
 {

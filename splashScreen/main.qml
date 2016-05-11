@@ -26,6 +26,8 @@ ApplicationWindow {
     property alias playTimer: localHud.playTimer
     property var _speedArray: [500, 450, 400, 350, 300, 250, 200, 150, 100, 75]
     property bool muted: false
+    property alias gamePlayTimer: localHud.gamePlayTimer
+    property int _score : 0
     title: playMusic.errorString
     visible: true
     width: 640

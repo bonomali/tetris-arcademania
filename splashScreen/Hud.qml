@@ -4,8 +4,7 @@ import QtMultimedia 5.6
 
 Rectangle {
     id: hud
-    property int _score : 0
-    property int _goal : _startingGoal
+      property int _goal : _startingGoal
     property int _lineBreaks: 0
     property int _startingGoal: 5
     property alias localBoard: localBoard
@@ -33,6 +32,7 @@ Rectangle {
     property alias yCoord: localBoard.yCoord
     property alias xCoord: localBoard.xCoord
     property alias playTimer: playTimer
+    property alias gamePlayTimer: gamePlayTimer.rectangleText
     anchors.fill: parent
     color: "grey"
 

@@ -144,7 +144,8 @@ import QTGraphicalEffects 1.0
             fallingShape = -1
             playTimer.stop()
         //   score_board.readFromFile()
-             scoreBoard.visible = true
+            scoreBoard.visible = true
+            scoreBoard.updateScoreBoard()
         }
     }
 
