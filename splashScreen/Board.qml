@@ -131,7 +131,8 @@ import QTGraphicalEffects 1.0
     Connections {
         target: grid
         onGameOver: {
-            gameOver.visible = true
+            scoreBoard.visible = true
+            //gameOver.visible = true
             sCube.state = "GAMEOVER"
             sLineItem.state = "GAMEOVER"
             sLItem.state = "GAMEOVER"
@@ -148,6 +149,7 @@ import QTGraphicalEffects 1.0
             appWindow.tItem1 = false
             appWindow.zItem1 = false
             playTimer.stop()
+            scoreBoard.updateScoreBoard(_score)
         }
     }
 

@@ -8,6 +8,7 @@
 #include "mlitem.h"
 #include "zitem.h"
 #include "mzitem.h"
+#include "scoreboard.h"
 #include <QQmlContext>
 #include <Qstring>
 #include <QKeyEvent>
@@ -24,6 +25,9 @@ int main(int argc, char *argv[])
     ishapes * zitem = new zItem();
     ishapes * mzitem = new mzItem();
     MainGrid grid(cube, lineitem, titem, litem, mlitem, zitem, mzitem);
+
+    ScoreBoard score_board;
+
     QQmlApplicationEngine engine;
 
     QCoreApplication::setApplicationName("tetris");
@@ -37,6 +41,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("mlitem", mlitem);
     engine.rootContext()->setContextProperty("zitem", zitem);
     engine.rootContext()->setContextProperty("mzitem", mzitem);
+    engine.rootContext()->setContextProperty("score_board", &score_board);
 
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier, "", false);
     QKeyEvent event2(QEvent::KeyRelease, Qt::Key_Down, Qt::NoModifier, "", false);
