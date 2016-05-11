@@ -139,7 +139,7 @@ Item {
         }
         else if(event.key === Qt.Key_Up)
         {
-            if(rotateShape)
+            if(rotateShape && !event.isAutoRepeat)
             {
                 if(state === "UPRIGHT" && rotateShift("left", ulRotateShift) && rotateShift("right", urRotateShift))
                 {

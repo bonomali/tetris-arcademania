@@ -120,7 +120,6 @@ void MainGrid::drawGrid(int row, int col, int block_type)
 
     if(!lineCheck() && topRow)
          emit gameOver();
-
 }
 
 bool MainGrid::checkMoveLeft(int row, int col, int block_type)

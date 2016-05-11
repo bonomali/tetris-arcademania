@@ -213,59 +213,59 @@ Rectangle {
             color: "#BB000000"
             border.color: "black"
 
-        Rectangle {
-            width: lItem1.topLeft.width * 4
-            height: lItem1.topLeft.height * 2
-            radius: appWindow.width * .015
-            anchors.centerIn: parent
-            color: "transparent"
-
-            CubeItem { id: cubeItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-            LineItem { id:lineItem1;visible: false; focus: false; sleep.running: false; x: lItem1.topLeft.width}
-            MLItem { id:mLItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-            LItem { id:lItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-            MZItem { id:mZItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-            ZItem { id:zItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-            TItem { id:tItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-
-            Canvas {
-                id: nextGrid
-                anchors.fill: parent
+            Rectangle {
+                width: lItem1.topLeft.width * 4
+                height: lItem1.topLeft.height * 2
+                radius: appWindow.width * .015
                 anchors.centerIn: parent
-                onPaint: {
-                    // get context to draw with
-                    var ctx = getContext("2d")
-                    // setup the stroke
-                    ctx.strokeStyle = "Black"
-                    //create vertical grid lines
-                    for(index = 0; index <= 8; index++)
-                    {
-                        ctx.beginPath()
-                        // top start point
-                        ctx.moveTo(lItem1.topLeft.width * index,0)
-                        // bottom end point
-                        ctx.lineTo(lItem1.topLeft.width * index, lItem1.topLeft.width * 2)
-                        // stop at end point
-                        ctx.closePath()
-                        // paint line
-                        ctx.stroke()
-                    }
-                    //create horizontal grid lines
-                    for(index = 0; index <= 2; index++)
-                    {
-                        ctx.beginPath()
-                        // top start point
-                        ctx.moveTo(0,lItem1.topLeft.width * index)
-                        // bottom end point
-                        ctx.lineTo(lItem1.topLeft.width * 8, lItem1.topLeft.width * index)
-                        // stop at end point
-                        ctx.closePath()
-                        // paint line
-                        ctx.stroke()
+                color: "transparent"
+
+                CubeItem { id: cubeItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
+                LineItem { id:lineItem1;visible: false; focus: false; sleep.running: false; x: lItem1.topLeft.width}
+                MLItem { id:mLItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
+                LItem { id:lItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
+                MZItem { id:mZItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
+                ZItem { id:zItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
+                TItem { id:tItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
+
+                Canvas {
+                    id: nextGrid
+                    anchors.fill: parent
+                    anchors.centerIn: parent
+                    onPaint: {
+                        // get context to draw with
+                        var ctx = getContext("2d")
+                        // setup the stroke
+                        ctx.strokeStyle = "Black"
+                        //create vertical grid lines
+                        for(index = 0; index <= 8; index++)
+                        {
+                            ctx.beginPath()
+                            // top start point
+                            ctx.moveTo(lItem1.topLeft.width * index,0)
+                            // bottom end point
+                            ctx.lineTo(lItem1.topLeft.width * index, lItem1.topLeft.width * 2)
+                            // stop at end point
+                            ctx.closePath()
+                            // paint line
+                            ctx.stroke()
+                        }
+                        //create horizontal grid lines
+                        for(index = 0; index <= 2; index++)
+                        {
+                            ctx.beginPath()
+                            // top start point
+                            ctx.moveTo(0,lItem1.topLeft.width * index)
+                            // bottom end point
+                            ctx.lineTo(lItem1.topLeft.width * 8, lItem1.topLeft.width * index)
+                            // stop at end point
+                            ctx.closePath()
+                            // paint line
+                            ctx.stroke()
+                        }
                     }
                 }
             }
-        }
         }
     }
 }

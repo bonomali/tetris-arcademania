@@ -18,10 +18,11 @@ import QTGraphicalEffects 1.0
     property int fallingShape: -1
     property int onDeckShape: 0
     property alias squareRepeater:squareRepeater
-    focus: true
 
     function initializeBoard(){
-    grid.resetBoard()
+
+        grid.resetBoard()
+
         for(i  = 0; i < 32; i++)
         {
             for (j = 0; j < 16; j++)
@@ -47,7 +48,7 @@ import QTGraphicalEffects 1.0
         fallingShape = Math.floor(Math.random() * (max - min + 1)) + min;
 
       else
-          fallingShape = onDeckShape;
+        fallingShape = onDeckShape;
 
       onDeckShape = Math.floor(Math.random() * (max - min + 1)) + min;
       console.log("random deck number ", onDeckShape)
@@ -140,13 +141,6 @@ import QTGraphicalEffects 1.0
             sZItem.state = "GAMEOVER"
             sTItem.state = "GAMEOVER"
             fallingShape = -1
-            appWindow.cubeItem1 = false
-            appWindow.lineItem1 = false
-            appWindow.lItem1 = false
-            appWindow.mLItem1 = false
-            appWindow.mZItem1 = false
-            appWindow.tItem1 = false
-            appWindow.zItem1 = false
             playTimer.stop()
         }
     }
@@ -208,7 +202,7 @@ import QTGraphicalEffects 1.0
         Square{
          id: drawnSquare
          y: Math.floor(index/16) * referenceSquare.height
-         x: (index - (Math.floor(index/16) * 16)) * referenceSquare.width
+         x: (index - (Math.floor(index / 16) * 16)) * referenceSquare.width
          color: "transparent"
         }
     }

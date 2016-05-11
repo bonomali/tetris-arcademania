@@ -10,8 +10,9 @@ ApplicationWindow {
     id:appWindow
     property int tilesWide: 16
     property int tilesHigh: 32
+    property int minutes: 0
+    property int seconds: 0
     property alias playMusic:playMusic
-    property bool muted: false
     property alias initializeBoard1: localHud.localBoard
     property alias currentLevel: localHud._level
     property alias cubeItem1: localHud.cubeItem1
@@ -22,10 +23,9 @@ ApplicationWindow {
     property alias zItem1: localHud.zItem1
     property alias tItem1: localHud.tItem1
     property alias _level: localHud._level
-    property var _speedArray: [500, 450, 400, 350, 300, 250, 200, 150, 100, 75]
-    property int minutes: 0
-    property int seconds: 0
     property alias playTimer: localHud.playTimer
+    property var _speedArray: [500, 450, 400, 350, 300, 250, 200, 150, 100, 75]
+    property bool muted: false
     title: playMusic.errorString
     visible: true
     width: 640

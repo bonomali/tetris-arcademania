@@ -43,7 +43,7 @@ void lineItem::rotate()
                 for(int j = 0; j < 4; j++)
                     m_rotateState[i][j] = m_shapeStruct.upRight[i][j];
 
-                m_endIndex = 31;
+                m_endIndex = 30;
             break;
         case RIGHT:
             for(int i = 0; i < 4; i++)
@@ -73,5 +73,5 @@ void lineItem::rotate()
 }
 void lineItem::resetEndIndex()
 {
-    m_endIndex = 31;
+    m_endIndex = 30;
 }

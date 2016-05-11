@@ -24,8 +24,8 @@ Shape {
 
     rightBoardVirtShiftNum: 2
     leftBoardVirtShiftNum: 2
-    upBoardVirtShiftNum: 2
-    downBoardVirtShiftNum: 2
+    upBoardVirtShiftNum: 1
+    downBoardVirtShiftNum: 1
 
     lrRotateShift: 2
     rrRotateShift: 2
