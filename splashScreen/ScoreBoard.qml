@@ -9,11 +9,11 @@ TextRect{
     {
         score_board.writeToFile()
         score_board.readFromFile()
-        if(score_board.checkHighScore(score))
-        {
-            doneButton.visible = false;
-            score_board.setScore(score)
-        }
+//        if(score_board.checkHighScore(score))
+//        {
+//            doneButton.visible = false;
+//            score_board.setScore(score)
+//        }
     }
 
     anchors.centerIn: parent
@@ -39,7 +39,8 @@ TextRect{
             model: 10
 
             Text {
-                text: (index + 1) + score_board.getName((index + 1)) + score_board.getScore((index + 1)) + score_board.getTime((index + 1)) + "\n"
+                font.family: "Courier"
+                text: (index + 1) + score_board.getPlayerStats((index + 1)) + "\n"
                 y: (index + 1) * parent.height * .05
 
             }

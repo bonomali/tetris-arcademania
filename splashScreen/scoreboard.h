@@ -38,6 +38,7 @@ public slots:
     QString getName(int index);
     QString getScore(int index);
     QString getTime(int index);
+    QString getPlayerStats(int index);
 
 private:
     high_scores m_highScores[NUM_HSCORES];
