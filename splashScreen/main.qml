@@ -59,4 +59,9 @@ ApplicationWindow {
         id:gameOver
         visible: false
     }
+
+    ScoreBoard{
+        id:scoreBoard
+        visible: true
+    }
 }
