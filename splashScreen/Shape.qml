@@ -205,6 +205,7 @@ Item {
         interval: _speed
         running: true
         repeat: true
+
         onTriggered:
         {
             if((state === "LEFT" && borderVirtShift(leftBoardVirtShiftNum)) ||

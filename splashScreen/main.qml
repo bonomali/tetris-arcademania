@@ -29,6 +29,13 @@ ApplicationWindow {
     property bool muted: false
     property alias gamePlayTimer: localHud.gamePlayTimer
     property int _score : 0
+    property bool paused: false
+    property int fallingShape: -1
+    property bool animate: false
+    property int animDuration: 5000
+    property int xCoord: 6
+    property int yCoord: 0
+
     title: playMusic.errorString
     visible: true
     width: 640
@@ -59,11 +66,12 @@ ApplicationWindow {
         id:volumeButton
     }
 
+    HomeButton{}
+
     GameOver{
         id:gameOver
         visible: false
     }
-
     ScoreBoard{
         id:scoreBoard
         visible: true

@@ -8,6 +8,8 @@ Rectangle{
     height: appWindow.height
 
     property int selectedLevel: 1
+    property bool isButtonEnabled: false
+    property bool homebuttonPressed: false
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
@@ -17,8 +19,21 @@ Rectangle{
             currentLevel = selectedLevel
             splashScreen.visible = false
             appWindow.initializeBoard1.initializeBoard()
+            parent.focus = false
         }
+        else if (event.key === Qt.Key_Right && selectedLevel < 10)
+        {
+            selectedLevel++
+            levelSelectSFX.play()
+        }
+        else if (event.key === Qt.Key_Left && selectedLevel > 1)
+        {
+            selectedLevel--
+            levelSelectSFX.play()
+        }
+
 }
+    onFocusChanged: isButtonEnabled = true
 
     Audio {
         id: defButtonSound
@@ -37,16 +52,87 @@ Rectangle{
     }
     Buttons {
         id:startButton
+        visible: !homebuttonPressed
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.height * .10
         anchors.horizontalCenter: parent.horizontalCenter
+        enabled: isButtonEnabled
         mouseArea.onClicked: {
             defButtonSound.play()
             currentLevel = selectedLevel
             parent.visible = false
             appWindow.initializeBoard1.initializeBoard()
+            parent.focus = false
         }
-        buttonText : "Start"
+        buttonText : "NewGame"
+    }
+
+    Buttons {
+        id:newGame
+        visible: homebuttonPressed
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: parent.height * .10
+        anchors.left: parent.left
+        anchors.leftMargin: parent.width * .1
+        enabled: isButtonEnabled
+        mouseArea.onClicked: {
+            defButtonSound.play()
+            currentLevel = selectedLevel
+            parent.visible = false
+            appWindow.initializeBoard1.initializeBoard()
+            parent.focus = false
+            xCoord = 6
+        }
+        buttonText : "newGame"
+    }
+    Buttons {
+        id:contButton
+        visible: homebuttonPressed
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: parent.height * .10
+        anchors.right: parent.right
+        anchors.rightMargin: parent.width * .1
+        enabled: isButtonEnabled
+        mouseArea.onClicked: {
+            switch(fallingShape)
+              {
+              case 0:
+                  appWindow.initializeBoard1.sCube.focus = true;
+                  appWindow.initializeBoard1.sCube.sleep.running = true;
+                  break;
+              case 1:
+                  appWindow.initializeBoard1.sLineItem.focus = true;
+                  appWindow.initializeBoard1.sLineItem.sleep.running = true;
+                  break;
+              case 2:
+                  appWindow.initializeBoard1.sLItem.focus = true;
+                  appWindow.initializeBoard1.sLItem.sleep.running = true;
+                  break;
+              case 3:
+                  appWindow.initializeBoard1.sMLItem.focus = true;
+                  appWindow.initializeBoard1.sMLItem.sleep.running = true;
+                  break;
+              case 4:
+                  appWindow.initializeBoard1.sMZItem.focus = true;
+                  appWindow.initializeBoard1.sMZItem.sleep.running = true;
+                  break;
+              case 5:
+                  appWindow.initializeBoard1.sTItem.focus = true;
+                  appWindow.initializeBoard1.sTItem.sleep.running = true;
+                  break;
+              case 6:
+                  appWindow.initializeBoard1.sZItem.focus = true;
+                  appWindow.initializeBoard1.sZItem.sleep.running = true;
+                  break;
+              default:
+                  throw("Invalid RNG value");
+              }
+
+
+            parent.visible = false
+            parent.focus = false
+        }
+        buttonText : "Continue"
     }
 
     Buttons {
@@ -56,6 +142,7 @@ Rectangle{
         anchors.bottomMargin: startButton.height * .50
         anchors.horizontalCenter: startButton.horizontalCenter
         anchors.horizontalCenterOffset: startButton.width * -.35
+        enabled: isButtonEnabled
         mouseArea.onClicked: {
             if (selectedLevel > 1)
             {
@@ -73,6 +160,7 @@ Rectangle{
         anchors.bottomMargin: startButton.height * .50
         anchors.horizontalCenter: startButton.horizontalCenter
         anchors.horizontalCenterOffset: startButton.width * .35
+        enabled: isButtonEnabled
         mouseArea.onClicked: {
             if (selectedLevel < 10)
             {

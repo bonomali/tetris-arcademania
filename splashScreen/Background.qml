@@ -25,24 +25,32 @@ Rectangle {
             }
             Square{
                 id: refLeft
-                color:mainColor
-                border.color: secColor
+                color:_mainColorArray[_level - 1]
+                border.color: refLeft4.border.color
                 width: appWindow.width * .1
                 height: appWindow.width * .1
                 x: appWindow.width * .05
                 y: appWindow.height * .4
+
+                ColorAnimation on color {
+                    id: winColorAnim
+                    to: _mainColorArray[_level]
+                    duration: animDuration
+                    running: animate
+                }
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refLeft.x + refLeft.width
                 y: refLeft.y + refLeft.height
             }
+
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refLeft.x - refLeft.width
@@ -51,24 +59,24 @@ Rectangle {
 
             Square{
                 id: refLeft2
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refLeft.x + refLeft.width
                 y: refLeft.y - refLeft.height * 4
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refLeft2.x - refLeft.width
                 y: refLeft2.y
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refLeft2.x - refLeft.width
@@ -77,24 +85,24 @@ Rectangle {
 
             Square{
                 id: refRight
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refLeft.x + refLeft.width * 8
                 y: refLeft.y + refLeft.height
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refRight.x
                 y: refRight.y - refLeft.height
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refRight.x - refLeft.height
@@ -102,8 +110,8 @@ Rectangle {
             }
 
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refRight.x
@@ -112,16 +120,16 @@ Rectangle {
 
             Square{
                 id: refRight2
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refRight.x - refLeft.height
                 y: refRight.y - refLeft.height * 4
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft.width
                 height: refLeft.height
                 x: refRight2.x + refLeft.height
@@ -144,24 +152,24 @@ Rectangle {
 
             Square{
                 id: refLeft3
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: appWindow.width * .1
                 height: appWindow.width * .1
                 x: appWindow.width * .05
                 y: appWindow.height * .4
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refLeft3.x + refLeft3.width
                 y: refLeft3.y + refLeft3.height
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refLeft3.x - refLeft3.width
@@ -170,24 +178,24 @@ Rectangle {
 
             Square{
                 id: refLeft32
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refLeft3.x + refLeft3.width
                 y: refLeft3.y - refLeft3.height * 4
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refLeft32.x - refLeft3.width
                 y: refLeft32.y
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refLeft32.x - refLeft3.width
@@ -196,24 +204,24 @@ Rectangle {
 
             Square{
                 id: refRight3
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refLeft3.x + refLeft3.width * 8
                 y: refLeft3.y + refLeft3.height
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refRight3.x
                 y: refRight3.y - refLeft3.height
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refRight3.x - refLeft3.height
@@ -221,8 +229,8 @@ Rectangle {
             }
 
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refRight3.x
@@ -231,16 +239,16 @@ Rectangle {
 
             Square{
                 id: refRight32
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refRight3.x - refLeft3.height
                 y: refRight3.y - refLeft3.height * 4
             }
             Square{
-                color:mainColor
-                border.color: secColor
+                color:refLeft.color
+                border.color: refLeft4.border.color
                 width: refLeft3.width
                 height: refLeft3.height
                 x: refRight32.x + refLeft3.height
@@ -264,23 +272,36 @@ Rectangle {
             Square{
                 id: refLeft4
                 color:triColor
-                border.color: secColor
+                border.color: backColor
                 width: appWindow.width * .1
                 height: appWindow.width * .1
                 x: appWindow.width * .05
                 y: appWindow.height * .4
+                ColorAnimation on color {
+                    id: squareColorAnim
+                    to: _secondaryColorArray[_level]
+                    duration: animDuration
+                    running: animate
+                }
+                ColorAnimation on border.color {
+                    id: squareColorBoardAnim
+                    to: _backColorArray[_level]
+                    duration: animDuration
+                    running: animate
+                }
+
             }
             Square{
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refLeft4.x + refLeft4.width
                 y: refLeft4.y + refLeft4.height
             }
             Square{
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refLeft4.x - refLeft4.width
@@ -289,24 +310,24 @@ Rectangle {
 
             Square{
                 id: refLeft42
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refLeft4.x + refLeft4.width
                 y: refLeft4.y - refLeft4.height * 4
             }
             Square{
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refLeft42.x - refLeft4.width
                 y: refLeft42.y
             }
             Square{
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refLeft42.x - refLeft4.width
@@ -315,24 +336,24 @@ Rectangle {
 
             Square{
                 id: refRight4
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refLeft4.x + refLeft4.width * 8
                 y: refLeft4.y + refLeft4.height
             }
             Square{
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refRight4.x
                 y: refRight4.y - refLeft4.height
             }
             Square{
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refRight4.x - refLeft4.height
@@ -340,8 +361,8 @@ Rectangle {
             }
 
             Square{
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refRight4.x
@@ -350,16 +371,16 @@ Rectangle {
 
             Square{
                 id: refRight42
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refRight4.x - refLeft4.height
                 y: refRight4.y - refLeft4.height * 4
             }
             Square{
-                color:triColor
-                border.color: secColor
+                color:refLeft4.color
+                border.color: refLeft4.border.color
                 width: refLeft4.width
                 height: refLeft4.height
                 x: refRight42.x + refLeft4.height

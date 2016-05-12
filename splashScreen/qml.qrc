@@ -24,5 +24,10 @@
         <file>VolumeButton.qml</file>
         <file>GameOver.qml</file>
         <file>ScoreBoard.qml</file>
+        <file>home.png</file>
+        <file>HomeButton.qml</file>
+        <file>homePressed.png</file>
+        <file>volume-downPressed.png</file>
+        <file>volume-mutePressed.png</file>
     </qresource>
 </RCC>

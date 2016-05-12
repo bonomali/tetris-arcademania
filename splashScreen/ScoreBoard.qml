@@ -36,6 +36,8 @@ TextRect{
         {
             scoreBoard.visible = false
             splashScreen.focus = true
+            anim1.complete()
+            anim2.complete()
         }
     }
     function refreshScoreBoard()
@@ -61,6 +63,7 @@ TextRect{
             enterName = true
             txtin_input.focus = true
         }
+        return enterName
     }
 
     Rectangle {
@@ -87,6 +90,7 @@ TextRect{
             }
 
             SequentialAnimation on y{
+                id: anim1
                 running: !enterName
                 PauseAnimation {duration: 2000}
                 NumberAnimation{
@@ -113,6 +117,7 @@ TextRect{
             }
 
             SequentialAnimation on y{
+                id:anim2
                 running: !enterName
                 PauseAnimation {duration: 2000}
                 NumberAnimation{
@@ -165,6 +170,8 @@ TextRect{
         mouseArea.onClicked: {
             scoreBoard.visible = false
             splashScreen.focus = true
+            anim1.complete()
+            anim2.complete()
         }
     }
 
@@ -200,11 +207,12 @@ TextRect{
 
             Keys.onReturnPressed:
             {
-                console.log(text)
                 score_board.setName(text, newIndex)
                 enterName = false
-
+                scoreBoard.focus = true
                 refreshScoreBoard()
+                gameOver.visible = true
+                gameOver.focus = true
             }
         }
     }

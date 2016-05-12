@@ -10,12 +10,17 @@ import QTGraphicalEffects 1.0
     width: referenceSquare.width * tilesWide
     border.color: "#002355"
     border.width: 3
-    property int xCoord: 6
-    property int yCoord: 0
+    property alias sCube: sCube
+    property alias sLineItem: sLineItem
+    property alias sLItem: sLItem
+    property alias sMLItem: sMLItem
+    property alias sMZItem: sMZItem
+    property alias sTItem: sTItem
+    property alias sZItem: sZItem
+
     property int index: 0
     property int i: 0
     property int j: 0
-    property int fallingShape: -1
     property int onDeckShape: 0
     property alias squareRepeater:squareRepeater
 
@@ -32,6 +37,28 @@ import QTGraphicalEffects 1.0
             }
         }
 
+        sCube.visible = false;
+        sCube.focus = false;
+        sCube.sleep.running = false;
+        sLineItem.visible = false;
+        sLineItem.focus = false;
+        sLineItem.sleep.running = false;
+        sLItem.visible = false;
+        sLItem.focus = false;
+        sLItem.sleep.running = false;
+        sMLItem.visible = false;
+        sMLItem.focus = false;
+        sMLItem.sleep.running = false;
+        sMZItem.visible = false;
+        sMZItem.focus = false;
+        sMZItem.sleep.running = false;
+        sTItem.visible = false;
+        sTItem.focus = false;
+        sTItem.sleep.running = false;
+        sZItem.visible = false;
+        sZItem.focus = false;
+        sZItem.sleep.running = false;
+
         sCube.state = "UPRIGHT"
         sLineItem.state = "UPRIGHT"
         sLItem.state = "UPRIGHT"
@@ -39,7 +66,7 @@ import QTGraphicalEffects 1.0
         sMZItem.state = "UPRIGHT"
         sZItem.state = "UPRIGHT"
         sTItem.state = "UPRIGHT"
-
+        fallingShape = -1
         getRandomIntInclusive(0,6)
     }
 
@@ -133,7 +160,6 @@ import QTGraphicalEffects 1.0
         target: grid
         onGameOver: {
 
-            gameOver.visible = true
             sCube.state = "GAMEOVER"
             sLineItem.state = "GAMEOVER"
             sLItem.state = "GAMEOVER"
@@ -143,8 +169,16 @@ import QTGraphicalEffects 1.0
             sTItem.state = "GAMEOVER"
             fallingShape = -1
             playTimer.stop()
-            scoreBoard.visible = true
-            scoreBoard.updateScoreBoard()
+            if(scoreBoard.updateScoreBoard())
+            {
+                scoreBoard.visible = true
+                scoreBoard.focus = true
+            }
+            else
+            {
+                gameOver.visible = true
+                gameOver.focus = true
+            }
         }
     }
 
@@ -188,8 +222,27 @@ import QTGraphicalEffects 1.0
     RadialGradient{
         anchors.fill: playArea
         gradient: Gradient{
-            GradientStop{ position: 0.0; color: _mainColorArray[_level - 1]}
-            GradientStop{ position: 0.5; color: _gradientArray[_level - 1]}
+            GradientStop{
+                position: 0.0
+                color: _mainColorArray[0]
+
+                ColorAnimation on color {
+                    id: outerColorAnim
+                    to: _mainColorArray[_level]
+                    duration: animDuration
+                    running: animate
+                }
+
+            }
+            GradientStop{ position: 0.5
+                color: _gradientArray[0]
+                ColorAnimation on color {
+                    id: innerColorAnim
+                    to: _gradientArray[_level]
+                    duration: animDuration
+                    running: animate
+                }
+            }
         }
     }
 

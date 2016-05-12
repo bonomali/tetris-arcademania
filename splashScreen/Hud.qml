@@ -29,19 +29,17 @@ Rectangle {
     property color winColor: "#AA0033a9"
     property alias squareRepeater: localBoard.squareRepeater
     property alias playArea: localBoard
-    property alias yCoord: localBoard.yCoord
-    property alias xCoord: localBoard.xCoord
     property alias playTimer: playTimer
     property alias gamePlayTimer: gamePlayTimer.rectangleText
+
     anchors.fill: parent
     color: "grey"
 
     on_LevelChanged: {
-        localBackground.secColor = _backColorArray[_level - 1]
-        localBackground.mainColor = _mainColorArray[_level - 1]
-        localBackground.backColor = _backColorArray[_level - 1]
-        localBackground.triColor = _secondaryColorArray[_level - 1]
+        animate = true
+        timerColorAnim.running = true
     }
+
     Timer {
             id: playTimer
             interval: 1000;
@@ -63,6 +61,14 @@ Rectangle {
 
     Background{
     id: localBackground
+
+    ColorAnimation on color {
+        id: backColorAnim
+        to: _backColorArray[_level]
+        duration: animDuration
+        running: animate
+    }
+
     }
     Board {
     id: localBoard
@@ -72,6 +78,13 @@ Rectangle {
         id: lineBreakSFX
         source: sources[counter]
         autoLoad: true
+    }
+
+    Connections {
+        target: backColorAnim
+        onStopped: {
+            animate = false
+        }
     }
 
     Connections {
@@ -95,7 +108,6 @@ Rectangle {
                 counter = 10
                _lineBreaks = 1
             }
-            console.log(_lineBreaks)
             if(_goal > 1)
                 _goal--
             else
@@ -119,6 +131,14 @@ Rectangle {
         baseRectangleText.color: "#b9d6e1"
         baseRectangleText.anchors.verticalCenter: score.verticalCenter
         border.color: "transparent"
+
+        ColorAnimation on color {
+            id: winColorAnim
+            to: _windowColorArray[_level]
+            duration: animDuration
+            running: animate
+        }
+
     }
 
     TextRect {
@@ -133,8 +153,15 @@ Rectangle {
         rectangleText: "0:00"
         rectangleFont.pointSize: parent.height * .015
         baseRectangleText.color: "#b9d6e1"
-        baseRectangleText.anchors.verticalCenter: verticalCenter
+        baseRectangleText.anchors.centerIn: gamePlayTimer
         border.color: "transparent"
+
+        ColorAnimation on color {
+            id: timerColorAnim
+            to: _windowColorArray[_level]
+            duration: animDuration
+            running: animate
+        }
     }
 
     TextRect {
@@ -152,6 +179,14 @@ Rectangle {
         baseRectangleText.anchors.horizontalCenter: level.horizontalCenter
         rectangleFont.pointSize: parent.height * .02
         border.color: "transparent"
+
+        ColorAnimation on color {
+            id: levelColorAnim
+            to: _windowColorArray[_level]
+            duration: animDuration
+            running: animate
+        }
+
         Text{
             text:_level
             anchors.centerIn : parent
@@ -177,6 +212,14 @@ Rectangle {
         baseRectangleText.color: "#b9d6e1"
         baseRectangleText.anchors.horizontalCenter: goal.horizontalCenter
         border.color: "transparent"
+
+        ColorAnimation on color {
+            id: goalcolorAnim
+            to: _windowColorArray[_level]
+            duration: animDuration
+            running: animate
+        }
+
         Text{
             text: _goal
             anchors.centerIn : parent
@@ -202,6 +245,14 @@ Rectangle {
         baseRectangleText.anchors.horizontalCenter: next.horizontalCenter
         rectangleFont.pointSize: parent.height * .02
         baseRectangleText.color: "#b9d6e1"
+
+        ColorAnimation on color {
+            id: nextcolorAnim
+            to: _windowColorArray[_level]
+            duration: animDuration
+            running: animate
+        }
+
 
         TextRect {
             width: parent.width * .80
