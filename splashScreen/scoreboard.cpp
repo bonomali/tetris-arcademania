@@ -39,7 +39,7 @@ ScoreBoard::ScoreBoard()
     m_highScores[8].time = "0:12";
 
     m_highScores[9].name = "Diego";
-    m_highScores[9].score = "900";
+    m_highScores[9].score = "0";
     m_highScores[9].time = "10:59";
 
     readFromFile();
@@ -97,16 +97,28 @@ void ScoreBoard::readFromFile()
 int ScoreBoard::checkHighScore(int newScore, QString newTime)
 {
     int newHScoreIndex = -1;
+    bool found = false;
 
-    for(int i = 0; i < NUM_HSCORES; i++)
+    for(int i = 0; i < NUM_HSCORES && !found; i++)
     {
         if(newScore > stoi(m_highScores[i].score))
         {
-            setScore(newScore, i);
-            setTime(newTime, i);
             newHScoreIndex = i;
+            found = true;
         }
     }
+    if(found)
+    {
+        for(int i = (NUM_HSCORES - 1); i > newHScoreIndex; i--)
+        {
+            m_highScores[i].name = m_highScores[(i - 1)].name;
+            m_highScores[i].score = m_highScores[(i - 1)].score;
+            m_highScores[i].time = m_highScores[(i - 1)].time;
+        }
+        setScore(newScore, newHScoreIndex);
+        setTime(newTime, newHScoreIndex);
+    }
+
     return newHScoreIndex;
 }
 QString ScoreBoard::getName(int index)
@@ -131,6 +143,11 @@ void ScoreBoard::setName(QString newName, int index)
     m_highScores[index].name = newName.toStdString();
     writeToFile();
     readFromFile();
+
+    for(int i = 0; i < NUM_HSCORES; i++)
+    {
+        cout << m_highScores[i].name << " " << m_highScores[i].score << " " << m_highScores[i].time << endl;
+    }
 }
 void ScoreBoard::setScore(int newScore, int index)
 {

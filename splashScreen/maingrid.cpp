@@ -105,7 +105,6 @@ void MainGrid::drawGrid(int row, int col, int block_type)
         {
            if(localShape[i][j] == true)
            {
-               cout << "row: " << i + row << " col: " << j + col << endl;
                m_grid[i + row][j + col].visible = true;
                m_grid[i + row][j + col].color = m_allShapes[block_type]->getColor();
                if(m_grid[1][j + col].visible == true)
