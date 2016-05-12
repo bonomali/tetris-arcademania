@@ -70,6 +70,7 @@ void mlItem::rotate()
         default:
             throw("Rotate state undefined");
     }
+     emit moveDetected();
 }
 void mlItem::resetEndIndex()
 {

@@ -35,6 +35,7 @@ ApplicationWindow {
     property int animDuration: 5000
     property int xCoord: 6
     property int yCoord: 0
+    property bool collision: false
 
     title: playMusic.errorString
     visible: true

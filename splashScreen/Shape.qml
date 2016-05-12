@@ -35,7 +35,6 @@ Item {
     property bool fastDrop: false
     property bool fourStates: true
     property bool rotateShape: true
-    property bool collision: false
     property int rlBoardHorzShiftNum: 0
     property int rrBoardHorzShiftNum: 0
     property int llBoardHorzShiftNum: 0
@@ -76,12 +75,22 @@ Item {
         target: grid
         onCollisionDetected: {
             collision = true
-            console.log("signal detected")
         }
     }
+    Connections {
+        target: grid
+        onMoveDetected: {
+            collision = false
 
-
-
+            if((state === "UPRIGHT" && grid.checkForCollision(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue)) ||
+                (state === "UPSIDEDOWN" && grid.checkForCollision(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue)) ||
+                (state === "RIGHT" && grid.checkForCollision(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)) ||
+                (state === "LEFT" && grid.checkForCollision(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue)))
+                {
+                    collision = true
+                }
+        }
+    }
         function rotateShift(direction, numBlocks)
         {
             if (direction === "left")
@@ -189,8 +198,6 @@ Item {
                     rotate()
                 }
             }
-            console.log(rotation)
-            console.log(state)
         }
         else if(event.key === Qt.Key_Down)
         {
@@ -250,6 +257,7 @@ Item {
                             }
                         }
                     }
+
                     if(state != "GAMEOVER")
                     {
                         impactSound.play()
@@ -272,8 +280,6 @@ Item {
             }
             if(state === "STOP" || state === "GAMEOVER")
             {
-                console.log("we are here")
-                console.log(state)
                 running = false
                 visible = false
                 collision = false
@@ -285,7 +291,6 @@ Item {
 
                 if(state !== "GAMEOVER")
                 {
-                    collision = false
                     state = "UPRIGHT"
                     localBoard.getRandomIntInclusive(0,6)
                 }

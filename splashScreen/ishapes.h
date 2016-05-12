@@ -28,6 +28,7 @@ public:
 
 signals:
     void test();
+    void moveDetected();
 
 public slots:
    virtual void rotate() = 0;  //rotate shape

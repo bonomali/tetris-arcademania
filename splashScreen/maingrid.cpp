@@ -142,6 +142,9 @@ bool MainGrid::checkMoveLeft(int row, int col, int block_type)
     if(validMove && checkForCollision(row, (col - 1), block_type))
         emit collisionDetected();
 
+    if(validMove && row != m_allShapes[block_type]->getEndIndex())
+        emit moveDetected();
+
     return validMove;
 }
 
@@ -163,6 +166,9 @@ bool MainGrid::checkMoveRight(int row, int col, int block_type)
     }
     if(validMove && checkForCollision(row, (col + 1), block_type))
         emit collisionDetected();
+
+    if(validMove && row != m_allShapes[block_type]->getEndIndex())
+        emit moveDetected();
 
     return validMove;
 }

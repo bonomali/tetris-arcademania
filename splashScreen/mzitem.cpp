@@ -69,6 +69,7 @@ void mzItem::rotate()
         default:
             throw("Rotate state undefined");
     }
+     emit moveDetected();
 }
 void mzItem::resetEndIndex()
 {

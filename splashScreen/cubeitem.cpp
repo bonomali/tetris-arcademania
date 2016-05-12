@@ -32,7 +32,8 @@ cubeItem::cubeItem()
     m_endIndex = 29;
 }
 void cubeItem::rotate()
-{}
+{
+}
 void cubeItem::resetEndIndex()
 {
     m_endIndex = 29;

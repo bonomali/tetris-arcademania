@@ -68,6 +68,8 @@ void lItem::rotate()
             break;
         default:
             throw("Rotate state undefined");
+
+         emit moveDetected();
     }
 }
 void lItem::resetEndIndex()

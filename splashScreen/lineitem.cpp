@@ -69,7 +69,8 @@ void lineItem::rotate()
         default:
             throw("Rotate state undefined");
     }
-    std::cout << rotateState << std::endl;
+
+    emit moveDetected();
 }
 void lineItem::resetEndIndex()
 {

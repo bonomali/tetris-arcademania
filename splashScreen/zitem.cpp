@@ -66,7 +66,8 @@ void zItem::rotate()
         default:
             throw("Rotate state undefined");
     }
-    std::cout << "zrotate" << std::endl;
+
+     emit moveDetected();
 }
 void zItem::resetEndIndex()
 {

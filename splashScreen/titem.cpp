@@ -65,6 +65,7 @@ void tItem::rotate()
         default:
             throw("Rotate state undefined");
     }
+     emit moveDetected();
 }
 void tItem::resetEndIndex()
 {

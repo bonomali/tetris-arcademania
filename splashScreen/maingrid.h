@@ -32,6 +32,7 @@ signals:
     void gameOver();
     void lineBrake();
     void collisionDetected();
+    void moveDetected();
 
 public slots:
     bool lineCheck();             //return row# to break, recursive: argument = starting row
