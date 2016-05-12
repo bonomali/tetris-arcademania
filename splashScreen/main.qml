@@ -24,6 +24,7 @@ ApplicationWindow {
     property alias tItem1: localHud.tItem1
     property alias _level: localHud._level
     property alias playTimer: localHud.playTimer
+    property alias splashScreen: splashScreen
     property var _speedArray: [500, 450, 400, 350, 300, 250, 200, 150, 100, 75]
     property bool muted: false
     property alias gamePlayTimer: localHud.gamePlayTimer
@@ -51,6 +52,7 @@ ApplicationWindow {
     id: localHud
     }
     SplashMenu {
+        id:splashScreen
     }
 
     VolumeButton{

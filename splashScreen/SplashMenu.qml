@@ -9,6 +9,17 @@ Rectangle{
 
     property int selectedLevel: 1
 
+    Keys.onPressed: {
+        if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
+        {
+            console.log("enter pressed")
+            defButtonSound.play()
+            currentLevel = selectedLevel
+            splashScreen.visible = false
+            appWindow.initializeBoard1.initializeBoard()
+        }
+}
+
     Audio {
         id: defButtonSound
         source: "Scary impact.wav"
@@ -32,7 +43,8 @@ Rectangle{
         mouseArea.onClicked: {
             defButtonSound.play()
             currentLevel = selectedLevel
-            parent.visible = false, appWindow.initializeBoard1.initializeBoard()
+            parent.visible = false
+            appWindow.initializeBoard1.initializeBoard()
         }
         buttonText : "Start"
     }

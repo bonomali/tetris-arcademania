@@ -14,7 +14,7 @@ using std::ifstream;
 #include <string>
 using std::string;
 
-const int NUM_HSCORES = 10;
+const int NUM_HSCORES = 15;
 struct high_scores {
     string name;
     string score;

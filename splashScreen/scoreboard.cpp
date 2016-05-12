@@ -42,6 +42,26 @@ ScoreBoard::ScoreBoard()
     m_highScores[9].score = "0";
     m_highScores[9].time = "10:59";
 
+    m_highScores[10].name = "";
+    m_highScores[10].score = "0";
+    m_highScores[10].time = "0:00";
+
+    m_highScores[11].name = "";
+    m_highScores[11].score = "0";
+    m_highScores[11].time = "0:00";
+
+    m_highScores[12].name = "";
+    m_highScores[12].score = "0";
+    m_highScores[12].time = "0:00";
+
+    m_highScores[13].name = "";
+    m_highScores[13].score = "0";
+    m_highScores[13].time = "0:0";
+
+    m_highScores[14].name = "";
+    m_highScores[14].score = "0";
+    m_highScores[14].time = "0:0";
+
     readFromFile();
 }
 void ScoreBoard::writeToFile()

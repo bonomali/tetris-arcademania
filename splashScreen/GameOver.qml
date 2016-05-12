@@ -21,6 +21,7 @@ import QtQuick 2.5
             playTimer.restart()
             appWindow.initializeBoard1.initializeBoard()
             _level = 1
+            _score = 0
         }
 
         visible: false

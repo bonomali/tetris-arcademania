@@ -1,11 +1,17 @@
 import QtQuick 2.5
+import QtQuick.Controls 1.4
 
 TextRect{
+    id:scoreBoard
     property alias scoreBoard: scoreBoard.visible
     property int i: 1
     property bool enterName: false
     property int newIndex: 0
-    id:scoreBoard
+    property string allScores: ""
+    rectangleFont.pointSize: scoreBoard.width * .020
+    baseRectangleText.anchors.top: scoreBoardColumns.bottom
+    baseRectangleText.anchors.topMargin: scoreBoard.height * .01
+    baseRectangleText.anchors.leftMargin: scoreBoard.width * .01
     radius: appWindow.height * .05
     anchors.centerIn: parent
     height: appWindow.height * .75
@@ -13,6 +19,37 @@ TextRect{
     x: parent.width * .20
     y: parent.height * .40
     visible: false
+    color: "#EE0060a9"
+
+    Component.onCompleted: {
+
+        refreshScoreBoard()
+        if (!enterName)
+        {
+            txtin_input.focus = false
+            scoreBoard.focus = true
+        }
+    }
+
+    Keys.onPressed: {
+        if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
+        {
+            scoreBoard.visible = false
+            splashScreen.focus = true
+        }
+    }
+    function refreshScoreBoard()
+    {
+        allScores = ""
+
+        for(i = 1; i <= 15; i++)
+        {
+            if(i < 10)
+                allScores += " " + i + ". " + score_board.getPlayerStats(i) + "\n"
+            else
+                allScores += i + ". " + score_board.getPlayerStats(i) + "\n"
+        }
+    }
 
     function updateScoreBoard()
     {
@@ -26,35 +63,64 @@ TextRect{
         }
     }
 
-    rectangleFont.pointSize: scoreBoard.width * .020
-    baseRectangleText.anchors.top: scoreBoardColumns.bottom
-    baseRectangleText.anchors.topMargin: scoreBoard.height * .01
-    baseRectangleText.anchors.leftMargin: scoreBoard.width * .01
-
     Rectangle {
         id: listOfNames
-        height: parent.height * .65
+        height: parent.height * .61
         width: parent.height * 1.1
         anchors.top: scoreBoardColumns.bottom
         anchors.topMargin: scoreBoardColumns.height * .25
         anchors.horizontalCenter: parent.horizontalCenter
         color: "transparent"
+        clip: true
 
-        Repeater {
-            id: scoreBoardEntries
-            model: 10
-
-            Text {
-                x: parent.width * .05
-                y: index * (font.pointSize * 1.8)
+        Rectangle {
+            id:scrollin
+            x: parent.x * 6
+            width: parent.width
+            height: parent.height
+            color: "transparent"
+            Text{
+                text: allScores
                 font.pointSize: parent.height * .05
                 color: "#b9d6e1"
                 font.family: "Courier"
-                text: {
-                    if(index < 9)
-                        scoreBoardEntries.itemAt(index).text = " " + (index + 1) + ". " + score_board.getPlayerStats(index + 1) + "\n"
-                    else
-                        scoreBoardEntries.itemAt(index).text = (index + 1) + ". " + score_board.getPlayerStats(index + 1) + "\n"
+            }
+
+            SequentialAnimation on y{
+                running: !enterName
+                PauseAnimation {duration: 2000}
+                NumberAnimation{
+                    id: initialAnim
+                    from: 0
+                    to: -scrollin.height * 1.5
+                    duration: 25000
+                    loops: Animation.Infinite
+                }
+            }
+        }
+
+        Rectangle {
+            id:scrollin2
+            width: parent.width
+            height: parent.height
+            x: parent.x * 6
+            color: "transparent"
+            Text{
+                text: allScores
+                font.pointSize: parent.height * .05
+                color: "#b9d6e1"
+                font.family: "Courier"
+            }
+
+            SequentialAnimation on y{
+                running: !enterName
+                PauseAnimation {duration: 2000}
+                NumberAnimation{
+                    id: initialAnim2
+                    from: scrollin2.height * 1.5
+                    to: 0
+                    duration: 25000
+                    loops: Animation.Infinite
                 }
             }
         }
@@ -79,7 +145,7 @@ TextRect{
         wrapMode: "WordWrap"
         color: "#b9d6e1"
         font.family: "Courier"
-        text: "     Name\t\t Score\t  Time"
+        text: "     Name\t\t Score\tTime"
         anchors.top: scoreBoardHeader.bottom
         x: listOfNames.width * .05
         anchors.topMargin: scoreBoard.height * .02
@@ -98,6 +164,7 @@ TextRect{
 
         mouseArea.onClicked: {
             scoreBoard.visible = false
+            splashScreen.focus = true
         }
     }
 
@@ -115,38 +182,30 @@ TextRect{
         TextInput
         {
             id: txtin_input
-            focus: true
-            cursorVisible: true
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: parent.width * .35
-            text: ""
+            focus: enterName
+            cursorVisible: enterName
+            anchors.centerIn: parent
+            text: "Enter Name Here"
+            MouseArea{
+                anchors.fill: parent
+                onClicked: txtin_input.text = ""
+            }
+
             font.pointSize: scoreBoard.width * .025
-            color: "#b9d6e1"
+            color: "#CCb9d6e1"
+            Keys.onPressed: {
+                if (txtin_input.text === "Enter Name Here")
+                    txtin_input.text = ""
+            }
+
             Keys.onReturnPressed:
             {
                 console.log(text)
                 score_board.setName(text, newIndex)
                 enterName = false
 
-                for(i = 0; i < 10; i++)
-                {
-                    if(i < 9)
-                        scoreBoardEntries.itemAt(i).text = " " + (i + 1) + ". " + score_board.getPlayerStats(i + 1) + "\n"
-                    else
-                        scoreBoardEntries.itemAt(i).text = (i + 1) + ". " + score_board.getPlayerStats(i + 1) + "\n"
-                }
+                refreshScoreBoard()
             }
-        }
-
-        Text{
-            id: enterNametxt
-            text: "Enter Name: "
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: parent.width * .05
-            font.pointSize: scoreBoard.width * .025
-            color: "#b9d6e1"
         }
     }
 }
