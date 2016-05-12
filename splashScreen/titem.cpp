@@ -1,4 +1,7 @@
 #include "titem.h"
+#include <iostream>
+using std::cout;
+using std::endl;
 
 tItem::tItem()
 {
@@ -70,4 +73,9 @@ void tItem::rotate()
 void tItem::resetEndIndex()
 {
     m_endIndex = 30;
+}
+int tItem::getEndIndex()
+{
+    cout << "T item end index" << m_endIndex << endl;
+    return 30;
 }

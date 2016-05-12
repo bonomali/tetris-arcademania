@@ -76,3 +76,7 @@ void lineItem::resetEndIndex()
 {
     m_endIndex = 31;
 }
+int lineItem::getEndIndex()
+{
+    return m_endIndex;
+}

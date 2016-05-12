@@ -31,6 +31,7 @@ Item {
     property string downVirtShift: ""
     property string downHorzShift: ""
     property var rotate: (function() {litem.rotate();})
+    property var getEnd: (function() {litem.getEndIndex();})
     property color shapeColor: "white"
     property bool fastDrop: false
     property bool fourStates: true
@@ -82,13 +83,7 @@ Item {
         onMoveDetected: {
             collision = false
 
-            if((state === "UPRIGHT" && grid.checkForCollision(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue)) ||
-                (state === "UPSIDEDOWN" && grid.checkForCollision(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue)) ||
-                (state === "RIGHT" && grid.checkForCollision(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)) ||
-                (state === "LEFT" && grid.checkForCollision(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue)))
-                {
-                    collision = true
-                }
+            checkCollision()
         }
     }
         function rotateShift(direction, numBlocks)
@@ -139,11 +134,26 @@ Item {
 
             return retval;
         }
+        function checkCollision()
+        {
+            console.log("ycoord", yCoord)
+            console.log("endIndex", getEnd())
+            if(((state === "UPRIGHT" && grid.checkForCollision(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue)) ||
+                (state === "UPSIDEDOWN" && grid.checkForCollision(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue)) ||
+                (state === "RIGHT" && grid.checkForCollision(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)) ||
+                (state === "LEFT" && grid.checkForCollision(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue))) ||
+                    yCoord >= getEnd())
+                {
+
+                    collision = true
+                }
+        }
+
     Keys.onPressed: {
         if(event.key === Qt.Key_Left)
         {
             if(state === "RIGHT" && borderHorzShift("left", rlBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue) ||
-                    state == "LEFT" && borderHorzShift("left", llBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue) ||
+                    state === "LEFT" && borderHorzShift("left", llBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue) ||
                     state === "UPRIGHT"  && borderHorzShift("left", ulBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue) ||
                     state === "UPSIDEDOWN" && borderHorzShift("left", dlboardHorzShiftNum) && grid.checkMoveLeft(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue))
                 x = --xCoord * topLeft.width
@@ -266,16 +276,13 @@ Item {
                 }
                 else
                 {
-                    y += topLeft.width
-                    yCoord = Math.floor(y / topLeft.width)
+                    checkCollision()
 
-                    if((state === "UPRIGHT" && grid.checkForCollision(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue)) ||
-                        (state === "UPSIDEDOWN" && grid.checkForCollision(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue)) ||
-                        (state === "RIGHT" && grid.checkForCollision(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)) ||
-                        (state === "LEFT" && grid.checkForCollision(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue)))
-                        {
-                            collision = true
-                        }
+                    if(collision == false)
+                    {
+                        y += topLeft.width
+                        yCoord = Math.floor(y / topLeft.width)
+                    }
                 }
             }
             if(state === "STOP" || state === "GAMEOVER")

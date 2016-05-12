@@ -9,6 +9,7 @@ public:
     mzItem();
     void rotate();
     void resetEndIndex();
+    int getEndIndex();
 };
 
 #endif // MZITEM_H

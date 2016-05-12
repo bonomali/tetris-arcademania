@@ -23,7 +23,6 @@ public:
     Array2D<bool> getRotateState();
     QString getColor();
     void resetRotateState();
-    int getEndIndex();
     virtual void resetEndIndex() = 0;
 
 signals:
@@ -32,6 +31,7 @@ signals:
 
 public slots:
    virtual void rotate() = 0;  //rotate shape
+   virtual int getEndIndex() = 0;
 
 protected:
    shapeStruct m_shapeStruct;

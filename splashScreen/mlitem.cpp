@@ -76,4 +76,8 @@ void mlItem::resetEndIndex()
 {
     m_endIndex = 29;
 }
+int mlItem::getEndIndex()
+{
+    return m_endIndex;
+}
 

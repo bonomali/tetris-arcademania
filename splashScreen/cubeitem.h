@@ -9,6 +9,7 @@ public:
     cubeItem();
     void rotate();
     void resetEndIndex();
+    int getEndIndex();
 };
 
 #endif // CUBEITEM_H

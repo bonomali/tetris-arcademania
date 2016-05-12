@@ -14,4 +14,5 @@ Shape {
     urBoardHorzShiftNum: 3
 
     rotate:(function() {cube.rotate();})
+    getEnd: (function() {cube.getEndIndex();})
 }

@@ -9,6 +9,7 @@ public:
     mlItem();
     void rotate();
     void resetEndIndex();
+    int getEndIndex();
 };
 
 #endif // MLITEM_H
