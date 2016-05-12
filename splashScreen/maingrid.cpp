@@ -25,16 +25,16 @@ MainGrid::MainGrid(ishapes *& cube, ishapes *& line, ishapes *& titem, ishapes *
    m_allShapes[5] = zitem;
    m_allShapes[6] = mzitem;
 
-   for(int i = 0; i < 15; i++)
-   {
-       for (int j= 27; j <= 31; j++)
-       {
-           m_grid[j][i].visible = true;
-           m_grid[j][i].color = "#FFFFFF";
+//   for(int i = 0; i < 15; i++)
+//   {
+//       for (int j= 27; j <= 31; j++)
+//       {
+//           m_grid[j][i].visible = true;
+//           m_grid[j][i].color = "#FFFFFF";
 //           m_grid[i][10].visible = true;
 //           m_grid[i][10].color = "#FFFFFF";
-       }
-   }
+//       }
+//   }
 }
 bool MainGrid::lineCheck()
 {
@@ -133,11 +133,14 @@ bool MainGrid::checkMoveLeft(int row, int col, int block_type)
         {
            if(localShape[i][j] == true && (m_grid[i + row][j + col - 1].visible == true))
                 {
-                    cout << "i= " << i << "j= " << j << "col: " << col << endl;
+                 //   cout << "i= " << i << "j= " << j << "col: " << col << endl;
                     validMove = false;
                 }
         }
     }
+
+    if(validMove && checkForCollision(row, (col - 1), block_type))
+        emit collisionDetected();
 
     return validMove;
 }
@@ -158,6 +161,8 @@ bool MainGrid::checkMoveRight(int row, int col, int block_type)
                 }
         }
     }
+    if(validMove && checkForCollision(row, (col + 1), block_type))
+        emit collisionDetected();
 
     return validMove;
 }

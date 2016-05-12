@@ -143,8 +143,8 @@ Array2D<T>& Array2D<T>::operator=(const Array2D<T> &rhs)
 template <typename T>
 Array2D<T>::~Array2D()
 {
-	int row = 0;	
-	int col = 0;
+    m_row = 0;
+    m_col = 0;
 
 	//cout << "2D dtor" << endl;
 }

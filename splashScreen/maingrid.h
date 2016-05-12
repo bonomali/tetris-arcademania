@@ -2,6 +2,7 @@
 #define MAINGRID_H
 
 #include <QObject>
+#include <QTimer>
 #include "ishapes.h"
 #include "maingrid.h"
 #include "cubeitem.h"
@@ -30,6 +31,7 @@ public:
 signals:
     void gameOver();
     void lineBrake();
+    void collisionDetected();
 
 public slots:
     bool lineCheck();             //return row# to break, recursive: argument = starting row
@@ -47,6 +49,7 @@ protected:
     gridData m_grid[ROW][COL];
     ishapes * m_allShapes [7];
     bool m_gameover;
+    QTimer* m_gameTimer;
 };
 
 #endif // MAINGRID_H

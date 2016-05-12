@@ -72,6 +72,16 @@ Item {
            State { name: "STOP" }
        ]
 
+    Connections {
+        target: grid
+        onCollisionDetected: {
+            collision = true
+            console.log("signal detected")
+        }
+    }
+
+
+
         function rotateShift(direction, numBlocks)
         {
             if (direction === "left")
@@ -262,6 +272,8 @@ Item {
             }
             if(state === "STOP" || state === "GAMEOVER")
             {
+                console.log("we are here")
+                console.log(state)
                 running = false
                 visible = false
                 collision = false
@@ -272,9 +284,11 @@ Item {
                 rotation = 90
 
                 if(state !== "GAMEOVER")
+                {
+                    collision = false
+                    state = "UPRIGHT"
                     localBoard.getRandomIntInclusive(0,6)
-
-                state = "UPRIGHT"
+                }
 
                 sleep.interval = _speedArray[_level - 1]
             }
