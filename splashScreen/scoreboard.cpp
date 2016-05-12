@@ -3,18 +3,44 @@
 ScoreBoard::ScoreBoard()
 {
     m_highScores[0].name = "Stephanie";
-    m_highScores[0].score = "100000000";
+    m_highScores[0].score = "9000";
     m_highScores[0].time = "2:04";
 
     m_highScores[1].name = "Issac";
-    m_highScores[1].score = "99000000";
+    m_highScores[1].score = "8000";
     m_highScores[1].time = "1:30";
 
     m_highScores[2].name = "Joshie";
-    m_highScores[2].score = "5000000";
+    m_highScores[2].score = "7000";
     m_highScores[2].time = "1:04";
 
-    writeToFile();
+    m_highScores[3].name = "Alex";
+    m_highScores[3].score = "6000";
+    m_highScores[3].time = "5:04";
+
+    m_highScores[4].name = "AJ";
+    m_highScores[4].score = "5000";
+    m_highScores[4].time = "2:30";
+
+    m_highScores[5].name = "Ryan";
+    m_highScores[5].score = "4000";
+    m_highScores[5].time = "0:56";
+
+    m_highScores[6].name = "Holly";
+    m_highScores[6].score = "3000";
+    m_highScores[6].time = "1:06";
+
+    m_highScores[7].name = "Katie";
+    m_highScores[7].score = "2000";
+    m_highScores[7].time = "0:38";
+
+    m_highScores[8].name = "Patrick";
+    m_highScores[8].score = "1000";
+    m_highScores[8].time = "0:12";
+
+    m_highScores[9].name = "Diego";
+    m_highScores[9].score = "900";
+    m_highScores[9].time = "10:59";
 
     readFromFile();
 }
@@ -49,8 +75,6 @@ void ScoreBoard::readFromFile()
             m_highScores[i].name = line;
             for(int j = (int)m_highScores[i].name.length(); j < 12; j++)
                 m_highScores[i].name += " ";
-
-            cout << "name: " << m_highScores[i].name << "!" << endl;
 
             getline(file, line);
             m_highScores[i].score = line;

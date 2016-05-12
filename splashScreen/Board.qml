@@ -133,7 +133,7 @@ import QTGraphicalEffects 1.0
         target: grid
         onGameOver: {
 
-            //gameOver.visible = true
+            gameOver.visible = true
             sCube.state = "GAMEOVER"
             sLineItem.state = "GAMEOVER"
             sLItem.state = "GAMEOVER"
@@ -143,7 +143,6 @@ import QTGraphicalEffects 1.0
             sTItem.state = "GAMEOVER"
             fallingShape = -1
             playTimer.stop()
-        //   score_board.readFromFile()
             scoreBoard.visible = true
             scoreBoard.updateScoreBoard()
         }

@@ -3,7 +3,7 @@ import QtQuick 2.5
 TextRect{
     property alias scoreBoard: scoreBoard.visible
     property int i: 1
-    property bool enterName: true
+    property bool enterName: false
     property int newIndex: 0
     id:scoreBoard
 
@@ -20,12 +20,10 @@ TextRect{
         score_board.readFromFile()
         newIndex = score_board.checkHighScore(_score, gamePlayTimer)
         if(newIndex !== -1)
+        {
             enterName = true
-//        if(score_board.checkHighScore(score))
-//        {
-//            doneButton.visible = false;
-//            score_board.setScore(score)
-//        }
+            txtin_input.focus = true
+        }
     }
 
     rectangleFont.pointSize: scoreBoard.width * .020
@@ -83,9 +81,9 @@ TextRect{
     Buttons {
         id:doneButton
         height: scoreBoard.height * .125
-        width: scoreBoard.height * .4
+        width: scoreBoard.height * .3
         anchors.bottom: scoreBoard.bottom
-        anchors.bottomMargin: scoreBoard.height * .05
+        anchors.bottomMargin: scoreBoard.height * .025
         anchors.horizontalCenter: scoreBoard.horizontalCenter
         buttonText : "Done"
         buttonFont.pointSize: doneButton.height * .3
@@ -93,7 +91,6 @@ TextRect{
 
         mouseArea.onClicked: {
             scoreBoard.visible = false
-            gameOver.visible = true
         }
     }
 
@@ -125,8 +122,10 @@ TextRect{
                 score_board.setName(text, newIndex)
                 enterName = false
 
-                for( i = 0; i < 10; i++)
-                    scoreBoardEntries.itemAt(i).text = (i + 1) + ". " + score_board.getPlayerStats((i + 1)) + "\n"
+                for( i = 0; i < 9; i++)         //No sure if this works yet to correctly space the tenth spot, may need to change
+                    scoreBoardEntries.itemAt(i).text = " " + (i + 1) + ". " + score_board.getPlayerStats((i + 1)) + "\n"
+
+                (i + 1) + ". " + score_board.getPlayerStats((i + 1)) + "\n"
             }
         }
 
