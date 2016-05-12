@@ -73,13 +73,13 @@ void ScoreBoard::readFromFile()
         {
             getline(file, line);
             m_highScores[i].name = line;
-            for(int j = (int)m_highScores[i].name.length(); j < 12; j++)
+            for(int j = (int)m_highScores[i].name.length(); j < 11; j++)
                 m_highScores[i].name += " ";
 
             getline(file, line);
             m_highScores[i].score = line;
 
-            for(int j = (int)m_highScores[i].score.length(); j < 12; j++)
+            for(int j = (int)m_highScores[i].score.length(); j < 11; j++)
                 m_highScores[i].score += " ";
 
             getline(file, line);

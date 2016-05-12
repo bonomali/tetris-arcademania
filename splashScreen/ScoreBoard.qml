@@ -6,7 +6,7 @@ TextRect{
     property bool enterName: false
     property int newIndex: 0
     id:scoreBoard
-
+    radius: appWindow.height * .05
     anchors.centerIn: parent
     height: appWindow.height * .75
     width: appWindow.height * .85
@@ -50,7 +50,12 @@ TextRect{
                 font.pointSize: parent.height * .05
                 color: "#b9d6e1"
                 font.family: "Courier"
-                text: (index + 1) + ". " + score_board.getPlayerStats((index + 1)) + "\n"
+                text: {
+                    if(index < 9)
+                        scoreBoardEntries.itemAt(index).text = " " + (index + 1) + ". " + score_board.getPlayerStats(index + 1) + "\n"
+                    else
+                        scoreBoardEntries.itemAt(index).text = (index + 1) + ". " + score_board.getPlayerStats(index + 1) + "\n"
+                }
             }
         }
     }
@@ -74,7 +79,7 @@ TextRect{
         wrapMode: "WordWrap"
         color: "#b9d6e1"
         font.family: "Courier"
-        text: "    Name\t\t   Score\t   Time"
+        text: "     Name\t\t Score\t  Time"
         anchors.top: scoreBoardHeader.bottom
         x: listOfNames.width * .05
         anchors.topMargin: scoreBoard.height * .02
@@ -124,8 +129,13 @@ TextRect{
                 score_board.setName(text, newIndex)
                 enterName = false
 
-                for(i = 0; i < 9; i++)
-                    scoreBoardEntries.itemAt(i).text = (i + 1) + ". " + score_board.getPlayerStats(i + 1) + "\n"
+                for(i = 0; i < 10; i++)
+                {
+                    if(i < 9)
+                        scoreBoardEntries.itemAt(i).text = " " + (i + 1) + ". " + score_board.getPlayerStats(i + 1) + "\n"
+                    else
+                        scoreBoardEntries.itemAt(i).text = (i + 1) + ". " + score_board.getPlayerStats(i + 1) + "\n"
+                }
             }
         }
 
