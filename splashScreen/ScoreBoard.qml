@@ -32,6 +32,7 @@ TextRect{
     baseRectangleText.anchors.leftMargin: scoreBoard.width * .01
 
     Rectangle {
+        id: listOfNames
         height: parent.height * .65
         width: parent.height * 1.1
         anchors.top: scoreBoardColumns.bottom
@@ -72,9 +73,10 @@ TextRect{
         font.pointSize: scoreBoard.width * .025
         wrapMode: "WordWrap"
         color: "#b9d6e1"
-        text: "Name      Score"
+        font.family: "Courier"
+        text: "    Name\t\t   Score\t   Time"
         anchors.top: scoreBoardHeader.bottom
-        anchors.leftMargin: scoreBoard.width * .02
+        x: listOfNames.width * .05
         anchors.topMargin: scoreBoard.height * .02
     }
 
@@ -122,10 +124,8 @@ TextRect{
                 score_board.setName(text, newIndex)
                 enterName = false
 
-                for( i = 0; i < 9; i++)         //No sure if this works yet to correctly space the tenth spot, may need to change
-                    scoreBoardEntries.itemAt(i).text = " " + (i + 1) + ". " + score_board.getPlayerStats((i + 1)) + "\n"
-
-                (i + 1) + ". " + score_board.getPlayerStats((i + 1)) + "\n"
+                for(i = 0; i < 9; i++)
+                    scoreBoardEntries.itemAt(i).text = (i + 1) + ". " + score_board.getPlayerStats(i + 1) + "\n"
             }
         }
 
