@@ -25,20 +25,20 @@ Send Documents for review before submitting
 #Bugs and TODO List <br \>
 
 Bugs: <br \>
-1. position of shape changes when window resizes <br \>
-2. need to improve rotation for shapes
-
+1. Score needs to take into account the time and the number of lines broken at once <br \>
+2. Background color shift doesn't reset correctly after starting a new game <br \>
+3. scoreboard size of text needs to change based off of screen size. <br \>
 TODO list: <br \>
 1. splash screen --> done <br \>
 2. readme --> continue to update <br \>
 3. menu -->done <br \>
-4. hud --> implement score, goal, level, and next feature <br \>
-5. tetris graphics --> work on rotate and drop animation <br \>
-6. generate tetris objects <br \>
-7. rotate tetris objects <br \>
-8. drop mechanic <br \>
-9. stack mechanic <br \>
-10. destroy full line 
+4. hud - implement score, goal, level, and next feature --> done <br \>
+5. tetris graphics - work on rotate and drop animation --> done <br \>
+6. generate tetris objects --> done <br \>
+7. rotate tetris objects --> done <br \>
+8. drop mechanic --> done <br \>
+9. stack mechanic --> done <br \>
+10. destroy full line --> done!!! :D 
 
 #Contributor List
 Isaac Harries <br \>
@@ -46,6 +46,8 @@ Stephanie Vetter
 
 #Credits, Inspirations, Alternative
 Tetris is cool!
+--update--
+Tetris is LESS cool -.-
 
 #License
 MIT
