@@ -76,7 +76,3 @@ void lItem::resetEndIndex()
 {
     m_endIndex = 29;
 }
-int lItem::getEndIndex()
-{
-    return m_endIndex;
-}

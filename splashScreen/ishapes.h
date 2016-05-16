@@ -24,6 +24,7 @@ public:
     QString getColor();
     void resetRotateState();
     virtual void resetEndIndex() = 0;
+    Q_INVOKABLE int getEndIndex();
 
 signals:
     void test();
@@ -31,7 +32,6 @@ signals:
 
 public slots:
    virtual void rotate() = 0;  //rotate shape
-   virtual int getEndIndex() = 0;
 
 protected:
    shapeStruct m_shapeStruct;

@@ -73,8 +73,3 @@ void zItem::resetEndIndex()
 {
    m_endIndex = 30;
 }
-int zItem::getEndIndex()
-{
-    cout << "Z item end index" << m_endIndex << endl;
-    return 30;
-}

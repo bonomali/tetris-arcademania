@@ -9,7 +9,6 @@ public:
     zItem();
     void rotate();
     void resetEndIndex();
-    int getEndIndex();
 };
 
 #endif // ZITEM_H

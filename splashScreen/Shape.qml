@@ -31,7 +31,7 @@ Item {
     property string downVirtShift: ""
     property string downHorzShift: ""
     property var rotate: (function() {litem.rotate();})
-    property var getEnd: (function() {litem.getEndIndex();})
+    property var getEndIndex: (function() {return litem.getEndIndex();})
     property color shapeColor: "white"
     property bool fastDrop: false
     property bool fourStates: true
@@ -74,15 +74,8 @@ Item {
 
     Connections {
         target: grid
-        onCollisionDetected: {
-            collision = true
-        }
-    }
-    Connections {
-        target: grid
         onMoveDetected: {
             collision = false
-
             checkCollision()
         }
     }
@@ -136,15 +129,13 @@ Item {
         }
         function checkCollision()
         {
-            console.log("ycoord", yCoord)
-            console.log("endIndex", getEnd())
-            if(((state === "UPRIGHT" && grid.checkForCollision(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue)) ||
+            console.log("in check collision: ", collision)
+            if((state === "UPRIGHT" && grid.checkForCollision(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue)) ||
                 (state === "UPSIDEDOWN" && grid.checkForCollision(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue)) ||
                 (state === "RIGHT" && grid.checkForCollision(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)) ||
-                (state === "LEFT" && grid.checkForCollision(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue))) ||
-                    yCoord >= getEnd())
+                (state === "LEFT" && grid.checkForCollision(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue)))
                 {
-
+                console.log("collision changed")
                     collision = true
                 }
         }
@@ -168,9 +159,13 @@ Item {
         }
         else if(event.key === Qt.Key_Up)
         {
+            console.log(state)
+            console.log("y: ", yCoord)
+            console.log("end index: ",getEndIndex() - 1)
+
             if(rotateShape && !event.isAutoRepeat)
             {
-                if(state === "UPRIGHT" && rotateShift("left", ulRotateShift) && rotateShift("right", urRotateShift))
+                if(state === "UPRIGHT" && rotateShift("left", ulRotateShift) && rotateShift("right", urRotateShift) && yCoord < getEndIndex())
                 {
                     state = "RIGHT"
                     rotation = (fourStates) ? 180 : 0
@@ -189,7 +184,7 @@ Item {
                     rotateSound.play()
                     rotate()
                 }
-                else if(state === "UPSIDEDOWN" && rotateShift("left", dlRotateShift) && rotateShift("right", drRotateShift))
+                else if(state === "UPSIDEDOWN" && rotateShift("left", dlRotateShift) && rotateShift("right", drRotateShift) && yCoord < getEndIndex() - 1)
                 {
                     state = "LEFT"
                     rotation = 0
@@ -226,6 +221,7 @@ Item {
             sleep.interval = _speed
     }
 
+    onStateChanged: {console.log(state)}
     Timer
     {
         id:sleep

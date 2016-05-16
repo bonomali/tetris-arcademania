@@ -10,7 +10,6 @@ public:
     void rotate();  //rotate item
     Array2D<bool> getRotateState();
     void resetEndIndex();
-    int getEndIndex();
 };
 
 #endif // LINEITEM_H

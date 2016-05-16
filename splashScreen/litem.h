@@ -9,7 +9,6 @@ public:
     lItem();
     void rotate();
     void resetEndIndex();
-    int getEndIndex();
 };
 
 #endif // LITEM_H

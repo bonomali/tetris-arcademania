@@ -29,5 +29,5 @@ Shape {
     rrRotateShift: 2
 
     rotate:(function() {zitem.rotate();})
-    getEnd:(function() {zitem.getEndIndex();})
+    getEndIndex: (function() {return zitem.getEndIndex();})
 }

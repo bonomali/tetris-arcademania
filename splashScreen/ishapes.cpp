@@ -34,3 +34,8 @@ void ishapes::resetRotateState()
         for(int j = 0; j < 4; j++)
             m_rotateState[i][j] = m_shapeStruct.upRight[i][j];
 }
+int ishapes::getEndIndex()
+{
+    //cout << m_endIndex << endl;
+    return m_endIndex;
+}

@@ -31,7 +31,6 @@ public:
 signals:
     void gameOver();
     void lineBrake();
-    void collisionDetected();
     void moveDetected();
 
 public slots:

@@ -28,5 +28,5 @@ Shape {
     rrRotateShift: 2
 
     rotate:(function() {titem.rotate();})
-    getEnd:(function() {titem.getEndIndex();})
+    getEndIndex: (function() {return titem.getEndIndex();})
 }

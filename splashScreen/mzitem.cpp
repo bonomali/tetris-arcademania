@@ -75,7 +75,3 @@ void mzItem::resetEndIndex()
 {
     m_endIndex = 30;
 }
-int mzItem::getEndIndex()
-{
-    return m_endIndex;
-}

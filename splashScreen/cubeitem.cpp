@@ -38,8 +38,4 @@ void cubeItem::resetEndIndex()
 {
     m_endIndex = 29;
 }
-int cubeItem::getEndIndex()
-{
-     cout << "cube item end index" << m_endIndex << endl;
-    return m_endIndex;
-}
+

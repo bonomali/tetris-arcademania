@@ -78,7 +78,7 @@ import QTGraphicalEffects 1.0
         fallingShape = onDeckShape;
 
       onDeckShape = Math.floor(Math.random() * (max - min + 1)) + min;
-      console.log("random deck number ", onDeckShape)
+      //console.log("random deck number ", onDeckShape)
 
       appWindow.cubeItem1 = false
       appWindow.lineItem1 = false

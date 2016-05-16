@@ -32,5 +32,5 @@ Shape {
 
     fourStates: false
     rotate:(function() {line.rotate();})
-    getEnd:(function() {line.getEndIndex();})
+    getEndIndex: (function() {return line.getEndIndex() - 2;})
 }

@@ -9,7 +9,6 @@ public:
     tItem();
     void rotate();
     void resetEndIndex();
-    int getEndIndex();
 };
 
 #endif // TITEM_H

@@ -74,8 +74,3 @@ void tItem::resetEndIndex()
 {
     m_endIndex = 30;
 }
-int tItem::getEndIndex()
-{
-    cout << "T item end index" << m_endIndex << endl;
-    return 30;
-}
