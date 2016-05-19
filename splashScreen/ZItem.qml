@@ -28,6 +28,8 @@ Shape {
     ulRotateShift: -1
     rrRotateShift: 2
 
+    virtShiftTop: 0
+
     rotate:(function() {zitem.rotate();})
     getEndIndex: (function() {return zitem.getEndIndex();})
 }

@@ -56,11 +56,11 @@ ScoreBoard::ScoreBoard()
 
     m_highScores[13].name = "";
     m_highScores[13].score = "0";
-    m_highScores[13].time = "0:0";
+    m_highScores[13].time = "0:00";
 
     m_highScores[14].name = "";
     m_highScores[14].score = "0";
-    m_highScores[14].time = "0:0";
+    m_highScores[14].time = "0:00";
 
     readFromFile();
 }

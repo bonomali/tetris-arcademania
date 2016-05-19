@@ -37,26 +37,28 @@ import QTGraphicalEffects 1.0
             }
         }
 
+        resetShapes()
+
         sCube.visible = false;
-        sCube.focus = false;
+        sCube.focus = true;
         sCube.sleep.running = false;
         sLineItem.visible = false;
-        sLineItem.focus = false;
+        sLineItem.focus = true;
         sLineItem.sleep.running = false;
         sLItem.visible = false;
-        sLItem.focus = false;
+        sLItem.focus = true;
         sLItem.sleep.running = false;
         sMLItem.visible = false;
-        sMLItem.focus = false;
+        sMLItem.focus = true;
         sMLItem.sleep.running = false;
         sMZItem.visible = false;
-        sMZItem.focus = false;
+        sMZItem.focus = true;
         sMZItem.sleep.running = false;
         sTItem.visible = false;
-        sTItem.focus = false;
+        sTItem.focus = true;
         sTItem.sleep.running = false;
         sZItem.visible = false;
-        sZItem.focus = false;
+        sZItem.focus = true;
         sZItem.sleep.running = false;
 
         sCube.state = "UPRIGHT"
@@ -68,6 +70,24 @@ import QTGraphicalEffects 1.0
         sTItem.state = "UPRIGHT"
         fallingShape = -1
         getRandomIntInclusive(0,6)
+    }
+
+    function resetShapes()
+    {
+        sCube.x = referenceSquare.width * xCoord
+        sCube.y = -referenceSquare.height
+        sLineItem.x = referenceSquare.width * xCoord
+        sLineItem.y = -referenceSquare.height
+        sLItem.x = referenceSquare.width * xCoord
+        sLItem.y = -referenceSquare.height
+        sMLItem.x = referenceSquare.width * xCoord
+        sMLItem.y = -referenceSquare.height
+        sMZItem.x = referenceSquare.width * xCoord
+        sMZItem.y = -referenceSquare.height
+        sTItem.x = referenceSquare.width * xCoord
+        sTItem.y = -referenceSquare.height
+        sZItem.x = referenceSquare.width * xCoord
+        sZItem.y = -referenceSquare.height
     }
 
     function getRandomIntInclusive(min, max) {
@@ -169,12 +189,7 @@ import QTGraphicalEffects 1.0
             sTItem.state = "GAMEOVER"
             fallingShape = -1
             playTimer.stop()
-            if(scoreBoard.updateScoreBoard())
-            {
-                scoreBoard.visible = true
-                scoreBoard.focus = true
-            }
-            else
+            if(!scoreBoard.updateScoreBoard())
             {
                 gameOver.visible = true
                 gameOver.focus = true
@@ -184,39 +199,7 @@ import QTGraphicalEffects 1.0
 
     onHeightChanged:
     {
-        switch(fallingShape)
-          {
-        case 0:
-            sCube.x = referenceSquare.width * xCoord
-            sCube.y = yCoord * referenceSquare.height
-            break;
-        case 1:
-            sLineItem.x = referenceSquare.width * xCoord
-            sLineItem.y = yCoord * referenceSquare.height
-            break;
-        case 2:
-            sLItem.x = referenceSquare.width * xCoord
-            sLItem.y = yCoord * referenceSquare.height
-            break;
-        case 3:
-            sMLItem.x = referenceSquare.width * xCoord
-            sMLItem.y = yCoord * referenceSquare.height
-            break;
-        case 4:
-            sMZItem.x = referenceSquare.width * xCoord
-            sMZItem.y = yCoord * referenceSquare.height
-            break;
-        case 5:
-            sTItem.x = referenceSquare.width * xCoord
-            sTItem.y = yCoord * referenceSquare.height
-            break;
-        case 6:
-            sZItem.x = referenceSquare.width * xCoord
-            sZItem.y = yCoord * referenceSquare.height
-            break;
-        default:
-            break;
-        }
+        resetShapes()
     }
 
     RadialGradient{

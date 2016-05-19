@@ -60,6 +60,8 @@ Item {
     property int ulRotateShift: 0
     property int dlRotateShift: 0
 
+    property int virtShiftTop: -1
+
     width: topLeft.width * 2
     height: topLeft.height * 4
     state: "UPRIGHT"
@@ -100,8 +102,11 @@ Item {
 
             return retval
         }
-        function borderVirtShift(numBlocks)
+        function borderVirtShift(direction, numBlocks)
         {
+            if(direction === "up")
+                return (y >= topLeft.width * numBlocks)
+            else if (direction === "down")
                 return (y < playArea.height - topLeft.width * numBlocks)
         }
 
@@ -165,7 +170,7 @@ Item {
 
             if(rotateShape && !event.isAutoRepeat)
             {
-                if(state === "UPRIGHT" && rotateShift("left", ulRotateShift) && rotateShift("right", urRotateShift) && yCoord < getEndIndex())
+                if(state === "UPRIGHT" && borderVirtShift("up", virtShiftTop) && rotateShift("left", ulRotateShift) && rotateShift("right", urRotateShift) && yCoord < getEndIndex())
                 {
                     state = "RIGHT"
                     rotation = (fourStates) ? 180 : 0
@@ -231,10 +236,10 @@ Item {
 
         onTriggered:
         {
-            if((state === "LEFT" && borderVirtShift(leftBoardVirtShiftNum)) ||
-                    (state === "RIGHT" && borderVirtShift(rightBoardVirtShiftNum)) ||
-                    (state === "UPRIGHT" && borderVirtShift(upBoardVirtShiftNum)) ||
-                    (state === "UPSIDEDOWN" && borderVirtShift(downBoardVirtShiftNum)))
+            if((state === "LEFT" && borderVirtShift("down", leftBoardVirtShiftNum)) ||
+                    (state === "RIGHT" && borderVirtShift("down", rightBoardVirtShiftNum)) ||
+                    (state === "UPRIGHT" && borderVirtShift("down", upBoardVirtShiftNum)) ||
+                    (state === "UPSIDEDOWN" && borderVirtShift("down", downBoardVirtShiftNum)))
             {
                 if (collision)
                 {

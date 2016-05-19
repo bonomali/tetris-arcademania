@@ -26,10 +26,20 @@ TextRect{
         refreshScoreBoard()
         if (!enterName)
         {
-            txtin_input.focus = false
+            textinputBox.txtin_input.focus = false
             scoreBoard.focus = true
         }
     }
+
+    onHeightChanged:
+    {
+        anim1.stop()
+        anim2.stop()
+        anim1.initialAnim.to = -scoreBoard.height
+        anim2.initialAnim2.from = scoreBoard.height
+        anim1.start()
+        anim2.start()
+}
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
@@ -55,13 +65,13 @@ TextRect{
 
     function updateScoreBoard()
     {
-        score_board.writeToFile()
-        score_board.readFromFile()
+        scoreBoard.visible = true
+        scoreBoard.focus = true
         newIndex = score_board.checkHighScore(_score, gamePlayTimer)
         if(newIndex !== -1)
         {
             enterName = true
-            txtin_input.focus = true
+            textinputBox.txtin_input.focus = true
         }
         return enterName
     }
@@ -90,13 +100,14 @@ TextRect{
             }
 
             SequentialAnimation on y{
+                property alias initialAnim: initialAnim
                 id: anim1
                 running: !enterName
                 PauseAnimation {duration: 2000}
                 NumberAnimation{
                     id: initialAnim
                     from: 0
-                    to: -scrollin.height * 1.5
+                    to: -scoreBoard.height * 1.5
                     duration: 25000
                     loops: Animation.Infinite
                 }
@@ -105,9 +116,9 @@ TextRect{
 
         Rectangle {
             id:scrollin2
+            x: parent.x * 6
             width: parent.width
             height: parent.height
-            x: parent.x * 6
             color: "transparent"
             Text{
                 text: allScores
@@ -117,12 +128,13 @@ TextRect{
             }
 
             SequentialAnimation on y{
-                id:anim2
+                property alias initialAnim2: initialAnim2
+                id: anim2
                 running: !enterName
                 PauseAnimation {duration: 2000}
                 NumberAnimation{
                     id: initialAnim2
-                    from: scrollin2.height * 1.5
+                    from: scoreBoard.height * 1.5
                     to: 0
                     duration: 25000
                     loops: Animation.Infinite
@@ -150,7 +162,7 @@ TextRect{
         wrapMode: "WordWrap"
         color: "#b9d6e1"
         font.family: "Courier"
-        text: "     Name\t\t Score\tTime"
+        text: "     Name         Score    Time"
         anchors.top: scoreBoardHeader.bottom
         x: listOfNames.width * .05
         anchors.topMargin: scoreBoard.height * .02
@@ -176,6 +188,8 @@ TextRect{
     }
 
     Rectangle{
+        id:textinputBox
+        property alias txtin_input: txtin_input
         height: scoreBoard.height * .1
         width: scoreBoard.width * .8
         radius: 15

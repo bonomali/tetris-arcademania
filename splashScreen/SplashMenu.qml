@@ -7,7 +7,6 @@ Rectangle{
     width: appWindow.width
     height: appWindow.height
 
-    property int selectedLevel: 1
     property bool isButtonEnabled: false
     property bool homebuttonPressed: false
 
@@ -16,19 +15,19 @@ Rectangle{
         {
             console.log("enter pressed")
             defButtonSound.play()
-            currentLevel = selectedLevel
+            currentLevel = _levelSelected
             splashScreen.visible = false
             appWindow.initializeBoard1.initializeBoard()
             parent.focus = false
         }
-        else if (event.key === Qt.Key_Right && selectedLevel < 10)
+        else if (event.key === Qt.Key_Right && _levelSelected < 10)
         {
-            selectedLevel++
+            _levelSelected++
             levelSelectSFX.play()
         }
-        else if (event.key === Qt.Key_Left && selectedLevel > 1)
+        else if (event.key === Qt.Key_Left && _levelSelected > 1)
         {
-            selectedLevel--
+            _levelSelected--
             levelSelectSFX.play()
         }
 
@@ -59,7 +58,7 @@ Rectangle{
         enabled: isButtonEnabled
         mouseArea.onClicked: {
             defButtonSound.play()
-            currentLevel = selectedLevel
+            currentLevel = _levelSelected
             parent.visible = false
             appWindow.initializeBoard1.initializeBoard()
             parent.focus = false
@@ -77,7 +76,7 @@ Rectangle{
         enabled: isButtonEnabled
         mouseArea.onClicked: {
             defButtonSound.play()
-            currentLevel = selectedLevel
+            currentLevel = _levelSelected
             parent.visible = false
             appWindow.initializeBoard1.initializeBoard()
             parent.focus = false
@@ -144,9 +143,9 @@ Rectangle{
         anchors.horizontalCenterOffset: startButton.width * -.35
         enabled: isButtonEnabled
         mouseArea.onClicked: {
-            if (selectedLevel > 1)
+            if (_levelSelected > 1)
             {
-                selectedLevel--
+                _levelSelected--
                 levelSelectSFX.play()
             }
         }
@@ -162,9 +161,9 @@ Rectangle{
         anchors.horizontalCenterOffset: startButton.width * .35
         enabled: isButtonEnabled
         mouseArea.onClicked: {
-            if (selectedLevel < 10)
+            if (_levelSelected < 10)
             {
-                selectedLevel++
+                _levelSelected++
                 levelSelectSFX.play()
             }
         }
@@ -180,7 +179,7 @@ Rectangle{
         anchors.horizontalCenter: startButton.horizontalCenter
         rectangleFont.pointSize: 15
         baseRectangleText.anchors.centerIn: textRect
-        rectangleText: selectedLevel
+        rectangleText: _levelSelected
     }
 
     Image{

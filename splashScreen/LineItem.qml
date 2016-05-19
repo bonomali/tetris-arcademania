@@ -30,6 +30,8 @@ Shape {
     lrRotateShift: 2
     rrRotateShift: 2
 
+    virtShiftTop: 0
+
     fourStates: false
     rotate:(function() {line.rotate();})
     getEndIndex: (function() {return line.getEndIndex() - 2;})

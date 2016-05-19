@@ -11,7 +11,11 @@ import QtQuick 2.5
                 seconds = 0
                 playTimer.restart()
                 appWindow.initializeBoard1.initializeBoard()
-                _level = 1
+                _backColorArray[_levelSelected - 1]
+                _mainColorArray[_levelSelected - 1]
+                _backColorArray[_levelSelected - 1]
+                _secondaryColorArray[_levelSelected - 1]
+                _level = _levelSelected
                 _score = 0
                 visible = false
                 focus = false
@@ -35,7 +39,11 @@ import QtQuick 2.5
             seconds = 0
             playTimer.restart()
             appWindow.initializeBoard1.initializeBoard()
-            _level = 1
+            _backColorArray[_levelSelected - 1]
+            _mainColorArray[_levelSelected - 1]
+            _backColorArray[_levelSelected - 1]
+            _secondaryColorArray[_levelSelected - 1]
+            _level = _levelSelected
             _score = 0
             visible = false
             focus = false
