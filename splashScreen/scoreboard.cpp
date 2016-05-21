@@ -1,5 +1,13 @@
 #include "scoreboard.h"
 
+/*************************************************************************************************
+* Purpose: Default constructor to instantiate scoreboard object
+*
+* Precondition: instantiate scoreboard object
+*
+* Postcondition: scoreboard object created with default values, call readFromFile to read high
+* scores from file into highscore array, replacing defaults. If no file, new file will be created
+***************************************************************************************************/
 ScoreBoard::ScoreBoard()
 {
     m_highScores[0].name = "Stephanie";
@@ -62,7 +70,7 @@ ScoreBoard::ScoreBoard()
     m_highScores[14].score = "0";
     m_highScores[14].time = "0:00";
 
-    readFromFile();
+    readFromFile(); //read high scores from file if exists, or create file
 }
 void ScoreBoard::writeToFile()
 {
@@ -141,39 +149,105 @@ int ScoreBoard::checkHighScore(int newScore, QString newTime)
 
     return newHScoreIndex;
 }
+/*************************************************************************************************
+* Purpose: Return name at specified index-1 in m_highScores array
+*
+* Precondition: pass in index value
+*
+* Postcondition: return name at index-1 as QString
+***************************************************************************************************/
 QString ScoreBoard::getName(int index)
 {
+    if((index - 1) < 0 || index > NUM_HSCORES)
+        throw("index out of bounds");
+
     return QString::fromStdString(m_highScores[(index - 1)].name);
 }
+/*************************************************************************************************
+* Purpose: Return score at specified index-1 in m_highScores array
+*
+* Precondition: pass in index value
+*
+* Postcondition: return score at index-1 as QString
+***************************************************************************************************/
 QString ScoreBoard::getScore(int index)
 {
+    if((index - 1) < 0 || index > NUM_HSCORES)
+        throw("index out of bounds");
+
     return QString::fromStdString(m_highScores[(index - 1)].score);
 }
+/*************************************************************************************************
+* Purpose: Return time at specified index-1 in m_highScores array
+*
+* Precondition: pass in index value
+*
+* Postcondition: return time at index-1 as QString
+***************************************************************************************************/
 QString ScoreBoard::getTime(int index)
 {
+    if((index - 1) < 0 || index > NUM_HSCORES)
+        throw("index out of bounds");
+
     return QString::fromStdString(m_highScores[(index - 1)].time);
 }
+/*************************************************************************************************
+* Purpose: Return name at specified index in m_highScores array
+*
+* Precondition: pass in index value
+*
+* Postcondition: return name at index as QString
+***************************************************************************************************/
 QString ScoreBoard::getPlayerStats(int index)
 {
+    if((index - 1) < 0 || index > NUM_HSCORES)
+        throw("index out of bounds");
+
     return QString::fromStdString(m_highScores[(index - 1)].name + m_highScores[(index - 1)].score +
             m_highScores[(index - 1)].time);
 }
+/*************************************************************************************************
+* Purpose: Set name at specified index in m_highScores array
+*
+* Precondition: pass in name as QString and index value
+*
+* Postcondition: convert name to string and set at index in array, write array to text file,
+* and read text file into m_highScores to update array
+***************************************************************************************************/
 void ScoreBoard::setName(QString newName, int index)
 {
+    if(index < 0 || index > NUM_HSCORES)
+        throw("index out of bounds");
+
     m_highScores[index].name = newName.toStdString();
     writeToFile();
     readFromFile();
-
-    for(int i = 0; i < NUM_HSCORES; i++)
-    {
-        cout << m_highScores[i].name << " " << m_highScores[i].score << " " << m_highScores[i].time << endl;
-    }
 }
+/*************************************************************************************************
+* Purpose: Set score at specified index in m_highScores array
+*
+* Precondition: pass in score as integer and index value
+*
+* Postcondition: convert score to string and set at index in array
+***************************************************************************************************/
 void ScoreBoard::setScore(int newScore, int index)
 {
+    if(index < 0 || index > NUM_HSCORES)
+        throw("index out of bounds");
+
     m_highScores[index].score = std::to_string(newScore);
 }
+/*************************************************************************************************
+* Purpose: Set time at specified index in m_highScores array
+*
+* Precondition: pass in time as QString and index value
+*
+* Postcondition: convert time to string and set at index in array
+***************************************************************************************************/
 void ScoreBoard::setTime(QString newTime, int index)
 {
+    if(index < 0 || index > NUM_HSCORES)
+        throw("index out of bounds");
+
     m_highScores[index].time = newTime.toStdString();
 }

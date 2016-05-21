@@ -1,5 +1,13 @@
 #include "mlitem.h"
 
+/*************************************************************************************************
+* Purpose: Default constructor to instantiate mirrored-L item and set default values
+*
+* Precondition: instantiate a mirrored-L item object
+*
+* Postcondition: mirrored-L item created, four arrays for rotational states set, inital rotational
+* state array set, color and end index set
+***************************************************************************************************/
 mlItem::mlItem()
 {
     m_shapeStruct.upRight[1][0] = true;     //widest
@@ -30,14 +38,23 @@ mlItem::mlItem()
     m_endIndex = 29;
 
 }
+/*************************************************************************************************
+* Purpose: Rotate shape and update m_rotateState array and m_endIndex to reflect current rotational
+* state
+*
+* Precondition: player enters input command to rotate shape
+*
+* Postcondition: shape rotated to next rotational state and m_rotateState array and m_endIndex updated
+* to reflect new state
+***************************************************************************************************/
 void mlItem::rotate()
 {
-    if(rotateState != 3)
+    if(rotateState != 3)    //increment enum to next rotational state
         rotateState = static_cast<rotateShape>(rotateState + 1);
-    else
+    else                    //return to first rotational state in enum
         rotateState = UPRIGHT;
 
-    switch (rotateState)
+    switch (rotateState)   //update array and end index to reflect new rotational state
     {
         case UPRIGHT:
             for(int i = 0; i < 4; i++)
@@ -70,8 +87,15 @@ void mlItem::rotate()
         default:
             throw("Rotate state undefined");
     }
-     emit moveDetected();
+    emit moveDetected();  //send signal to Qml that shape rotated
 }
+/*************************************************************************************************
+* Purpose: Reset m_endIndex (upper y-bound) to default value for upright rotational state
+*
+* Precondition: piece collides and needs to be reset to default for next time it falls
+*
+* Postcondition: m_endIndex reset to default value for upright rotational position
+***************************************************************************************************/
 void mlItem::resetEndIndex()
 {
     m_endIndex = 29;

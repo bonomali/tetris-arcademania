@@ -17,16 +17,18 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    ishapes * cube = new cubeItem();
+    ishapes * cube = new cubeItem();        //instantiate Tetris objects
     ishapes * lineitem = new lineItem();
     ishapes * titem = new tItem();
     ishapes * litem = new lItem();
     ishapes * mlitem = new mlItem();
     ishapes * zitem = new zItem();
     ishapes * mzitem = new mzItem();
+
+    //instantiate Tetris grid
     MainGrid grid(cube, lineitem, titem, litem, mlitem, zitem, mzitem);
 
-    ScoreBoard score_board;
+    ScoreBoard score_board;     //instantiate scoreboard
 
     QQmlApplicationEngine engine;
 
