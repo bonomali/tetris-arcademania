@@ -5,7 +5,7 @@ Shape {
     bottomLeft.visible: false
     bottomRight.visible: false
     shapeColor: "orange"
-    shapeHeight: topLeft.width * 3
+    shapeHeight: refSquare.width * 3
     shapeValue: 3
 
     rightVirtShift: "up"
@@ -16,6 +16,7 @@ Shape {
     lrBoardHorzShiftNum: 2
     urBoardHorzShiftNum: 3
     drBoardHorzShiftNum: 2
+    dlboardHorzShiftNum: 1
 
     rlRotateShift: -1
     ulRotateShift: -1

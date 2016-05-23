@@ -7,7 +7,7 @@ Shape {
     thirdLeft.visible: false
     bottomLeft.visible: false
     shapeColor: "#7FFFD4"
-    shapeHeight: topLeft.width * 2
+    shapeHeight: refSquare.width * 2
     state: "UPRIGHT"
     shapeValue: 6
     rotation: 90

@@ -6,7 +6,7 @@ Shape {
     thirdRight.visible: false
     topRight.visible: false
     shapeColor: "#00FFFF"
-    shapeHeight: topLeft.width * 3
+    shapeHeight: refSquare.width * 3
     shapeValue: 2
 
     rightVirtShift: "up"

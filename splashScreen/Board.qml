@@ -6,10 +6,12 @@ import QTGraphicalEffects 1.0
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.bottom: parent.bottom
     anchors.bottomMargin: parent.height * .025
-    height: referenceSquare.height * tilesHigh
-    width: referenceSquare.width * tilesWide
-    border.color: "#002355"
+    height: refSquare.height * tilesHigh
+    width: refSquare.width * tilesWide
+    border.color: "#002355" //dark blue
     border.width: 3
+
+    //Public references to dropping shapes
     property alias sCube: sCube
     property alias sLineItem: sLineItem
     property alias sLItem: sLItem
@@ -18,14 +20,19 @@ import QTGraphicalEffects 1.0
     property alias sTItem: sTItem
     property alias sZItem: sZItem
 
+    property alias refSquare: sCube.refSquare   // reference square used for determining dimensions
+
+    property alias mainGrid:mainGrid // 32 x 16 grid of cubes that visually represents where each shape
+                                     // has fallen
+    //indices used in for loops
     property int index: 0
     property int i: 0
     property int j: 0
-    property int onDeckShape: 0
-    property alias squareRepeater:squareRepeater
 
+    property int onDeckShape: 0 // Current shape value in the "Next" window
+
+    // Resets the grid and shapes to their default values
     function initializeBoard(){
-
         grid.resetBoard()
 
         for(i  = 0; i < 32; i++)
@@ -33,12 +40,13 @@ import QTGraphicalEffects 1.0
             for (j = 0; j < 16; j++)
             {
                     index = ((i * tilesWide) + j)
-                    squareRepeater.itemAt(index).visible = false
+                    mainGrid.itemAt(index).visible = false
             }
         }
 
-        resetShapes()
+        resetShapeCoordinates()
 
+        // in case game is reset before game over, reset all shape values to default
         sCube.visible = false;
         sCube.focus = true;
         sCube.sleep.running = false;
@@ -68,72 +76,67 @@ import QTGraphicalEffects 1.0
         sMZItem.state = "UPRIGHT"
         sZItem.state = "UPRIGHT"
         sTItem.state = "UPRIGHT"
-        fallingShape = -1
-        getRandomIntInclusive(0,6)
+
+        fallingShape = -1   // resets the current falling shape value to its default
+
+        generateShape(0,6)  // generates a starting shape
     }
 
-    function resetShapes()
+    // resets the shape location upon window resize or a new game is created
+    function resetShapeCoordinates()
     {
-        sCube.x = referenceSquare.width * xCoord
-        sCube.y = -referenceSquare.height
-        sLineItem.x = referenceSquare.width * xCoord
-        sLineItem.y = -referenceSquare.height
-        sLItem.x = referenceSquare.width * xCoord
-        sLItem.y = -referenceSquare.height
-        sMLItem.x = referenceSquare.width * xCoord
-        sMLItem.y = -referenceSquare.height
-        sMZItem.x = referenceSquare.width * xCoord
-        sMZItem.y = -referenceSquare.height
-        sTItem.x = referenceSquare.width * xCoord
-        sTItem.y = -referenceSquare.height
-        sZItem.x = referenceSquare.width * xCoord
-        sZItem.y = -referenceSquare.height
+        sCube.x = refSquare.width * xCoord
+        sCube.y = -refSquare.height
+        sLineItem.x = refSquare.width * xCoord
+        sLineItem.y = -refSquare.height
+        sLItem.x = refSquare.width * xCoord
+        sLItem.y = -refSquare.height
+        sMLItem.x = refSquare.width * xCoord
+        sMLItem.y = -refSquare.height
+        sMZItem.x = refSquare.width * xCoord
+        sMZItem.y = -refSquare.height
+        sTItem.x = refSquare.width * xCoord
+        sTItem.y = -refSquare.height
+        sZItem.x = refSquare.width * xCoord
+        sZItem.y = -refSquare.height
     }
 
-    function getRandomIntInclusive(min, max) {
+    //Randomly generates an integer for both the "Next" shape and the current
+    //falling shape
+    function generateShape(min, max) {
+
+      // If there is no "Next" shape, generate a new falling shape, otherswise
+      // transfer the "Next" shape to the falling shape and generate a new
+      // "Next" shape.
       if(fallingShape === -1)
         fallingShape = Math.floor(Math.random() * (max - min + 1)) + min;
-
       else
         fallingShape = onDeckShape;
 
       onDeckShape = Math.floor(Math.random() * (max - min + 1)) + min;
-      //console.log("random deck number ", onDeckShape)
 
-      appWindow.cubeItem1 = false
-      appWindow.lineItem1 = false
-      appWindow.mLItem1 = false
-      appWindow.lItem1 = false
-      appWindow.mZItem1 = false
-      appWindow.zItem1 = false
-      appWindow.tItem1 = false
+      appWindow.cubeItem.visible = false
+      appWindow.lineItem.visible = false
+      appWindow.mLItem.visible = false
+      appWindow.lItem.visible = false
+      appWindow.mZItem.visible = false
+      appWindow.zItem.visible = false
+      appWindow.tItem.visible = false
 
+      // Sets current "Next" shape to visible
       switch(onDeckShape)
         {
-        case 0:
-            appWindow.cubeItem1 = true
-            break;
-        case 1:
-            appWindow.lineItem1 = true
-            break;
-        case 2:
-            appWindow.lItem1 = true
-            break;
-        case 3:
-            appWindow.mLItem1 = true
-            break;
-        case 4:
-            appWindow.mZItem1 = true
-            break;
-        case 5:
-            appWindow.tItem1 = true
-            break;
-        case 6:
-            appWindow.zItem1 = true
-            break;
-        default:
-            throw("Invalid RNG value");
+        case 0: appWindow.cubeItem.visible = true; break;
+        case 1: appWindow.lineItem.visible = true; break;
+        case 2: appWindow.lItem.visible = true ; break;
+        case 3: appWindow.mLItem.visible = true; break;
+        case 4: appWindow.mZItem.visible = true; break;
+        case 5: appWindow.tItem.visible = true; break;
+        case 6: appWindow.zItem.visible = true; break;
+        default: throw("Invalid RNG value");
         }
+
+      // Sets current falling shape into motion
       switch(fallingShape)
         {
         case 0:
@@ -176,6 +179,7 @@ import QTGraphicalEffects 1.0
         }
     }
 
+    //Handle for the game over signal
     Connections {
         target: grid
         onGameOver: {
@@ -189,6 +193,9 @@ import QTGraphicalEffects 1.0
             sTItem.state = "GAMEOVER"
             fallingShape = -1
             playTimer.stop()
+
+            // if user does not get a high score show the game over message,
+            // otherwise display score board and prompt user for name
             if(!scoreBoard.updateScoreBoard())
             {
                 gameOver.visible = true
@@ -197,59 +204,57 @@ import QTGraphicalEffects 1.0
         }
     }
 
-    onHeightChanged:
-    {
-        resetShapes()
-    }
+    // If the window size has changed, reset the shape's x and y coordinates
+    onHeightChanged: resetShapeCoordinates()
 
+    // Gradient background for grid
     RadialGradient{
         anchors.fill: playArea
         gradient: Gradient{
             GradientStop{
-                position: 0.0
+                position: 0
                 color: _mainColorArray[0]
 
+                // Transition color if level changed
                 ColorAnimation on color {
                     id: outerColorAnim
                     to: _mainColorArray[_level]
-                    duration: animDuration
+                    duration: 5000
                     running: animate
                 }
 
             }
             GradientStop{ position: 0.5
                 color: _gradientArray[0]
+
+                // Transition color if level changed
                 ColorAnimation on color {
                     id: innerColorAnim
                     to: _gradientArray[_level]
-                    duration: animDuration
+                    duration: 5000
                     running: animate
                 }
             }
         }
     }
 
-    Square{
-        id:referenceSquare
-        color:"transparent"
-        border.color: "transparent"
-    }
-
+    // Initialize 32 x 16 grid of Squares for Board
     Repeater {
-        id: squareRepeater
+        id: mainGrid
         model: 512
         Square{
          id: drawnSquare
-         y: Math.floor(index/16) * referenceSquare.height
-         x: (index - (Math.floor(index / 16) * 16)) * referenceSquare.width
+         y: Math.floor(index/16) * refSquare.height
+         x: (index - (Math.floor(index / 16) * 16)) * refSquare.width
          color: "transparent"
         }
     }
 
+    // Declare all shapes
     CubeItem {
         id:sCube
-        x: topLeft.width * xCoord
-        y: -topLeft.height
+        x: refSquare.width * xCoord
+        y: -refSquare.height
         visible: false
         focus: false
         sleep.running: false
@@ -257,8 +262,8 @@ import QTGraphicalEffects 1.0
     }
     LineItem {
         id:sLineItem
-        x: topLeft.width * xCoord
-        y: -topLeft.height
+        x: refSquare.width * xCoord
+        y: -refSquare.height
         visible: false
         focus: false
         sleep.running: false
@@ -266,8 +271,8 @@ import QTGraphicalEffects 1.0
     }
     LItem{
         id:sLItem
-        x: topLeft.width * xCoord
-        y: -topLeft.height
+        x: refSquare.width * xCoord
+        y: -refSquare.height
         visible: false
         focus: false
         sleep.running: false
@@ -275,8 +280,8 @@ import QTGraphicalEffects 1.0
     }
     MLItem{
         id:sMLItem
-        x: topLeft.width * xCoord
-        y: -topLeft.height
+        x: refSquare.width * xCoord
+        y: -refSquare.height
         visible: false
         focus: false
         sleep.running: false
@@ -284,8 +289,8 @@ import QTGraphicalEffects 1.0
     }
     MZItem{
         id: sMZItem
-        x: topLeft.width * xCoord
-        y: -topLeft.height
+        x: refSquare.width * xCoord
+        y: -refSquare.height
         visible: false
         focus: false
         sleep.running: false
@@ -293,8 +298,8 @@ import QTGraphicalEffects 1.0
     }
     TItem{
         id: sTItem
-        x: topLeft.width * xCoord
-        y: -topLeft.height
+        x: refSquare.width * xCoord
+        y: -refSquare.height
         visible: false
         focus: false
         sleep.running: false
@@ -302,20 +307,20 @@ import QTGraphicalEffects 1.0
     }
     ZItem{
         id: sZItem
-        x: topLeft.width * xCoord
-        y: -topLeft.height
+        x: refSquare.width * xCoord
+        y: -refSquare.height
         visible: false
         focus: false
         sleep.running: false
         sleep.interval: _speed
     }
 
+    // Canvas used to draw grid lines
     Canvas {
         id: root
-        // canvas size
         anchors.fill: parent
         anchors.centerIn: parent
-        // handler to override for drawing
+        // handler used for drawing grid lines
         onPaint: {
             // get context to draw with
             var ctx = getContext("2d")

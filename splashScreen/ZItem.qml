@@ -8,7 +8,7 @@ Shape {
     bottomLeft.visible: false
     bottomRight.visible: false
     shapeColor: "#ce93d8"
-    shapeHeight: topLeft.width * 2
+    shapeHeight: refSquare.width * 2
     state: "UPRIGHT"
     shapeValue: 5
     fourStates: false

@@ -134,6 +134,16 @@ Rectangle{
         buttonText : "Continue"
     }
 
+    Text{
+        text:"Level Select"
+        color: "#AAFFFFFF"
+        font.pointSize: 15
+        font.bold: true
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottomMargin: parent.height * .45
+    }
+
     Buttons {
         id:leftButton
         width: parent.width * .10; height: parent.height * .10

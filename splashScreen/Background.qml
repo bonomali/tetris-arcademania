@@ -1,149 +1,158 @@
 import QtQuick 2.5
 
+/*************************************************************************************************
+* Purpose: Display an animated background during gameplay
+**************************************************************************************************/
 Rectangle {
     id:baseBackground
-    property color backColor: _backColorArray[0]
-    property color mainColor: _mainColorArray[0]
-    property color secColor: _backColorArray[0]
-    property color triColor: _secondaryColorArray[0]
-    property alias anim1: anim1
+    property color backColor: _backColorArray[0]        //background color
+    property color mainColor: _mainColorArray[0]        //Color of forefront cubes
+    property color secColor: _secondaryColorArray[0]    //Color of background cubes
+    property color boarderColor: _backColorArray[0]     //Boarder color of cubes
+    property alias backCubeAnim: backCubeAnim           //Public reference to the background cube animation
     anchors.fill: parent
-    color: backColor
+    color: backColor                                    //sets background color based on the current
+                                                        //_backColorArray index
 
+    // Encapsulates a collection of cubes
     Rectangle{
-        id: background1
+        id: cubesLayer1
         color: "transparent"
         height: appWindow.height
         width: appWindow.width
 
+        // Animates the collection of cubes downwards
         NumberAnimation on y {
-            id: anim1
+            id: backCubeAnim
                 loops: Animation.Infinite
                 from: 0
                 to: appWindow.height;
                 duration: 100000
             }
             Square{
-                id: refLeft
+                id: refSquare
                 color:_mainColorArray[_level - 1]
-                border.color: refLeft4.border.color
+                border.color: refSquare3.border.color
                 width: appWindow.width * .1
                 height: appWindow.width * .1
                 x: appWindow.width * .05
                 y: appWindow.height * .4
 
+                //Animates the color shift after a level change
                 ColorAnimation on color {
-                    id: winColorAnim
-                    to: _mainColorArray[_level]
-                    duration: animDuration
-                    running: animate
+                    id: cubeColorAnim
+                    to: _mainColorArray[_level] //sets transition color
+                    duration: 5000
+                    running: animate        //after animation stops, set running to false
                 }
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
-                x: refLeft.x + refLeft.width
-                y: refLeft.y + refLeft.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
+                x: refSquare.x + refSquare.width
+                y: refSquare.y + refSquare.height
             }
 
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
-                x: refLeft.x - refLeft.width
-                y: refLeft.y + refLeft.height * 3
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
+                x: refSquare.x - refSquare.width
+                y: refSquare.y + refSquare.height * 3
             }
 
             Square{
                 id: refLeft2
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
-                x: refLeft.x + refLeft.width
-                y: refLeft.y - refLeft.height * 4
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
+                x: refSquare.x + refSquare.width
+                y: refSquare.y - refSquare.height * 4
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
-                x: refLeft2.x - refLeft.width
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
+                x: refLeft2.x - refSquare.width
                 y: refLeft2.y
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
-                x: refLeft2.x - refLeft.width
-                y: refLeft2.y + refLeft.width
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
+                x: refLeft2.x - refSquare.width
+                y: refLeft2.y + refSquare.width
             }
 
             Square{
                 id: refRight
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
-                x: refLeft.x + refLeft.width * 8
-                y: refLeft.y + refLeft.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
+                x: refSquare.x + refSquare.width * 8
+                y: refSquare.y + refSquare.height
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
                 x: refRight.x
-                y: refRight.y - refLeft.height
+                y: refRight.y - refSquare.height
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
-                x: refRight.x - refLeft.height
-                y: refRight.y + refLeft.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
+                x: refRight.x - refSquare.height
+                y: refRight.y + refSquare.height
             }
 
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
                 x: refRight.x
-                y: refRight.y + refLeft.height * 4
+                y: refRight.y + refSquare.height * 4
             }
 
             Square{
                 id: refRight2
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
-                x: refRight.x - refLeft.height
-                y: refRight.y - refLeft.height * 4
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
+                x: refRight.x - refSquare.height
+                y: refRight.y - refSquare.height * 4
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft.width
-                height: refLeft.height
-                x: refRight2.x + refLeft.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare.width
+                height: refSquare.height
+                x: refRight2.x + refSquare.height
                 y: refRight2.y
             }
     }
+
+    // Encapsulates a second collection of cubes
     Rectangle{
-        id: background2
+        id: cubesLayer2
         color: "transparent"
         height: appWindow.height
         width: appWindow.width
 
+            // Animates the collection of cubes downwards
             NumberAnimation on y {
-                id: anim2
                 loops: Animation.Infinite
                 from: -appWindow.height
                 to: 0;
@@ -151,118 +160,120 @@ Rectangle {
             }
 
             Square{
-                id: refLeft3
-                color:refLeft.color
-                border.color: refLeft4.border.color
+                id: refSquare2
+                color:refSquare.color
+                border.color: refSquare3.border.color
                 width: appWindow.width * .1
                 height: appWindow.width * .1
                 x: appWindow.width * .05
                 y: appWindow.height * .4
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
-                x: refLeft3.x + refLeft3.width
-                y: refLeft3.y + refLeft3.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
+                x: refSquare2.x + refSquare2.width
+                y: refSquare2.y + refSquare2.height
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
-                x: refLeft3.x - refLeft3.width
-                y: refLeft3.y + refLeft3.height * 3
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
+                x: refSquare2.x - refSquare2.width
+                y: refSquare2.y + refSquare2.height * 3
             }
 
             Square{
-                id: refLeft32
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
-                x: refLeft3.x + refLeft3.width
-                y: refLeft3.y - refLeft3.height * 4
+                id: refSquare22
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
+                x: refSquare2.x + refSquare2.width
+                y: refSquare2.y - refSquare2.height * 4
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
-                x: refLeft32.x - refLeft3.width
-                y: refLeft32.y
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
+                x: refSquare22.x - refSquare2.width
+                y: refSquare22.y
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
-                x: refLeft32.x - refLeft3.width
-                y: refLeft32.y + refLeft3.width
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
+                x: refSquare22.x - refSquare2.width
+                y: refSquare22.y + refSquare2.width
             }
 
             Square{
                 id: refRight3
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
-                x: refLeft3.x + refLeft3.width * 8
-                y: refLeft3.y + refLeft3.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
+                x: refSquare2.x + refSquare2.width * 8
+                y: refSquare2.y + refSquare2.height
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
                 x: refRight3.x
-                y: refRight3.y - refLeft3.height
+                y: refRight3.y - refSquare2.height
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
-                x: refRight3.x - refLeft3.height
-                y: refRight3.y + refLeft3.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
+                x: refRight3.x - refSquare2.height
+                y: refRight3.y + refSquare2.height
             }
 
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
                 x: refRight3.x
-                y: refRight3.y + refLeft3.height * 4
+                y: refRight3.y + refSquare2.height * 4
             }
 
             Square{
-                id: refRight32
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
-                x: refRight3.x - refLeft3.height
-                y: refRight3.y - refLeft3.height * 4
+                id: refSquare4
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
+                x: refRight3.x - refSquare2.height
+                y: refRight3.y - refSquare2.height * 4
             }
             Square{
-                color:refLeft.color
-                border.color: refLeft4.border.color
-                width: refLeft3.width
-                height: refLeft3.height
-                x: refRight32.x + refLeft3.height
-                y: refRight32.y
+                color:refSquare.color
+                border.color: refSquare3.border.color
+                width: refSquare2.width
+                height: refSquare2.height
+                x: refSquare4.x + refSquare2.height
+                y: refSquare4.y
             }
     }
+
+    // Encapsulates a third collection of cubes
     Rectangle{
-        id: background3
+        id: cubesLayer3
         color: "transparent"
         height: appWindow.height
         width: appWindow.width
 
+            // Animates the collection of cubes downwards
             NumberAnimation on y {
-                id: anim3
                 loops: Animation.Infinite
                 from: -appWindow.height
                 to: appWindow.height;
@@ -270,8 +281,8 @@ Rectangle {
             }
 
             Square{
-                id: refLeft4
-                color:triColor
+                id: refSquare3
+                color:secColor
                 border.color: backColor
                 width: appWindow.width * .1
                 height: appWindow.width * .1
@@ -280,112 +291,111 @@ Rectangle {
                 ColorAnimation on color {
                     id: squareColorAnim
                     to: _secondaryColorArray[_level]
-                    duration: animDuration
+                    duration: 5000
                     running: animate
                 }
                 ColorAnimation on border.color {
                     id: squareColorBoardAnim
                     to: _backColorArray[_level]
-                    duration: animDuration
+                    duration: 5000
                     running: animate
                 }
 
             }
             Square{
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
-                x: refLeft4.x + refLeft4.width
-                y: refLeft4.y + refLeft4.height
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
+                x: refSquare3.x + refSquare3.width
+                y: refSquare3.y + refSquare3.height
             }
             Square{
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
-                x: refLeft4.x - refLeft4.width
-                y: refLeft4.y + refLeft4.height * 3
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
+                x: refSquare3.x - refSquare3.width
+                y: refSquare3.y + refSquare3.height * 3
             }
 
             Square{
-                id: refLeft42
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
-                x: refLeft4.x + refLeft4.width
-                y: refLeft4.y - refLeft4.height * 4
+                id: refSquare5
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
+                x: refSquare3.x + refSquare3.width
+                y: refSquare3.y - refSquare3.height * 4
             }
             Square{
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
-                x: refLeft42.x - refLeft4.width
-                y: refLeft42.y
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
+                x: refSquare5.x - refSquare3.width
+                y: refSquare5.y
             }
             Square{
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
-                x: refLeft42.x - refLeft4.width
-                y: refLeft42.y + refLeft4.width
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
+                x: refSquare5.x - refSquare3.width
+                y: refSquare5.y + refSquare3.width
             }
 
             Square{
                 id: refRight4
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
-                x: refLeft4.x + refLeft4.width * 8
-                y: refLeft4.y + refLeft4.height
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
+                x: refSquare3.x + refSquare3.width * 8
+                y: refSquare3.y + refSquare3.height
             }
             Square{
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
                 x: refRight4.x
-                y: refRight4.y - refLeft4.height
+                y: refRight4.y - refSquare3.height
             }
             Square{
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
-                x: refRight4.x - refLeft4.height
-                y: refRight4.y + refLeft4.height
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
+                x: refRight4.x - refSquare3.height
+                y: refRight4.y + refSquare3.height
             }
 
             Square{
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
                 x: refRight4.x
-                y: refRight4.y + refLeft4.height * 4
+                y: refRight4.y + refSquare3.height * 4
             }
 
             Square{
                 id: refRight42
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
-                x: refRight4.x - refLeft4.height
-                y: refRight4.y - refLeft4.height * 4
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
+                x: refRight4.x - refSquare3.height
+                y: refRight4.y - refSquare3.height * 4
             }
             Square{
-                color:refLeft4.color
-                border.color: refLeft4.border.color
-                width: refLeft4.width
-                height: refLeft4.height
-                x: refRight42.x + refLeft4.height
+                color:refSquare3.color
+                border.color: refSquare3.border.color
+                width: refSquare3.width
+                height: refSquare3.height
+                x: refRight42.x + refSquare3.height
                 y: refRight42.y
             }
-
-}
+    }
 }

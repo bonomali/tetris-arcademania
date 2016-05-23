@@ -68,7 +68,7 @@ Item {
                   appWindow.initializeBoard1.sZItem.sleep.running = false;
                   break;
               default:
-                  throw("Invalid RNG value");
+                  throw("Invalid Shape value");
               }
         }
     }

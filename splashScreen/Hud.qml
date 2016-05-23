@@ -4,25 +4,25 @@ import QtMultimedia 5.6
 
 Rectangle {
     id: hud
-      property int _goal : _startingGoal
+    property int _goal : _startingGoal
     property int _lineBreaks: 0
     property int _startingGoal: 5
     property alias localBoard: localBoard
     property int _speed: _speedArray[_level - 1]
     property int _level: 1
     property int index: 0
-    property alias cubeItem1:cubeItem1.visible
-    property alias lineItem1:lineItem1.visible
-    property alias mLItem1:mLItem1.visible
-    property alias lItem1:lItem1.visible
-    property alias mZItem1:mZItem1.visible
-    property alias zItem1:zItem1.visible
-    property alias tItem1:tItem1.visible
+    property alias cubeItem:cubeItem
+    property alias lineItem:lineItem
+    property alias mLItem:mLItem
+    property alias lItem:lItem
+    property alias mZItem:mZItem
+    property alias zItem:zItem
+    property alias tItem:tItem
     property variant sources: ["goal1.wav", "goal1.wav", "goal2.wav", "goal3.wav", "goal3.wav", "goal4.wav", "goal5.wav", "goal5.wav", "goal6.wav", "goal7.wav", "Levelup.wav"]
     property int counter: 0
-    property alias anim1: localBackground.anim1
+    property alias backCubeAnim: localBackground.backCubeAnim
     property color winColor: "#AA0033a9"
-    property alias squareRepeater: localBoard.squareRepeater
+    property alias mainGrid: localBoard.mainGrid
     property alias playArea: localBoard
     property alias playTimer: playTimer
     property alias gamePlayTimer: gamePlayTimer.rectangleText
@@ -60,7 +60,7 @@ Rectangle {
     ColorAnimation on color {
         id: backColorAnim
         to: _backColorArray[_level]
-        duration: animDuration
+        duration: 5000
         running: animate
     }
 
@@ -128,9 +128,9 @@ Rectangle {
         border.color: "transparent"
 
         ColorAnimation on color {
-            id: winColorAnim
+            id: cubeColorAnim
             to: _windowColorArray[_level]
-            duration: animDuration
+            duration: 5000
             running: animate
         }
 
@@ -154,7 +154,7 @@ Rectangle {
         ColorAnimation on color {
             id: timerColorAnim
             to: _windowColorArray[_level]
-            duration: animDuration
+            duration: 5000
             running: animate
         }
     }
@@ -178,7 +178,7 @@ Rectangle {
         ColorAnimation on color {
             id: levelColorAnim
             to: _windowColorArray[_level]
-            duration: animDuration
+            duration: 5000
             running: animate
         }
 
@@ -211,7 +211,7 @@ Rectangle {
         ColorAnimation on color {
             id: goalcolorAnim
             to: _windowColorArray[_level]
-            duration: animDuration
+            duration: 5000
             running: animate
         }
 
@@ -244,7 +244,7 @@ Rectangle {
         ColorAnimation on color {
             id: nextcolorAnim
             to: _windowColorArray[_level]
-            duration: animDuration
+            duration: 5000
             running: animate
         }
 
@@ -260,19 +260,19 @@ Rectangle {
             border.color: "black"
 
             Rectangle {
-                width: lItem1.topLeft.width * 4
-                height: lItem1.topLeft.height * 2
+                width: lItem.topLeft.width * 4
+                height: lItem.topLeft.height * 2
                 radius: appWindow.width * .015
                 anchors.centerIn: parent
                 color: "transparent"
 
-                CubeItem { id: cubeItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-                LineItem { id:lineItem1;visible: false; focus: false; sleep.running: false; x: lItem1.topLeft.width}
-                MLItem { id:mLItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-                LItem { id:lItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-                MZItem { id:mZItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-                ZItem { id:zItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
-                TItem { id:tItem1; visible: false; focus: false; sleep.running: false; y: -lItem1.topLeft.width}
+                CubeItem { id: cubeItem; visible: false; focus: false; sleep.running: false; y: -lItem.topLeft.width}
+                LineItem { id:lineItem;visible: false; focus: false; sleep.running: false; x: lItem.topLeft.width}
+                MLItem { id:mLItem; visible: false; focus: false; sleep.running: false; y: -lItem.topLeft.width}
+                LItem { id:lItem; visible: false; focus: false; sleep.running: false; y: -lItem.topLeft.width}
+                MZItem { id:mZItem; visible: false; focus: false; sleep.running: false; y: -lItem.topLeft.width}
+                ZItem { id:zItem; visible: false; focus: false; sleep.running: false; y: -lItem.topLeft.width}
+                TItem { id:tItem; visible: false; focus: false; sleep.running: false; y: -lItem.topLeft.width}
 
                 Canvas {
                     id: nextGrid
@@ -288,9 +288,9 @@ Rectangle {
                         {
                             ctx.beginPath()
                             // top start point
-                            ctx.moveTo(lItem1.topLeft.width * index,0)
+                            ctx.moveTo(lItem.topLeft.width * index,0)
                             // bottom end point
-                            ctx.lineTo(lItem1.topLeft.width * index, lItem1.topLeft.width * 2)
+                            ctx.lineTo(lItem.topLeft.width * index, lItem.topLeft.width * 2)
                             // stop at end point
                             ctx.closePath()
                             // paint line
@@ -301,9 +301,9 @@ Rectangle {
                         {
                             ctx.beginPath()
                             // top start point
-                            ctx.moveTo(0,lItem1.topLeft.width * index)
+                            ctx.moveTo(0,lItem.topLeft.width * index)
                             // bottom end point
-                            ctx.lineTo(lItem1.topLeft.width * 8, lItem1.topLeft.width * index)
+                            ctx.lineTo(lItem.topLeft.width * 8, lItem.topLeft.width * index)
                             // stop at end point
                             ctx.closePath()
                             // paint line

@@ -6,7 +6,7 @@ Shape {
     thirdRight.visible: false
     bottomRight.visible: false
     shapeColor: "#ff0000"
-    shapeHeight: topLeft.width * 3
+    shapeHeight: refSquare.width * 3
     shapeValue: 1
 
     rightHorzShift: "left"

@@ -4,6 +4,7 @@ import QtMultimedia 5.6
 Item {
     id: basicShape
     property alias sleep:sleep
+    property alias refSquare:refSquare
     property alias topRight:topRight
     property alias topLeft:topLeft
     property alias secondRight:secondRight
@@ -14,8 +15,8 @@ Item {
     property alias bottomLeft:bottomLeft
     property alias rotateSound:rotateSound
     property alias impactSound:impactSound
-    property int shapeWidth: topLeft.width * 2
-    property int shapeHeight: topLeft.height * 4
+    property int shapeWidth: refSquare.width * 2
+    property int shapeHeight: refSquare.height * 4
     property int i: 0
     property int j: 0
     property int index: 0
@@ -62,8 +63,8 @@ Item {
 
     property int virtShiftTop: -1
 
-    width: topLeft.width * 2
-    height: topLeft.height * 4
+    width: refSquare.width * 2
+    height: refSquare.height * 4
     state: "UPRIGHT"
     rotation: 90
     states: [
@@ -84,9 +85,9 @@ Item {
         function rotateShift(direction, numBlocks)
         {
             if (direction === "left")
-                retval = (x > topLeft.width * numBlocks)
+                retval = (x > refSquare.width * numBlocks)
             if (direction === "right")
-                retval = (x < playArea.width - topLeft.width * numBlocks)
+                retval = (x < playArea.width - refSquare.width * numBlocks)
 
             return retval
         }
@@ -94,9 +95,9 @@ Item {
         function borderHorzShift(direction, numBlocks)
         {
             if(direction === "left")
-                retval = x > topLeft.width * numBlocks
+                retval = x > refSquare.width * numBlocks
             else if (direction === "right")
-                retval = x < (playArea.width - topLeft.width * numBlocks)
+                retval = x < (playArea.width - refSquare.width * numBlocks)
             else
                 retval = x > 0
 
@@ -105,30 +106,30 @@ Item {
         function borderVirtShift(direction, numBlocks)
         {
             if(direction === "up")
-                return (y >= topLeft.width * numBlocks)
+                return (y >= refSquare.width * numBlocks)
             else if (direction === "down")
-                return (y < playArea.height - topLeft.width * numBlocks)
+                return (y < playArea.height - refSquare.width * numBlocks)
         }
 
         function virtShift(direction)
         {
             if(direction === "up")
-                retval = Math.floor((y + topLeft.width) / topLeft.width);
+                retval = Math.floor((y + refSquare.width) / refSquare.width);
             else if (direction === "down")
-                retval = Math.floor((y - topLeft.width) / topLeft.width);
+                retval = Math.floor((y - refSquare.width) / refSquare.width);
             else
-                retval = Math.floor(y/ topLeft.width);
+                retval = Math.floor(y/ refSquare.width);
 
             return retval;
         }
         function horzShift(direction)
         {
             if(direction === "right")
-                retval = Math.floor((x + topLeft.width) / topLeft.width);
+                retval = Math.floor((x + refSquare.width) / refSquare.width);
             else if (direction === "left")
-                retval = Math.floor((x - topLeft.width) / topLeft.width);
+                retval = Math.floor((x - refSquare.width) / refSquare.width);
             else
-                retval = Math.floor(x/ topLeft.width);
+                retval = Math.floor(x/ refSquare.width);
 
             return retval;
         }
@@ -152,7 +153,7 @@ Item {
                     state === "LEFT" && borderHorzShift("left", llBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue) ||
                     state === "UPRIGHT"  && borderHorzShift("left", ulBoardHorzShiftNum) && grid.checkMoveLeft(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue) ||
                     state === "UPSIDEDOWN" && borderHorzShift("left", dlboardHorzShiftNum) && grid.checkMoveLeft(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue))
-                x = --xCoord * topLeft.width
+                x = --xCoord * refSquare.width
         }
         else if(event.key === Qt.Key_Right)
         {
@@ -160,7 +161,7 @@ Item {
                     state == "LEFT" && borderHorzShift("right", lrBoardHorzShiftNum) && grid.checkMoveRight(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue) ||
                     state === "UPRIGHT"  && borderHorzShift("right", urBoardHorzShiftNum) && grid.checkMoveRight(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue) ||
                     state === "UPSIDEDOWN" && borderHorzShift("right", drBoardHorzShiftNum) && grid.checkMoveRight(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue))
-                x = ++xCoord * topLeft.width
+                x = ++xCoord * refSquare.width
         }
         else if(event.key === Qt.Key_Up)
         {
@@ -175,7 +176,7 @@ Item {
                     state = "RIGHT"
                     rotation = (fourStates) ? 180 : 0
                     if(fourStates)
-                        y = --yCoord * topLeft.width
+                        y = --yCoord * refSquare.width
                     rotateSound.play()
                     rotate()
                 }
@@ -185,7 +186,7 @@ Item {
                     state = "UPSIDEDOWN"
                     rotation = (fourStates) ? 270 : 90
                     if (fourStates)
-                        x = ++xCoord * topLeft.width
+                        x = ++xCoord * refSquare.width
                     rotateSound.play()
                     rotate()
                 }
@@ -194,7 +195,7 @@ Item {
                     state = "LEFT"
                     rotation = 0
                     if (fourStates)
-                        y = ++yCoord * topLeft.width
+                        y = ++yCoord * refSquare.width
                     rotateSound.play()
                     rotate()
                 }
@@ -203,7 +204,7 @@ Item {
                     state = "UPRIGHT"
                     rotation = 90
                     if(fourStates)
-                        x = --xCoord * topLeft.width
+                        x = --xCoord * refSquare.width
                     rotateSound.play()
                     rotate()
                 }
@@ -259,12 +260,12 @@ Item {
                             index = ((i * tilesWide) + j)
                             if (grid.updateGrid(i, j) === true)
                             {
-                                squareRepeater.itemAt(index).visible = true
-                                squareRepeater.itemAt(index).color = grid.getColor(i,j);
+                                mainGrid.itemAt(index).visible = true
+                                mainGrid.itemAt(index).color = grid.getColor(i,j);
                             }
                             else
                             {
-                                squareRepeater.itemAt(index).visible = false
+                                mainGrid.itemAt(index).visible = false
                             }
                         }
                     }
@@ -281,8 +282,8 @@ Item {
 
                     if(collision == false)
                     {
-                        y += topLeft.width
-                        yCoord = Math.floor(y / topLeft.width)
+                        y += refSquare.width
+                        yCoord = Math.floor(y / refSquare.width)
                     }
                 }
             }
@@ -293,14 +294,14 @@ Item {
                 collision = false
                 xCoord = 6
                 yCoord = 0
-                x = referenceSquare.width * xCoord
-                y = -referenceSquare.height
+                x = refSquare.width * xCoord
+                y = -refSquare.height
                 rotation = 90
 
                 if(state !== "GAMEOVER")
                 {
                     state = "UPRIGHT"
-                    localBoard.getRandomIntInclusive(0,6)
+                    localBoard.generateShape(0,6)
                 }
 
                 sleep.interval = _speedArray[_level - 1]
@@ -317,6 +318,11 @@ Item {
         id: impactSound
         source: "impact.wav"
         autoLoad: true
+    }
+
+    Square {
+        id: refSquare
+        color: "transparent"
     }
 
     Square {
@@ -346,7 +352,7 @@ Item {
     Square {
     id: secondLeft
     color: shapeColor
-    anchors.top: topLeft.bottom
+    anchors.top: refSquare.bottom
     anchors.left: parent.left
     }
     Square {

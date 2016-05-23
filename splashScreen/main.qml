@@ -20,13 +20,13 @@ ApplicationWindow {
     property alias playMusic:playMusic
     property alias initializeBoard1: localHud.localBoard
     property alias currentLevel: localHud._level
-    property alias cubeItem1: localHud.cubeItem1
-    property alias lineItem1: localHud.lineItem1
-    property alias mLItem1: localHud.mLItem1
-    property alias lItem1: localHud.lItem1
-    property alias mZItem1: localHud.mZItem1
-    property alias zItem1: localHud.zItem1
-    property alias tItem1: localHud.tItem1
+    property alias cubeItem: localHud.cubeItem
+    property alias lineItem: localHud.lineItem
+    property alias mLItem: localHud.mLItem
+    property alias lItem: localHud.lItem
+    property alias mZItem: localHud.mZItem
+    property alias zItem: localHud.zItem
+    property alias tItem: localHud.tItem
     property alias _level: localHud._level
     property alias playTimer: localHud.playTimer
     property alias splashScreen: splashScreen
@@ -37,7 +37,6 @@ ApplicationWindow {
     property bool paused: false
     property int fallingShape: -1
     property bool animate: false
-    property int animDuration: 5000
     property int xCoord: 6
     property int yCoord: 0
     property bool collision: false

@@ -33,12 +33,12 @@ TextRect{
 
     onHeightChanged:
     {
-        anim1.stop()
-        anim2.stop()
-        anim1.initialAnim.to = -scoreBoard.height
-        anim2.initialAnim2.from = scoreBoard.height
-        anim1.start()
-        anim2.start()
+        backCubeAnim.stop()
+        backCubeAnim2.stop()
+        backCubeAnim.initialAnim.to = -scoreBoard.height
+        backCubeAnim2.initialAnim2.from = scoreBoard.height
+        backCubeAnim.start()
+        backCubeAnim2.start()
 }
 
     Keys.onPressed: {
@@ -46,8 +46,8 @@ TextRect{
         {
             scoreBoard.visible = false
             splashScreen.focus = true
-            anim1.complete()
-            anim2.complete()
+            backCubeAnim.complete()
+            backCubeAnim2.complete()
         }
     }
     function refreshScoreBoard()
@@ -101,7 +101,7 @@ TextRect{
 
             SequentialAnimation on y{
                 property alias initialAnim: initialAnim
-                id: anim1
+                id: backCubeAnim
                 running: !enterName
                 PauseAnimation {duration: 2000}
                 NumberAnimation{
@@ -129,7 +129,7 @@ TextRect{
 
             SequentialAnimation on y{
                 property alias initialAnim2: initialAnim2
-                id: anim2
+                id: backCubeAnim2
                 running: !enterName
                 PauseAnimation {duration: 2000}
                 NumberAnimation{
@@ -182,8 +182,8 @@ TextRect{
         mouseArea.onClicked: {
             scoreBoard.visible = false
             splashScreen.focus = true
-            anim1.complete()
-            anim2.complete()
+            backCubeAnim.complete()
+            backCubeAnim2.complete()
         }
     }
 
