@@ -108,7 +108,7 @@ Rectangle {
             else
                 _goal = _startingGoal++
 
-            _score += 1000 * _lineBreaks
+            _score += 1000
 
             lineBreakSFX.play()
         }

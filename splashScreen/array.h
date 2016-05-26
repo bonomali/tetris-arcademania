@@ -75,7 +75,7 @@ template<typename T>
 Array<T>::Array(int length, int start_index) : m_array(nullptr), m_length(length), m_start_index(start_index)
 {
 	if (length < 0)	
-		throw Exception("Error! Length must be greater than 0");	//error message for invalid length
+        throw ("Error! Length must be greater than 0");	//error message for invalid length
 
 	m_array = new T[m_length];
 

@@ -199,7 +199,7 @@ template <typename T>
 void Array2D<T>::setRow(int row)
 {
 	if (row < 0)
-		throw Exception("Error! Number of rows must be 0 or greater.");
+        throw ("Error! Number of rows must be 0 or greater.");
 
 	m_row = row;		//set new row value
 	int length = m_row * m_col;	//new length of array
@@ -218,7 +218,7 @@ template <typename T>
 void Array2D<T>::setColumns(int col)
 {
 	if (col < 0)
-		throw Exception("Error! Number of columns must be 0 or greater.");
+        throw ("Error! Number of columns must be 0 or greater.");
 
 	int length = m_row * col;		//new length of array
 	Array<T> temp(length);			//create temp array 
