@@ -1,0 +1,3 @@
+C:\Users\Isaac\cst_238\arcademania\splashScreen <SRC_DIR>
+
+C:\Qt\ifw-bld\bin <TOOL_DIR>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>Tetris</DisplayName>
+    <Description>It's a game... yaay tetris</Description>
+    <Version>1.0.0</Version>
+    <ReleaseDate>2016-05-26</ReleaseDate>
+    <Licenses>
+        <License name="License Agreement" file="LICENSE" />
+    </Licenses>
+    <Default>false</Default>
+</Package>
