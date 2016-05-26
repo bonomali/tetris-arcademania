@@ -1,0 +1,4 @@
+C:\Users\Isaac\cst_238\arcademania\splashScreen\release>C:\Qt\ifw-bld\bin\binary
+creator.exe --offline-only -t C:\Qt\ifw-bld\bin\installerbase.exe -p C:\Users\Is
+aac\cst_238\arcademania\splashScreen\installer\packages -c C:\Users\Isaac\cst_23
+8\arcademania\splashScreen\installer\config\config.xml "Tetris Installer"
