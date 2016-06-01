@@ -135,13 +135,11 @@ Item {
         }
         function checkCollision()
         {
-            console.log("in check collision: ", collision)
             if((state === "UPRIGHT" && grid.checkForCollision(virtShift(upVirtShift), horzShift(upHorzShift), shapeValue)) ||
                 (state === "UPSIDEDOWN" && grid.checkForCollision(virtShift(downVirtShift), horzShift(downHorzShift), shapeValue)) ||
                 (state === "RIGHT" && grid.checkForCollision(virtShift(rightVirtShift), horzShift(rightHorzShift), shapeValue)) ||
                 (state === "LEFT" && grid.checkForCollision(virtShift(leftVirtShift), horzShift(leftHorzShift), shapeValue)))
                 {
-                console.log("collision changed")
                     collision = true
                 }
         }
@@ -165,10 +163,6 @@ Item {
         }
         else if(event.key === Qt.Key_Up)
         {
-            console.log(state)
-            console.log("y: ", yCoord)
-            console.log("end index: ",getEndIndex() - 1)
-
             if(rotateShape && !event.isAutoRepeat)
             {
                 if(state === "UPRIGHT" && borderVirtShift("up", virtShiftTop) && rotateShift("left", ulRotateShift) && rotateShift("right", urRotateShift) && yCoord < getEndIndex())
@@ -227,7 +221,6 @@ Item {
             sleep.interval = _speed
     }
 
-    onStateChanged: {console.log(state)}
     Timer
     {
         id:sleep

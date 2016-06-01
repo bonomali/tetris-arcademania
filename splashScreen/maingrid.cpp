@@ -57,7 +57,7 @@ bool MainGrid::lineCheck()
         {
             emit lineBrake();
 
-            for(i; i > 0; i--)
+            for(; i > 0; i--)
             {
                 for(j = COL - 1; j >= 0; j--)
                 {
@@ -108,7 +108,7 @@ bool MainGrid::checkForCollision(int row, int col, int block_type)
     {
         for(int j = 0; j < 4 && !done; j++)
         {
-            if(localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true) || row == m_allShapes[block_type]->getEndIndex())
+            if((localShape[i][j] == true && (m_grid[i + row + 1][j + col].visible == true)) || (row == m_allShapes[block_type]->getEndIndex()))
                 done = true;    //collision-->return true
         }
     }
@@ -218,8 +218,6 @@ bool MainGrid::checkMoveRight(int row, int col, int block_type)
                 }
         }
     }
-    if(validMove && checkForCollision(row, (col + 1), block_type))  //???????????????????????//
-        void moveDetected();
 
     if(validMove && row != m_allShapes[block_type]->getEndIndex())  //send signal that shape moved
         emit moveDetected();
